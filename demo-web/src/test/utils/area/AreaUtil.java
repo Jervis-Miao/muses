@@ -10,6 +10,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,10 +41,12 @@ import org.htmlcleaner.XPatherException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+
 import utils.area.dto.AreaDto;
 import utils.area.dto.CityDto;
 import utils.area.dto.CountyDto;
 import utils.area.dto.ProvinceDto;
+import utils.excel.ExcelUtil;
 
 /**
  * @author MiaoQiang
@@ -53,28 +56,29 @@ public class AreaUtil {
 	private static Logger				logger			= LoggerFactory.getLogger(AreaUtil.class);					// 日志记录
 	private static List<AreaDto>		areaDtos		= new ArrayList<>();
 	private static List<ProvinceDto>	provinceDtos	= new ArrayList<>();
-	private static List<CityDto>		cityDtos		= new ArrayList<>();
-	private static List<CountyDto>		countyDtos		= new ArrayList<>();
 
 	private static final String			baseUrl			= "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2017/";
 
 	public static void main(String[] args) {
 		try {
 			AreaUtil areaUtil = new AreaUtil();
-			List<AreaDto> provinces = areaUtil.parsXml(AreaUtil.httpGet(baseUrl + "index.html"));
+			List<AreaDto> provinces = areaUtil.parsXml(AreaUtil.httpGet(baseUrl + "index.html"), 1);
 			for (AreaDto p : provinces) {
-				System.out.println("--------------------------------------------------");
+				System.out.println("=========================================");
+				System.out.println("省");
 				System.out.println("name: " + p.getName() + ", code: " + p.getCode());
 				ProvinceDto pd = new ProvinceDto();
 				BeanUtils.copyProperties(p, pd);
 				provinceDtos.add(pd);
-				List<AreaDto> citys = areaUtil.parsXml(AreaUtil.httpGet(baseUrl + pd.getLink()));
+				List<AreaDto> citys = areaUtil.parsXml(AreaUtil.httpGet(baseUrl + pd.getLink()), 2);
 				for (AreaDto c : citys) {
+					System.out.println("市");
 					System.out.println("name: " + c.getName() + ", code: " + c.getCode());
 					CityDto cd = new CityDto();
 					BeanUtils.copyProperties(c, cd);
 					pd.getCityDtos().add(cd);
-					List<AreaDto> counties = areaUtil.parsXml(AreaUtil.httpGet(baseUrl + c.getLink()));
+					List<AreaDto> counties = areaUtil.parsXml(AreaUtil.httpGet(baseUrl + c.getLink()), 3);
+					System.out.println("区");
 					for (AreaDto co : counties) {
 						System.out.println("name: " + co.getName() + ", code: " + co.getCode());
 						CountyDto cod = new CountyDto();
@@ -83,11 +87,34 @@ public class AreaUtil {
 					}
 				}
 			}
+			// 判断文件是否存在
+			System.out.println(ExcelUtil.fileExist("E:/area.xls"));
+			// 创建文件
+			String title[] = { "province", "provinceCode", "city", "cityCode", "county", "countyCode" };
+			ExcelUtil.createExcel("E:/area.xls", "sheet1", title);
+			List<Map> list = new ArrayList<>();
+			for (ProvinceDto p : provinceDtos) {
+				for (CityDto c : p.getCityDtos()) {
+					for (CountyDto cd : c.getCountyDtos()) {
+						Map<String, String> map = new HashMap<>();
+						map.put("province", p.getName());
+						map.put("provinceCode", p.getCode());
+						map.put("city", c.getName());
+						map.put("cityCode", c.getCode());
+						map.put("county", cd.getName());
+						map.put("countyCode", cd.getCode());
+						list.add(map);
+					}
+				}
+			}
+			ExcelUtil.writeToExcel("E:/area.xls", "sheet1", list);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (KeyManagementException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -96,12 +123,26 @@ public class AreaUtil {
 	 * 解析返回信息
 	 * @param xml
 	 */
-	public static List<AreaDto> parsXml(String html) {
+	public static List<AreaDto> parsXml(String html, int level) {
 		List<AreaDto> areaDtos = new ArrayList<>();
 		try {
 			HtmlCleaner hc = new HtmlCleaner();
 			TagNode tn = hc.clean(html);
-			String xpath = "//a[@href]";
+			String xpath = "";
+			switch (level) {
+			case 1:
+				xpath = "//a[@href]";
+				break;
+			case 2:
+				xpath = "//a[@href]";
+				break;
+			case 3:
+				xpath = "//a";
+				break;
+			default:
+				xpath = "//a[@href]";
+				break;
+			}
 			Object[] objarr = tn.evaluateXPath(xpath);
 			for (Object obj : objarr) {
 				TagNode tagNode = (TagNode) obj;
@@ -113,7 +154,15 @@ public class AreaUtil {
 				while (code.length() < 6) {
 					code += "0";
 				}
-				if (name.contains("省") || name.contains("市") || name.contains("区")) {
+				// 汉字字符串正则
+				String reg = "[\\u4e00-\\u9fa5]+";
+				if (level == 1 && (name.contains("省") || name.contains("市") || name.contains("区"))) {
+					AreaDto areaDto = new AreaDto();
+					areaDto.setName(name);
+					areaDto.setCode(code);
+					areaDto.setLink(link);
+					areaDtos.add(areaDto);
+				} else if (name.matches(reg)) {
 					AreaDto areaDto = new AreaDto();
 					areaDto.setName(name);
 					areaDto.setCode(code);
