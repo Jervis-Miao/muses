@@ -69,24 +69,27 @@ public class ExcelUtil {
 	/**
 	 * 创建新excel.
 	 * @param fileDir excel的路径
-	 * @param sheetName 要创建的表格索引
+	 * @param sheetNames 要创建的表格索引
 	 * @param titleRow excel的第一行即表格头
 	 */
-	public static void createExcel(String fileDir, String sheetName, String titleRow[]) throws Exception {
+	public static void createExcel(String fileDir, String[] sheetNames, String titleRow[]) throws Exception {
 		// 创建workbook
 		workbook = new HSSFWorkbook();
-		// 添加Worksheet（不添加sheet时生成的xls文件打开时会报错)
-		HSSFSheet sheet1 = workbook.createSheet(sheetName);
 		// 新建文件
 		FileOutputStream out = null;
 		try {
-			// 添加表头
-			HSSFRow row = workbook.getSheet(sheetName).createRow(0); // 创建第一行
-			for (short i = 0; i < titleRow.length; i++) {
-				HSSFCell cell = row.createCell(i);
-				cell.setCellValue(titleRow[i]);
-			}
 			out = new FileOutputStream(fileDir);
+			for (String sheetName : sheetNames) {
+				// 添加Worksheet（不添加sheet时生成的xls文件打开时会报错)
+				HSSFSheet sheet1 = workbook.createSheet(sheetName);
+
+				// 添加表头
+				HSSFRow row = workbook.getSheet(sheetName).createRow(0); // 创建第一行
+				for (short i = 0; i < titleRow.length; i++) {
+					HSSFCell cell = row.createCell(i);
+					cell.setCellValue(titleRow[i]);
+				}
+			}
 			workbook.write(out);
 		} catch (Exception e) {
 			throw e;
@@ -179,7 +182,7 @@ public class ExcelUtil {
 			System.out.println(ExcelUtil.fileExist("E:/test2.xls"));
 			// 创建文件
 			String title[] = { "id", "name", "password" };
-			ExcelUtil.createExcel("E:/test2.xls", "sheet1", title);
+			ExcelUtil.createExcel("E:/test2.xls", new String[] { "sheet1" }, title);
 			List<Map> list = new ArrayList<>();
 			Map<String, String> map = new HashMap<>();
 			map.put("id", "111");

@@ -20,6 +20,12 @@ public class ChinaDto {
 		return provinces;
 	}
 
+	public Map<String, AreaDto> getProvinceAreas() {
+		Map<String, AreaDto> pa = new HashMap<>();
+		pa.putAll(provinces);
+		return pa;
+	}
+
 	public void setProvinces(Map<String, ProvinceDto> provinces) {
 		this.provinces = provinces;
 	}
@@ -38,4 +44,23 @@ public class ChinaDto {
 	public ProvinceDto getProvinceDtoByCode(String provinceCode) {
 		return provinces.get(provinceCode);
 	}
+
+	public Map<String, AreaDto> getCities() {
+		Map<String, AreaDto> cities = new HashMap<>();
+		for (ProvinceDto p : provinces.values()) {
+			cities.putAll(p.getCityDtoMap());
+		}
+		return cities;
+	}
+
+	public Map<String, AreaDto> getCounties() {
+		Map<String, AreaDto> counties = new HashMap<>();
+		for (ProvinceDto p : provinces.values()) {
+			for (CityDto c : p.getCityDtoMap().values()) {
+				counties.putAll(c.getCountyDtoMap());
+			}
+		}
+		return counties;
+	}
+
 }

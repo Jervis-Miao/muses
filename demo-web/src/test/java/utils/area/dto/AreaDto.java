@@ -4,6 +4,8 @@ Copyright 2016 Focus Technology, Co., Ltd. All rights reserved.
 
 package utils.area.dto;
 
+import utils.excel.ExcelUtil;
+
 /**
  * @author MiaoQiang
  * @date 2018/6/24.
@@ -11,6 +13,7 @@ package utils.area.dto;
 public class AreaDto {
 	private String	name;
 	private String	code;
+	private String	parentCode;
 	private String	link;
 
 	public String getName() {
@@ -29,6 +32,14 @@ public class AreaDto {
 		this.code = code;
 	}
 
+	public String getParentCode() {
+		return parentCode;
+	}
+
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+
 	public String getLink() {
 		return link;
 	}
@@ -36,4 +47,5 @@ public class AreaDto {
 	public void setLink(String link) {
 		this.link = link;
 	}
+
 }

@@ -91,7 +91,7 @@ public class AreaUtil {
 			System.out.println(ExcelUtil.fileExist("E:/area.xls"));
 			// 创建文件
 			String title[] = { "province", "provinceCode", "city", "cityCode", "county", "countyCode" };
-			ExcelUtil.createExcel("E:/area.xls", "sheet1", title);
+			ExcelUtil.createExcel("E:/area.xls", new String[] { "sheet1" }, title);
 			List<Map> list = new ArrayList<>();
 			for (ProvinceDto p : provinceDtos) {
 				for (CityDto c : p.getCityDtos()) {

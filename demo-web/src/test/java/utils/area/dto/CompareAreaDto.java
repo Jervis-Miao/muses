@@ -11,6 +11,7 @@ package utils.area.dto;
 public class CompareAreaDto extends AreaDto {
 	private String	oldName;
 	private String	oldCode;
+	private String	oldParentCode;
 
 	public String getOldName() {
 		return oldName;
@@ -26,5 +27,13 @@ public class CompareAreaDto extends AreaDto {
 
 	public void setOldCode(String oldCode) {
 		this.oldCode = oldCode;
+	}
+
+	public String getOldParentCode() {
+		return oldParentCode;
+	}
+
+	public void setOldParentCode(String oldParentCode) {
+		this.oldParentCode = oldParentCode;
 	}
 }
