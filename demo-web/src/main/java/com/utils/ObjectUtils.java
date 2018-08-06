@@ -397,7 +397,7 @@ public class ObjectUtils {
 			return new Object[0];
 		}
 		if (!source.getClass().isArray()) {
-			throw new IllegalArgumentException("Source is not an array: " + source);
+			throw new IllegalArgumentException("ProxySource is not an array: " + source);
 		}
 		int length = Array.getLength(source);
 		if (length == 0) {
