@@ -172,7 +172,12 @@
             <artifactId>spring-data-redis</artifactId>
             <version>1.8.9.RELEASE</version>
         </dependency>
-
+        <!-- http://mvnrepository.com/artifact/org.jasypt/jasypt/1.9.2 -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.0</version>
+        </dependency>
     </dependencies>
 
     <build>
