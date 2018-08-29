@@ -4,7 +4,6 @@ Copyright 2016 Focus Technology, Co., Ltd. All rights reserved.
 
 package com.study.swing;
 
-import com.utils.CryptoUtils;
 import com.utils.StringUtils;
 
 import javax.swing.*;
@@ -71,7 +70,7 @@ public class EncryptUtils extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == text1) {
 					String word = text1.getText();
-					text3.setText(CryptoUtils.encrypt(word));
+					text3.setText("1");
 				}
 			}
 		});
@@ -80,7 +79,7 @@ public class EncryptUtils extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btn1) {
 					String word = text1.getText();
-					text3.setText(CryptoUtils.encrypt(word));
+					text3.setText("2");
 				}
 			}
 		});
@@ -90,7 +89,7 @@ public class EncryptUtils extends JFrame {
 				if (e.getSource() == text2) {
 					String word = text2.getText();
 					if (StringUtils.isNotBlank(word)) {
-						text3.setText(String.valueOf(CryptoUtils.decrypt(word)));
+						text3.setText(String.valueOf("3"));
 					}
 				}
 			}
@@ -101,7 +100,7 @@ public class EncryptUtils extends JFrame {
 				if (e.getSource() == btn2) {
 					String word = text2.getText();
 					if (StringUtils.isNotBlank(word)) {
-						text3.setText(String.valueOf(CryptoUtils.decrypt(word)));
+						text3.setText(String.valueOf("4"));
 					}
 				}
 			}
