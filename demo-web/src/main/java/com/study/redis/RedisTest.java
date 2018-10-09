@@ -34,8 +34,7 @@ public class RedisTest {
 		// rList.add("last");
 		// lList.add("1");
 		// lList.addFirst("0");
-
-		RList<QueueParam> dtos = redisson.getList("dtos");
+		RList<QueueParam> dtos = redisson.getList("test");
 		QueueParam param = new QueueParam();
 		param.setTaskKey("123123123");
 		param.setVipFlag(true);
