@@ -10,7 +10,7 @@ package com.study.multithread;
  */
 public class ThreadLocalTest {
 	/**
-	 * 线程本地变量，每个线程中都创建一个副本，互不干涉，多用于：数据库连接、Session管理等
+	 * 线程本地变量，每个线程中都创建一个副本，互不干涉，多用于：数据库连接、Session管理等（若返回的是常量，常量内部信息发生变化后，不保证线程安全，因此每次设置数据后，需手动清理）
 	 */
 	public static ThreadLocal<Long>		longLocal	= new ThreadLocal<Long>() {
 														// 重写初始化，即使调用get前不set，也不会空指针异常
