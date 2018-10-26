@@ -34,6 +34,9 @@ public class RedisTest {
 		// rList.add("last");
 		// lList.add("1");
 		// lList.addFirst("0");
+		RList<Object> list = redisson.getList("GLOBAL_PROP_4");
+		list.readAll();
+
 		RList<QueueParam> dtos = redisson.getList("test");
 		QueueParam param = new QueueParam();
 		param.setTaskKey("123123123");

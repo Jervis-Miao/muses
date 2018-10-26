@@ -31,7 +31,8 @@ public class RedisConnect {
 		config.setCodec(new org.redisson.codec.FstCodec());
 
 		// 指定使用单节点部署方式
-		config.useSingleServer().setAddress("redis://192.168.50.33:6379");
+		// config.useSingleServer().setAddress("redis://192.168.50.33:6379");
+		config.useSingleServer().setAddress("redis://192.168.56.90:6379");
 		// 设置密码
 		// config.useSingleServer().setPassword("password");
 		// 设置对于master节点的连接池中连接数最大为500
@@ -45,7 +46,7 @@ public class RedisConnect {
 		config.useSingleServer().setPingTimeout(30000);
 		// 当与某个节点的连接断开时，等待与其重新建立连接的时间间隔。时间单位是毫秒。
 		config.useSingleServer().setReconnectionTimeout(3000);
-
+		config.useSingleServer().setDatabase(4);
 	}
 
 	RedisConnect() {
