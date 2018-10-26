@@ -19,14 +19,26 @@ public class ReentrantTest {
 	private void await() throws InterruptedException {
 		lock.lock();
 		System.out
-				.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----" + "开始等待");
-		done.await();
-		System.out.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----"
-				+ "收到通知继续操作");
+				.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----" + "得到锁");
+		Thread.sleep(50);
+		System.out
+				.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----" + "休眠结束");
+		try {
+			System.out.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----"
+					+ "开始等待");
+			done.await();
+			System.out.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----"
+					+ "收到通知继续操作");
+		} finally {
+			lock.unlock();
+		}
 	}
 
-	private void signal() {
+	private void signal() throws InterruptedException {
+		Thread.sleep(10);
+		System.out.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----" + "竞争锁");
 		lock.lock();
+		System.out.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----" + "得到锁");
 		try {
 			System.out.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----"
 					+ "发出通知");
@@ -34,6 +46,8 @@ public class ReentrantTest {
 		} finally {
 			lock.unlock();
 		}
+		System.out
+				.println(Thread.currentThread().getName() + "----" + Thread.currentThread().getId() + "----" + "通知成功");
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -52,7 +66,11 @@ public class ReentrantTest {
 		Thread thread2 = new Thread("2") {
 			@Override
 			public void run() {
-				reentrantTest.signal();
+				try {
+					reentrantTest.signal();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		};
 
