@@ -9,7 +9,7 @@ package com.utils;
  * @date 2018/6/25.
  */
 public class StringUtils {
-	public StringUtils() {
+	private StringUtils() {
 	}
 
 	public static boolean isEmpty(CharSequence cs) {
@@ -37,5 +37,9 @@ public class StringUtils {
 
 	public static boolean isNotBlank(CharSequence cs) {
 		return !isBlank(cs);
+	}
+
+	public static String trimToEmpty(String str) {
+		return str == null ? "" : str.trim();
 	}
 }
