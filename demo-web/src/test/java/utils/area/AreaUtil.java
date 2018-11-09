@@ -1,5 +1,5 @@
 /*
-Copyright 2016 Focus Technology, Co., Ltd. All rights reserved.
+Copyright All rights reserved.
  */
 
 package utils.area;
