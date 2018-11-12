@@ -2,7 +2,7 @@
 Copyright All rights reserved.
  */
 
-package com.utils;
+package com.utils.mybatis;
 
 import java.io.File;
 import java.io.IOException;

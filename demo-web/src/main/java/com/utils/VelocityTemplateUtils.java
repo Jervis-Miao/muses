@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Focus Technology, Co., Ltd. All rights reserved.
+ * Copyright All rights reserved.
  */
 package com.utils;
 

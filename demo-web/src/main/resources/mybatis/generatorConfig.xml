@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <!-- 驱动路径 -->
+  <classPathEntry location="D:\repo\mysql\mysql-connector-java\5.1.35\mysql-connector-java-5.1.35.jar"/>
+
+  <context id="muses" defaultModelType="flat">
+
+    <!-- 自定义使用方式支持，包括DAO，扩展XML，注解等 -->
+    <plugin type="com.utils.mybatis.CustomizeDaoSupportPlugin">
+      <property name="mapperAnnotation" value="com.utils.mybatis.MyBatisRepository"/>
+      <property name="daoSuffix" value="DAO"/>
+      <property name="targetProject" value="D:\workspace\muses\demo-web\src\main\java"/>
+      <property name="targetPackage" value="com.repository.dao"/>
+      <property name="xmlTargetProject" value="D:\workspace\muses\demo-web\src\main\resources"/>
+      <property name="xmlTargetPackage" value="mybatis/xml/dao"/>
+    </plugin>
+
+    <!-- 自动生成sql添加rowBounds支持 -->
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+
+    <plugin type="com.utils.mybatis.AdjustAllExamplePlugin">
+      <property name="searchString" value="Example"/>
+      <property name="replaceString" value="Criteria"/>
+      <property name="targetProject" value="D:\workspace\muses\demo-web\src\main\java"/>
+      <property name="targetPackage" value="com.entity"/>
+    </plugin>
+
+    <!-- 数据库连接 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://192.168.51.91:3391/xyzjt" userId="xyzjt" password="testjt2018"/>
+
+    <!-- 数据库类型解析为JavaType -->
+    <javaTypeResolver type="com.utils.mybatis.NoShortJavaTypeResolver">
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <!-- entity 生成配置 -->
+    <javaModelGenerator targetPackage="com.entity"
+                        targetProject="D:\workspace\muses\demo-web\src\main\java"/>
+    <!-- sqlMapper xml文件生成配置 -->
+    <sqlMapGenerator targetPackage="mybatis/xml/mapper"
+                     targetProject="D:\workspace\muses\demo-web\src\main\resources"/>
+    <!-- sqlMapper 接口生成配置 -->
+    <javaClientGenerator targetPackage="com.repository.mapper"
+                         targetProject="D:\workspace\muses\demo-web\src\main\java" type="XMLMAPPER"/>
+
+
+        <!--<table tableName="insure_applicant_info">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <table tableName="insure_application">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <table tableName="insure_insured_info">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <table tableName="insure_policy">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <table tableName="prod_combination">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <table tableName="settlement_coinsurance">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <table tableName="settlement_detail">
+          <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
+    <table tableName="insure_applicant_info">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+    </table>
+  </context>
+
+</generatorConfiguration>
