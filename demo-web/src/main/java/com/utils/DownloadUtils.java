@@ -4,13 +4,16 @@ Copyright All rights reserved.
 
 package com.utils;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -28,6 +31,57 @@ public class DownloadUtils {
 	 */
 	private DownloadUtils() {
 
+	}
+
+	/**
+	 * 下载文件
+	 *
+	 * @param fileDisplayName
+	 * @param file
+	 * @param request
+	 * @param response
+	 */
+	public static void down(String fileDisplayName, final File file, HttpServletRequest request,
+			HttpServletResponse response) {
+		if (null != file && file.isFile()) {
+			try {
+				if (StringUtils.isBlank(fileDisplayName)) {
+					fileDisplayName = file.getName();
+				}
+				down(fileDisplayName, FileUtils.readFileToByteArray(file), request, response);
+			} catch (IOException e) {
+				logger.error("文件下载出错：fileDisplayName=" + fileDisplayName, e);
+			}
+		}
+	}
+
+	/**
+	 * 下载内容
+	 *
+	 * @param fileDisplayName
+	 * @param contents
+	 * @param request
+	 * @param response
+	 */
+	public static void down(final String fileDisplayName, final byte[] contents, HttpServletRequest request,
+			HttpServletResponse response) {
+		OutputStream outp = null;
+		try {
+			setResponseHeader(fileDisplayName, contents.length, request, response);
+			outp = response.getOutputStream();
+			outp.write(contents);
+			outp.flush();
+		} catch (Exception e) {
+			logger.error("文件下载出错：fileDisplayName=" + fileDisplayName, e);
+		} finally {
+			if (outp != null) {
+				try {
+					outp.close();
+				} catch (IOException e) {
+					logger.error("文件下载出错IO关闭错误：fileDisplayName=" + fileDisplayName, e);
+				}
+			}
+		}
 	}
 
 	/**

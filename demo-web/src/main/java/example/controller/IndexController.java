@@ -53,22 +53,6 @@ public class IndexController {
 		PdfInfo appPdf = indexService.getAppPdf(id);
 		String name = "投保单模板_" + id + ".pdf";
 		byte[] content = appPdf.getContent();
-		OutputStream outp = null;
-		try {
-			DownloadUtils.setResponseHeader(name, content.length, request, response);
-			outp = response.getOutputStream();
-			outp.write(content);
-			outp.flush();
-		} catch (Exception e) {
-			logger.error("文件下载出错：fileDisplayName=" + name, e);
-		} finally {
-			if (outp != null) {
-				try {
-					outp.close();
-				} catch (IOException e) {
-					logger.error("文件下载出错IO关闭错误：fileDisplayName=" + name, e);
-				}
-			}
-		}
+		DownloadUtils.down(name, content, request, response);
 	}
 }
