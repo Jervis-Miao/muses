@@ -10,7 +10,167 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>demo-web</module>
+        <module>demo-dubbo</module>
+        <module>common</module>
     </modules>
 
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/Jervis-Miao/muses/issues</url>
+    </issueManagement>
 
+    <scm>
+        <url>https://github.com/Jervis-Miao/muses.git</url>
+        <connection>scm:git@github.com:Jervis-Miao/muses.git</connection>
+    </scm>
+
+    <!--设定团队 发布仓库-->
+    <distributionManagement>
+        <repository>
+            <id>ins-inner</id>
+            <name>Release 仓库</name>
+            <url>https://mvnrepository.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ins-inner</id>
+            <name>Snapshot 仓库</name>
+            <url>http://maven.mic.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <!-- plugin的属性 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- JDK -->
+        <java.version>1.8</java.version>
+        <!-- junit -->
+        <junit.version>4.12</junit.version>
+        <!-- spring -->
+        <spring.version>4.3.13.RELEASE</spring.version>
+        <!-- dubbo -->
+        <dubbo.version>2.5.8</dubbo.version>
+        <!-- druid -->
+        <druid.version>1.1.6</druid.version>
+        <!-- orika -->
+        <orika.version>1.4.6</orika.version>
+        <!-- collections -->
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <!-- servlet -->
+        <servlet-api.version>3.1.0</servlet-api.version>
+        <!-- ehcache -->
+        <ehcache.version>2.10.2</ehcache.version>
+        <!-- redisson -->
+        <redisson.version>3.7.5</redisson.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- spring begin -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring end -->
+
+            <!-- dubbo -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- orika -->
+            <dependency>
+                <groupId>ma.glasnost.orika</groupId>
+                <artifactId>orika-core</artifactId>
+                <version>${orika.version}</version>
+            </dependency>
+
+            <!-- collections -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+
+            <!-- servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- ehcache -->
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${ehcache.version}</version>
+                <type>pom</type>
+            </dependency>
+
+            <!-- redisson start -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>{redisson.version}</version>
+            </dependency>
+
+            <!-- redisson fstCodec序列化依赖 -->
+            <dependency>
+                <groupId>de.ruedigermoeller</groupId>
+                <artifactId>fst</artifactId>
+                <version>2.56</version>
+            </dependency>
+
+            <!-- redisson netty依赖 -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.27.Final</version>
+            </dependency>
+            <!-- redisson end -->
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- compiler插件, 设定JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

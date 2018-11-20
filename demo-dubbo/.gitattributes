@@ -1,0 +1,15 @@
+# default text files
+* text=auto
+
+# unix style
+*.sh text eol=lf
+
+# binary
+*.jar binary
+*.war binary
+
+# 图片
+*.png binary
+*.jpg binary
+*.ico binary
+*.gif binary
