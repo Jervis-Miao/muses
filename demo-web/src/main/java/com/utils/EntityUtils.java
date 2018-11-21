@@ -11,7 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/21.
  */
 public class EntityUtils {

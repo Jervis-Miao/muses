@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/9.
  */
 public class CustomizeDaoSupportPlugin extends PluginAdapter {

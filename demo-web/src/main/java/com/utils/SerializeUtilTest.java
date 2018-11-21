@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/20.
  */
 public class SerializeUtilTest {

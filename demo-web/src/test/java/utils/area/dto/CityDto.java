@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author MiaoQiang
+ * @author Jervis
  * @date 2018/6/24.
  */
 public class CityDto extends AreaDto {

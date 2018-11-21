@@ -5,7 +5,7 @@ Copyright All rights reserved.
 package utils.area.dto;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/25.
  */
 public class CompareAreaDto extends AreaDto {

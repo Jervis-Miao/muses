@@ -10,7 +10,7 @@ import java.util.Vector;
 /**
  * 设计模式——11、组合模式
  *
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class TreeNode {

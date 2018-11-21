@@ -27,7 +27,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 /**
  * 基于volecity的邮件模板渲染组件
  *
- * @author miaoqiang
+ * @author Jervis
  *
  */
 public class VelocityTemplateUtils {

@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/10/26.
  */
 public class ProxyTest {

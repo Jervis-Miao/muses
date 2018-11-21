@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/7/19.
  */
 public class Study {

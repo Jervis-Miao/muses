@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeUtility;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/8.
  */
 public class DownloadUtils {

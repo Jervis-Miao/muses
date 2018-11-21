@@ -7,7 +7,7 @@ package com.study.queue.dto;
 import java.io.Serializable;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/21.
  */
 public class QueueParam implements Serializable {

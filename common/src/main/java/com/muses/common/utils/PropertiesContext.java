@@ -13,7 +13,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.CollectionUtils;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/20.
  */
 public class PropertiesContext implements InitializingBean {

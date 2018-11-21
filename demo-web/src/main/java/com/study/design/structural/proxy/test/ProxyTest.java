@@ -10,7 +10,7 @@ import com.study.design.structural.proxy.ProxySourceable;
 /**
  * 设计模式——8、代理模式——测试
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class ProxyTest {

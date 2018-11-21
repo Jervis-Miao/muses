@@ -9,7 +9,7 @@ import java.util.Vector;
 /**
  * 设计模式——3、单例模式——测试（采用"影子实例"的办法为单例对象的属性同步更新）
  *
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class ShadowSingletonTest {

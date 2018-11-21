@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/25.
  */
 public class DiffAreaDto {

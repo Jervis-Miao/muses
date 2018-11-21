@@ -7,7 +7,7 @@ package com.call.processor.send;
 /**
  * 发送请求
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/9/7.
  */
 public interface SendRequestProcessor {

@@ -2,27 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:apollo="http://www.ctrip.com/schema/apollo"
-       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		   http://www.springframework.org/schema/aop
 		   http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		   http://www.springframework.org/schema/context
-		   http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		   http://www.ctrip.com/schema/apollo
-		   http://www.ctrip.com/schema/apollo.xsd
-       http://www.springframework.org/schema/cache
-       http://www.springframework.org/schema/cache/spring-cache-3.2.xsd"
+		   http://www.springframework.org/schema/context/spring-context-4.3.xsd"
        default-lazy-init="false">
 
   <description>Spring配置</description>
-
-  <apollo:config/>
-  <apollo:config order="2" namespaces="XYZ.redis_sentinel"/>
-  <!-- 这个是最复杂的配置形式，指示Apollo注入XYZ.* namespace的配置到Spring环境中-->
-  <apollo:config namespaces="XYZ.session,XYZ.dubbo,XYZ.db,XYZ.fmq,XYZ.redis,XYZ.log,XYZ.auth,XYZ.redis_low_rel"
-                 order="1"/>
 
   <bean id="springContextUtils" class="com.muses.common.utils.SpringContextUtils"/>
   <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContext"/>
@@ -46,29 +34,16 @@
     </property>
   </bean>
 
-  <!-- 统一缓存框架加入 -->
-  <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-    <property name="configLocation" value="classpath:cache/ehcache.xml"/>
-  </bean>
-
-  <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-    <property name="cacheManager" ref="ehcache"/>
-  </bean>
-
-  <!-- 启用缓存注解开关 -->
-  <cache:annotation-driven cache-manager="cacheManager"/>
-
   <!-- 定义aspectj -->
   <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+  <!-- ehcache 集成 -->
+  <import resource="classpath:cache/encache-spring.xml"/>
   <!-- Mybatis 集成 -->
   <import resource="classpath:mybatis/mybatis-spring.xml"/>
-  <!--dubbo 配置 -->
+  <!--dubbo 集成 -->
   <import resource="classpath:dubbo/dubbo-*.xml"/>
-  <!-- orika 配置 -->
-  <import resource="classpath:orika/orika-mapper.xml"/>
-  <!-- fmq配置 -->
-  <import resource="classpath:fmq/fmq-producer.xml"/>
-  <!-- redisson配置 -->
+  <!-- redisson 集成 -->
   <import resource="classpath:/redis/redisson-spring.xml"/>
 
 </beans>

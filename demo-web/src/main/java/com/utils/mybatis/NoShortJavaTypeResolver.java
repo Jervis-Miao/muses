@@ -12,7 +12,7 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
  * * NoShortJavaTypeResolver <br/>
  * 修改默认规则，即使Numeric类型的长度小于5也使用Integer
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/12.
  */
 public class NoShortJavaTypeResolver extends JavaTypeResolverDefaultImpl {

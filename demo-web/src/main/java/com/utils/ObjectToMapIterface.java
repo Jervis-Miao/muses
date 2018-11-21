@@ -5,7 +5,7 @@ Copyright All rights reserved.
 package com.utils;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/25.
  */
 public interface ObjectToMapIterface {

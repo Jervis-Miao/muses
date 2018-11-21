@@ -17,7 +17,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/22.
  */
 public class RedisTest {

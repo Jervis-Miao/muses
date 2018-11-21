@@ -10,7 +10,7 @@ import com.call.dto.CallResultDTO;
 /**
  * 通信管家
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/9/7.
  */
 public class CallManager {

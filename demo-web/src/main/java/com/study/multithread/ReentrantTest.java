@@ -9,7 +9,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/10/26.
  */
 public class ReentrantTest {

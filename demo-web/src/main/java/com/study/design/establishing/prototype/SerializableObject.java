@@ -7,7 +7,7 @@ package com.study.design.establishing.prototype;
 import java.io.Serializable;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class SerializableObject implements Serializable {

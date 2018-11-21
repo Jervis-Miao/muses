@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <!-- 驱动路径 -->
+  <classPathEntry location="D:\Dev-Tools\jdbc\ojdbc14.jar"/>
+
+  <context id="ins-prod-sku">
+
+    <!-- 自定义使用方式支持，包括DAO，扩展XML，注解等 -->
+    <plugin type="com.muses.common.orm.generator.plugins.CustomizeDaoSupportPlugin">
+      <property name="mapperAnnotation" value="com.muses.common.orm.mybatis.MyBatisRepository"/>
+      <property name="daoSuffix" value="DAO"/>
+      <property name="targetProject" value="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/java"/>
+      <property name="targetPackage" value="com.muses.repository.dao"/>
+      <property name="xmlTargetProject" value="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/resources"/>
+      <property name="xmlTargetPackage" value="mybatis/xml/dao"/>
+    </plugin>
+
+    <!-- 自动生成sql添加rowBounds支持 -->
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+
+    <plugin type="com.muses.common.orm.generator.plugins.AdjustAllExamplePlugin">
+      <property name="searchString" value="Example"/>
+      <property name="replaceString" value="Criteria"/>
+      <property name="targetProject" value="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/java"/>
+      <property name="targetPackage" value="com.muses.entity"/>
+    </plugin>
+
+    <!-- 数据库连接 -->
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                    connectionURL="jdbc:oracle:thin:@192.168.51.92:1521:ins" userId="ins" password="instest"/>
+
+    <!-- 数据库类型解析为JavaType -->
+    <javaTypeResolver type="com.muses.common.orm.generator.internal.types.NoShortJavaTypeResolver">
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <!-- entity 生成配置 -->
+    <javaModelGenerator targetPackage="com.muses.entity"
+                        targetProject="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/java"/>
+    <!-- sqlMapper xml文件生成配置 -->
+    <sqlMapGenerator targetPackage="mybatis/xml/mapper"
+                     targetProject="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/resources"/>
+    <!-- sqlMapper 接口生成配置 -->
+    <javaClientGenerator targetPackage="com.muses.repository.mapper"
+                         targetProject="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/java" type="XMLMAPPER"/>
+
+    <!-- Table 映射配置 START  -->
+    <table tableName="STUDENT" schema="INS">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <generatedKey column="STUDENT_ID" sqlStatement="SELECT S_STUDENT.NEXTVAL FROM DUAL" identity="false"/>
+      <!-- <ignoreColumn column="NAME"/>  忽略字段 -->
+    </table>
+
+  </context>
+
+</generatorConfiguration>

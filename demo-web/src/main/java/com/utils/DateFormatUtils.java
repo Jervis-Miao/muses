@@ -15,7 +15,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang.time.FastDateFormat;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/8.
  */
 public class DateFormatUtils {

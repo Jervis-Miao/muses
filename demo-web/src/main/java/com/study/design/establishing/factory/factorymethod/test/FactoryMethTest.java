@@ -11,7 +11,7 @@ import com.study.design.establishing.factory.factorymethod.Sender;
 /**
  * 设计模式——1、工厂方法模式——测试
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class FactoryMethTest {

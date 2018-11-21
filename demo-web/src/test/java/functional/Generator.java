@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/8.
  */
 public class Generator {

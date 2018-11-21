@@ -9,7 +9,7 @@ import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/22.
  */
 public class RedisConnect {

@@ -25,7 +25,7 @@ import java.util.Map;
  * 注意: 不能通过设置环境变量,比如System.setProperty("com.sun.management.jmxremote","true");
  *       方式启动
  * </pre>
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/20.
  */
 public class JmxInitializer implements InitializingBean {

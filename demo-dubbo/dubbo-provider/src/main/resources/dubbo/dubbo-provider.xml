@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+  <!-- Dubbo的全局配置 如果有多模块共用，则将此部分放到单独文件中 -->
+  <dubbo:protocol name="dubbo" threadpool="cached" threads="400" />
+
+  <!-- Services -->
+  <dubbo:service interface="cn.xyz.io.basic.product.api.PackProdProvider"
+                 ref="packProdProviderImpl">
+    <dubbo:method name="formatPropOptions" timeout="6000" retries="1"/>
+    <dubbo:method name="formatPropOptionsByProdSnapshot" timeout="6000" retries="1"/>
+  </dubbo:service>
+
+
+</beans>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>
+    <!-- 启用缓存？ -->
+    <setting name="cacheEnabled" value="false"/>
+    <!-- 延迟加载？ -->
+    <setting name="lazyLoadingEnabled" value="false"/>
+    <!-- 当启用时, 有延迟加载属性的对象 在被任意延迟加载的属性被访问时将会完全加载所有属性。否则, 每种属性将会按需要加载。 -->
+    <setting name="aggressiveLazyLoading" value="false"/>
+    <!-- 是否允许从一条语句中返回多结果集(需要适合的驱动)。 -->
+    <setting name="multipleResultSetsEnabled" value="true"/>
+    <!-- 使用column label 代替 column name ，依赖于驱动实现。请参阅驱动文档或测试不同模式的结果-->
+    <setting name="useColumnLabel" value="true"/>
+    <!-- Allows JDBC support for generated keys. A compatible driver is required. This setting forces generated keys to be used if set to true, as some drivers deny compatibility but still work (e.g. Derby). -->
+    <setting name="useGeneratedKeys" value="false"/>
+    <!-- 指定 MyBatis 如何自动映射列到字段/ 属性。PARTIAL 只会自动映射简单, 没有嵌套的结果。FULL 会自动映射任 意复杂的结果(嵌套的或其他情况) 。 -->
+    <setting name="autoMappingBehavior" value="PARTIAL"/>
+    <!-- 配置默认的执行器。SIMPLE 执行器没 有什么特别之处。REUSE 执行器重用 预处理语句。BATCH 执行器重用语句 和批量更新 -->
+    <setting name="defaultExecutorType" value="REUSE"/>
+    <!-- 默认语句执行超时时间 -->
+    <setting name="defaultStatementTimeout" value="25"/>
+    <!-- Allows using RowBounds on nested statements. -->
+    <setting name="safeRowBoundsEnabled" value="false"/>
+    <!-- Enables automatic mapping from classic database column names A_COLUMN to camel case classic Java property names aColumn. -->
+    <setting name="mapUnderscoreToCamelCase" value="false"/>
+    <!-- MyBatis uses local cache to prevent circular references and speed up repeated nested queries. By default (SESSION) all queries executed during a session are cached. If localCacheScope=STATEMENT local session will be used just for statement execution, no data will be shared between two different calls to the same SqlSession. -->
+    <setting name="localCacheScope" value="SESSION"/>
+    <!-- Specifies the JDBC type for null values when no specific JDBC type was provided for the parameter. Some drivers require specifying the column JDBC type but others work with generic values like NULL, VARCHAR or OTHER. -->
+    <setting name="jdbcTypeForNull" value="OTHER"/>
+    <!-- Specifies which Object's methods trigger a lazy load -->
+    <setting name="lazyLoadTriggerMethods"
+             value="equals,clone,hashCode,toString"/>
+    <!-- Specifies the language used by default for dynamic SQL generation. -->
+    <!-- <setting name="defaultScriptingLanguage" value="org.apache.ibatis.scripting.xmltags.XMLDynamicLanguageDriver"/> -->
+    <!-- 当结果集中含有Null值时是否执行映射对象的setter或者Map对象的put方法。此设置对于原始类型如int,boolean等无效。 -->
+    <setting name="callSettersOnNulls" value="false"/>
+    <!-- Specifies the prefix string that MyBatis will add to the logger names. -->
+    <!-- <setting name="logPrefix" value=""/> -->
+    <!-- Specifies which logging implementation MyBatis should use. If this setting is not present logging implementation will be autodiscovered. -->
+    <!-- SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING -->
+    <!-- 使用Druid DataSource的日志记录, 这里就关闭吧 -->
+    <setting name="logImpl" value="NO_LOGGING"/>
+    <!-- Specifies the proxy tool that MyBatis will use for creating lazy loading capable objects. -->
+    <!-- CGLIB | JAVASSIST -->
+    <setting name="proxyFactory" value="CGLIB"/>
+  </settings>
+
+  <!-- 别名 -->
+  <typeAliases>
+    <package name="com.muses.entity"/>
+  </typeAliases>
+
+  <!-- 分页插件 -->
+  <plugins>
+    <plugin
+      interceptor="com.muses.common.orm.mybatis.easylist.paginator.OffsetLimitInterceptor">
+      <property name="dialectClass" value="com.muses.common.orm.mybatis.easylist.paginator.dialect.OracleDialect"/>
+    </plugin>
+  </plugins>
+
+</configuration>

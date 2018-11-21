@@ -5,7 +5,7 @@ Copyright All rights reserved.
 package com.study.proxy;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/10/26.
  */
 public class Student implements People {

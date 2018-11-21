@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/25.
  */
 public class CollectionUtils {

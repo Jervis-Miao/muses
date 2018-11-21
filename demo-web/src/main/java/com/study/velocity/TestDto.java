@@ -5,7 +5,7 @@ Copyright All rights reserved.
 package com.study.velocity;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/20.
  */
 public class TestDto {

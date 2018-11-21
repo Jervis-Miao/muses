@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 执行队列
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/21.
  */
 public class QueueSlot<T extends QueueParam> {

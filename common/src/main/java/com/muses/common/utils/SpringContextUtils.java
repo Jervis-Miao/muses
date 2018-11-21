@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  */
 @Service
 public class SpringContextUtils implements ApplicationContextAware, DisposableBean {

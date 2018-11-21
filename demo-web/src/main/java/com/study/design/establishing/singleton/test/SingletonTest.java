@@ -7,7 +7,7 @@ package com.study.design.establishing.singleton.test;
 /**
  * 设计模式——3、单例模式——测试
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class SingletonTest {

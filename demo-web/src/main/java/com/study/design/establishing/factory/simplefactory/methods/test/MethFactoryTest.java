@@ -10,7 +10,7 @@ import com.study.design.establishing.factory.simplefactory.methods.MethSendFacto
 /**
  * 设计模式——0、简单工厂模式:02、多个方法——测试
  *
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class MethFactoryTest {

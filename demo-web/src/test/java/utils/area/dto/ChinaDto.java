@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/25.
  */
 public class ChinaDto {

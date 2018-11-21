@@ -7,7 +7,7 @@ package com.study.design.structural.decorator;
 /**
  * 设计模式——7、装饰模式
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class Decorator implements DecoratorSourceable {

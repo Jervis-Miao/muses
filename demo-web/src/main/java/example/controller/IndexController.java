@@ -25,7 +25,7 @@ import example.dto.PdfInfo;
 import example.service.IndexService;
 
 /**
- * @author MiaoQiang
+ * @author Jervis
  * @date 2018/6/24.
  */
 @Controller

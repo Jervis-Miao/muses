@@ -25,7 +25,7 @@ import com.utils.StringUtils;
  * RenameAllExamplePlugin <br/>
  * 重命名所有生成代码中包含Example的地方,并调整包位置
  *
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/12.
  */
 public class AdjustAllExamplePlugin extends PluginAdapter {

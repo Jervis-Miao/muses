@@ -5,7 +5,7 @@ Copyright All rights reserved.
 package example.dto;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/8.
  */
 public class PdfInfo {

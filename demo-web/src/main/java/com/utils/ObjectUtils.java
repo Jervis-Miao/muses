@@ -9,7 +9,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/6/25.
  */
 public class ObjectUtils {

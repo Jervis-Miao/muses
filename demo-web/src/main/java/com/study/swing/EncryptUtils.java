@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/29.
  */
 public class EncryptUtils extends JFrame {

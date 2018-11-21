@@ -7,7 +7,7 @@ package com.study.design.structural.proxy;
 /**
  * 设计模式——8、代理模式
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/8/6.
  */
 public class Proxy implements ProxySourceable {
