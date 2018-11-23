@@ -12,9 +12,15 @@
 
   <description>Spring配置</description>
 
-  <bean id="springContextUtils" class="com.muses.common.utils.SpringContextUtils"/>
-  <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContext"/>
+  <!-- ${key}占位符属性替换器  PropertySourcesPlaceholderConfigurer -->
+  <!--<context:property-placeholder ignore-resource-not-found="true" location="properties" local-override="true"/>-->
+  <!-- 加载properties，并替换${}占位符 -->
+  <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContextAndPlaceholderConfigurer"/>
 
+  <!-- springContext -->
+  <bean id="springContextUtils" class="com.muses.common.utils.SpringContextUtils"/>
+
+  <!-- jmxInitializer -->
   <bean id="jmxInitializer" class="com.muses.JmxInitializer">
     <property name="jmxPort" value="${jmx.port}"/>
     <property name="jmxLocal" value="${jmx.local}"/>
