@@ -2,21 +2,21 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.muses.provider.test;
+package com.muses.test.provider;
 
-import com.alibaba.fastjson.JSONObject;
-import com.muses.api.StudentProvider;
-import com.muses.api.dto.StudentDTO;
-import com.muses.api.dto.StudentQueryDTO;
-import com.muses.api.dto.base.PageListDTO;
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Arrays;
-import java.util.List;
+import com.alibaba.fastjson.JSONObject;
+import com.muses.api.StudentProvider;
+import com.muses.api.dto.StudentDTO;
+import com.muses.api.dto.StudentQueryDTO;
+import com.muses.api.dto.base.PageListDTO;
 
 /**
  * @author miaoqiang

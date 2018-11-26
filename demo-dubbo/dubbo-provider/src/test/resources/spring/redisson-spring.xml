@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:redisson="http://redisson.org/schema/redisson"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://redisson.org/schema/redisson
+       http://redisson.org/schema/redisson/redisson.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       default-lazy-init="true">
+  <!-- 序列化方式定义, 序列化根据情况自行选择.部分序列化方式需要手动依赖序列化相关类库 -->
+  <!-- fst 序列化方式-->
+  <bean id="fstCodec" class="org.redisson.codec.FstCodec" />
+  <!-- jdk 序列化方式-->
+  <bean id="jdkCodec" class="org.redisson.codec.SerializationCodec"/>
+  <!-- 单纯的针对 string 的序列化方式-->
+  <bean id="stringCodec" class="org.redisson.client.codec.StringCodec" />
+  <!-- redisson client 定义, 和 spring bean 一样,可以直接注入 -->
+  <!-- codec-ref 是配置一种默认的序列化方式, client 使用的时候可以针对场景替换为其他方式 -->
+  <redisson:client id="redissonClient" codec-ref="fstCodec" >
+    <redisson:sentinel-servers
+      master-name="low_reliability"
+      read-mode="MASTER"
+      subscription-mode="MASTER"
+      slave-connection-minimum-idle-size="0"
+      slave-connection-pool-size="0"
+      master-connection-minimum-idle-size="10"
+      master-connection-pool-size="64"
+      idle-connection-timeout="10000"
+      connect-timeout="10000"
+      timeout="3000"
+      retry-attempts="3"
+      retry-interval="500"
+      failed-slave-reconnection-interval="3000"
+      failed-slave-check-interval="60000"
+      database="7"
+      client-name="io-koni-test"
+    >
+      <redisson:sentinel-address value="redis://192.168.56.89:26379" />
+      <redisson:sentinel-address value="redis://192.168.56.90:26379" />
+      <redisson:sentinel-address value="redis://192.168.58.101:26379" />
+    </redisson:sentinel-servers>
+  </redisson:client>
+  <aop:aspectj-autoproxy proxy-target-class="true" />
+</beans>

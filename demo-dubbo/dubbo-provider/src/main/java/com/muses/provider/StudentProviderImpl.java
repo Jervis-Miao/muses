@@ -4,16 +4,15 @@ Copyright 2018 All rights reserved.
 
 package com.muses.provider;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
 import com.muses.api.StudentProvider;
 import com.muses.api.dto.StudentDTO;
 import com.muses.api.dto.StudentQueryDTO;
 import com.muses.api.dto.base.PageListDTO;
 import com.muses.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author miaoqiang
