@@ -37,7 +37,7 @@
       failed-slave-reconnection-interval="3000"
       failed-slave-check-interval="60000"
       database="7"
-      client-name="io-koni-test"
+      client-name="dubbo-provider-test"
     >
       <redisson:sentinel-address value="redis://192.168.56.89:26379" />
       <redisson:sentinel-address value="redis://192.168.56.90:26379" />
