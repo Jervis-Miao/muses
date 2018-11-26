@@ -23,19 +23,14 @@
     <!-- 内部项目依赖 -->
     <dependency>
       <groupId>muses</groupId>
-      <artifactId>dubbo-api</artifactId>
-      <version>0.1.1-SNAPSHOT</version>
-    </dependency>
-
-    <dependency>
-      <groupId>muses</groupId>
       <artifactId>common</artifactId>
       <version>0.1.1-SNAPSHOT</version>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context-support</artifactId>
+      <groupId>muses</groupId>
+      <artifactId>dubbo-api</artifactId>
+      <version>0.1.1-SNAPSHOT</version>
     </dependency>
 
     <!-- ehcache -->
@@ -57,27 +52,17 @@
       <artifactId>fst</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-    </dependency>
-
     <!-- Druid -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
     </dependency>
 
+    <!-- oracle -->
     <dependency>
       <groupId>${jdbc.driver.groupId}</groupId>
       <artifactId>${jdbc.driver.artifactId}</artifactId>
       <version>${jdbc.driver.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>dubbo</artifactId>
-      <version>${dubbo.version}</version>
     </dependency>
 
     <dependency>
