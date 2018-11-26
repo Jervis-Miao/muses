@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author miaoqiang
  * @date 2018/11/26.
@@ -26,7 +29,7 @@ public class StrudentProviderTest {
 
 	@Test
 	public void test() {
-		StudentDTO student = studentProvider.getStudentById(1L);
+		List<StudentDTO> student = studentProvider.getByIds(Arrays.asList(new Long[] { 1L, 2L, 3L }));
 		System.out.println(JSONObject.toJSONString(student));
 	}
 }
