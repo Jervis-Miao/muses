@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.muses.dto;
+package com.muses.api.dto;
 
 import java.io.Serializable;
 

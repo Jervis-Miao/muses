@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <localRepository>/root/.m2/repository</localRepository>
+
+    <servers>
+
+        <server>
+            <id>ins-inner</id>
+            <username>ins-manager</username>
+            <password>ins123</password>
+        </server>
+        <server>
+            <id>ins-releases</id>
+            <username>ins-manager</username>
+            <password>ins123</password>
+        </server>
+        <server>
+            <id>ins-snapshots</id>
+            <username>ins-manager</username>
+            <password>ins123</password>
+        </server>
+        <server>
+            <id>mlan</id>
+            <username>ins-manager</username>
+            <password>ins123</password>
+        </server>
+        <server>
+            <id>ins-central</id>
+            <username>ins-manager</username>
+            <password>ins123</password>
+        </server>
+
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <id>mlan</id>
+            <mirrorOf>central</mirrorOf>
+            <name>覆盖运维机器默认的 mlan</name>
+            <url>http://192.168.28.185/nexus/content/groups/public/</url>
+        </mirror>
+
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>ins-dev</id>
+            <repositories>
+                <repository>
+                    <id>ins-central</id>
+                    <name>Ins Central Repository</name>
+                    <url>http://192.168.28.185/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>ins-Central</id>
+                    <name>Ins Inner Repository</name>
+                    <url>http://192.168.28.185/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>ins-dev</activeProfile>
+    </activeProfiles>
+</settings>

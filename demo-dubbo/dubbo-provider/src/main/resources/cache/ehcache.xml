@@ -33,7 +33,7 @@
     memoryStoreEvictionPolicy="LRU"
   />
 
-  <cache name="product"
+  <cache name="student"
          maxElementsInMemory="1000"
          eternal="false"
          timeToIdleSeconds="84600"

@@ -49,5 +49,7 @@
   <import resource="classpath:dubbo/dubbo-*.xml"/>
   <!-- redisson 集成 -->
   <import resource="classpath:/redis/redisson-spring.xml"/>
+  <!-- orika 配置 -->
+  <import resource="classpath:orika/orika-mapper.xml"/>
 
 </beans>
