@@ -34,7 +34,7 @@
       failed-slave-reconnection-interval="${redis.sentinel.default.failedSlaveReconnectionInterval}"
       failed-slave-check-interval="${redis.sentinel.default.failedSlaveCheckInterval}"
       database="${redis.sentinel.default.database}"
-      client-name="io-koni-basic"
+      client-name="dubbo-provider"
     >
       <redisson:sentinel-address value="redis://${redis.sentinel.ser1.host}:${redis.sentinel.ser1.port}" />
       <redisson:sentinel-address value="redis://${redis.sentinel.ser2.host}:${redis.sentinel.ser2.port}" />
