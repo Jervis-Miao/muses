@@ -8,13 +8,11 @@
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
   <!-- Dubbo的全局配置 如果有多模块共用，则将此部分放到单独文件中 -->
-  <dubbo:protocol name="dubbo" threadpool="cached" threads="400" />
+  <dubbo:protocol name="dubbo" threadpool="cached" threads="400"/>
 
   <!-- Services -->
-  <dubbo:service interface="cn.xyz.io.basic.product.api.PackProdProvider"
-                 ref="packProdProviderImpl">
-    <dubbo:method name="formatPropOptions" timeout="6000" retries="1"/>
-    <dubbo:method name="formatPropOptionsByProdSnapshot" timeout="6000" retries="1"/>
+  <dubbo:service interface="com.muses.api.StudentProvider" ref="studentProviderImpl">
+    <dubbo:method name="getStudentById" timeout="6000" retries="1"/>
   </dubbo:service>
 
 

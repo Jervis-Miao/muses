@@ -16,6 +16,7 @@
   <properties>
     <jdbc.driver.groupId>com.oracle</jdbc.driver.groupId>
     <jdbc.driver.artifactId>ojdbc14</jdbc.driver.artifactId>
+    <jdbc.driver.version>10.2.0.2.0</jdbc.driver.version>
   </properties>
 
   <dependencies>
@@ -70,6 +71,7 @@
     <dependency>
       <groupId>${jdbc.driver.groupId}</groupId>
       <artifactId>${jdbc.driver.artifactId}</artifactId>
+      <version>${jdbc.driver.version}</version>
     </dependency>
 
     <dependency>
@@ -78,6 +80,10 @@
       <version>${dubbo.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
   </dependencies>
 
   <build>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-lazy-init="true">
+
+	<description>Dubbo基础配置</description>
+
+	<dubbo:application name="test-soa" />
+	<dubbo:registry address="redis://192.168.50.33:6379" />
+	<dubbo:protocol name="dubbo" port="20888" />
+	<dubbo:consumer timeout="30000" />
+
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	      http://www.springframework.org/schema/aop
+	      http://www.springframework.org/schema/aop/spring-aop-4.3.xsd"
+       default-lazy-init="true">
+
+  <description>Spring基础配置</description>
+
+
+  <import resource="classpath:/spring/dubbo-config.xml"/>
+
+  <bean id="jacksonObjectMapper" name="jacksonObjectMapper"
+        class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+    <property name="indentOutput" value="true"/>   <!-- 美化输出 -->
+    <property name="objectMapper">
+      <bean class="com.muses.common.jackson.IOObjectMapper"></bean>
+    </property>
+  </bean>
+
+  <!-- 定义aspectj -->
+  <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+
+</beans>
