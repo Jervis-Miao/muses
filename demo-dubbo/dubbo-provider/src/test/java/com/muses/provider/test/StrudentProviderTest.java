@@ -38,7 +38,7 @@ public class StrudentProviderTest {
 
 	@Test
 	public void testGet() {
-		List<StudentDTO> student = studentProvider.getByIds(Arrays.asList(new Long[] { 1L, 2L, 3L }));
+		StudentDTO student = studentProvider.getById(2L);
 		System.out.println(JSONObject.toJSONString(student));
 	}
 

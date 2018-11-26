@@ -54,6 +54,13 @@ public class StudentRepository {
 		}).collect(Collectors.toList());
 	}
 
+	public StudentDTO selectStudentsById(Long id) {
+		Student student = studentDAO.selectByPrimaryKey(id);
+		StudentDTO dto = new StudentDTO();
+		BeanUtils.copyProperties(student, dto);
+		return dto;
+	}
+
 	public Long saveStudent(StudentDTO studentDTO) {
 		Student student = assembleStudent(studentDTO);
 		studentDAO.insertSelective(student);

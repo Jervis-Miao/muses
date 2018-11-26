@@ -10,6 +10,7 @@ import com.muses.api.dto.StudentQueryDTO;
 import com.muses.api.dto.base.PageListDTO;
 import com.muses.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,9 +30,10 @@ public class StudentProviderImpl implements StudentProvider {
 		return studentRepo.saveStudent(student);
 	}
 
+	@Cacheable(value = "students", key = "#id")
 	@Override
-	public List<StudentDTO> getByIds(List<Long> ids) {
-		return studentRepo.selectStudentsByIds(ids);
+	public StudentDTO getById(Long id) {
+		return studentRepo.selectStudentsById(id);
 	}
 
 	@Override

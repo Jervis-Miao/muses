@@ -17,7 +17,7 @@ import java.util.List;
 public interface StudentProvider {
 	public Long save(StudentDTO student);
 
-	public List<StudentDTO> getByIds(List<Long> ids);
+	public StudentDTO getById(Long id);
 
 	public PageListDTO<StudentDTO> getPageStudents(StudentQueryDTO studentQueryDTO);
 
