@@ -5,47 +5,34 @@
 package com.muses.test.redisson;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
-import com.muses.api.StudentProvider;
-import com.muses.api.dto.StudentDTO;
-import com.muses.common.orm.mybatis.easylist.list.utils.ObjectUtils;
-import com.muses.entity.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.api.BatchResult;
 import org.redisson.api.LocalCachedMapOptions;
-import org.redisson.api.RBatch;
 import org.redisson.api.RBucket;
-import org.redisson.api.RBucketAsync;
 import org.redisson.api.RKeys;
-import org.redisson.api.RList;
 import org.redisson.api.RLocalCachedMap;
 import org.redisson.api.RLock;
 import org.redisson.api.RMap;
 import org.redisson.api.RRateLimiter;
 import org.redisson.api.RSet;
-import org.redisson.api.RSetMultimap;
 import org.redisson.api.RateIntervalUnit;
 import org.redisson.api.RateType;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.LongCodec;
 import org.redisson.client.codec.StringCodec;
 import org.redisson.codec.FstCodec;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.alibaba.fastjson.JSONObject;
+import com.muses.api.dto.StudentDTO;
+import com.muses.api.provider.StudentProvider;
+import com.muses.common.orm.mybatis.easylist.list.utils.ObjectUtils;
 
 /**
  * @author miaoqiang

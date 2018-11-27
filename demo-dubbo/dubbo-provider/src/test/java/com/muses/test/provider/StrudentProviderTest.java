@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSONObject;
-import com.muses.api.StudentProvider;
+import com.muses.api.provider.StudentProvider;
 import com.muses.api.dto.StudentDTO;
 import com.muses.api.dto.StudentQueryDTO;
 import com.muses.api.dto.base.PageListDTO;

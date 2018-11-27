@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.muses.api;
+package com.muses.api.provider;
 
 import com.muses.api.dto.StudentDTO;
 import com.muses.api.dto.StudentQueryDTO;

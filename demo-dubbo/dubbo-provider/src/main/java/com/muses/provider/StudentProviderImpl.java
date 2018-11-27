@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.muses.api.StudentProvider;
+import com.muses.api.provider.StudentProvider;
 import com.muses.api.dto.StudentDTO;
 import com.muses.api.dto.StudentQueryDTO;
 import com.muses.api.dto.base.PageListDTO;

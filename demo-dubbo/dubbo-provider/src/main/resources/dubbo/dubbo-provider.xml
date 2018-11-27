@@ -11,7 +11,7 @@
   <dubbo:protocol name="dubbo" threadpool="cached" threads="400"/>
 
   <!-- Services -->
-  <dubbo:service interface="com.muses.api.StudentProvider" ref="studentProviderImpl">
+  <dubbo:service interface="com.muses.api.provider.StudentProvider" ref="studentProviderImpl">
     <dubbo:method name="getById" timeout="6000" retries="1"/>
   </dubbo:service>
 
