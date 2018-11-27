@@ -14,6 +14,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!-- apollo -->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+        </dependency>
+
         <!-- SPRING basic begin -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -44,15 +50,6 @@
             <artifactId>spring-test</artifactId>
         </dependency>
         <!-- SPRING basic end -->
-
-        <!-- LOGGING begin -->
-        <!-- slf4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.21</version>
-        </dependency>
-        <!-- LOGGING end -->
 
         <!-- json -->
         <dependency>
@@ -106,11 +103,17 @@
             <version>2.3.4.726</version>
         </dependency>
 
+        <!-- SOA begin -->
         <!-- dubbo -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+        <!-- SOA end -->
 
         <!-- aspectjweaver -->
         <dependency>
@@ -129,7 +132,12 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+        </dependency>
+
+        <!-- logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
 
         <!-- utils -->
