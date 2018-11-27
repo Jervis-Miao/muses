@@ -34,7 +34,7 @@
         <snapshotRepository>
             <id>ins-inner</id>
             <name>Snapshot 仓库</name>
-            <url>http://maven.mic.com/nexus/content/repositories/snapshots/</url>
+            <url>http://mvnrepository.com/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
