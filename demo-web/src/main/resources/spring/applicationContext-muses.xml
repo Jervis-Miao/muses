@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <description>导入的applicationContext文件列表</description>
+
+    <!-- shiro 集成 -->
+    <import resource="classpath:/shiro/shiro-spring.xml"/>
+    <!-- Mybatis 集成 -->
+    <import resource="classpath:mybatis/mybatis-spring.xml"/>
+    <!-- orika 集成 -->
+    <import resource="classpath:orika/orika-mapper.xml"/>
+    <!-- sm 集成 -->
+    <import resource="classpath:/sm/sm.xml"/>
+    <!-- email 集成 -->
+    <import resource="classpath:/email/email.xml"/>
+</beans>

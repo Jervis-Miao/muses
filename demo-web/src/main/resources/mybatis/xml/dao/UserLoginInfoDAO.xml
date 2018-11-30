@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.muses.repository.dao.UserLoginInfoDAO">
+    <resultMap id="BaseResultMap" type="cn.xyz.jt.entity.UserLoginInfo">
+        <id column="login_id" jdbcType="BIGINT" property="loginId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="login_passwd" jdbcType="VARCHAR" property="loginPasswd"/>
+        <result column="organization_id" jdbcType="BIGINT" property="organizationId"/>
+        <result column="credit_no" jdbcType="VARCHAR" property="creditNo"/>
+        <result column="organization_type" jdbcType="INTEGER" property="organizationType"/>
+        <result column="partner_num" jdbcType="INTEGER" property="partnerNum"/>
+        <result column="staff_num" jdbcType="INTEGER" property="staffNum"/>
+        <result column="register_date" jdbcType="DATE" property="registerDate"/>
+        <result column="short_name" jdbcType="VARCHAR" property="shortName"/>
+        <result column="business_region" jdbcType="VARCHAR" property="businessRegion"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="fax" jdbcType="VARCHAR" property="fax"/>
+        <result column="zip" jdbcType="VARCHAR" property="zip"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="business_license_id" jdbcType="BIGINT" property="businessLicenseId"/>
+        <result column="practicing_certificatep_id" jdbcType="BIGINT" property="practicingCertificatepId"/>
+        <result column="invoice_address" jdbcType="VARCHAR" property="invoiceAddress"/>
+        <result column="loss_flag" jdbcType="INTEGER" property="lossFlag"/>
+        <result column="overseas" jdbcType="INTEGER" property="overseas"/>
+        <result column="protocol_no" jdbcType="VARCHAR" property="protocolNo"/>
+        <result column="protocol_expiry_date" jdbcType="TIMESTAMP" property="protocolExpiryDate"/>
+        <result column="protocol_end_date" jdbcType="TIMESTAMP" property="protocolEndDate"/>
+        <result column="taxpayer_id" jdbcType="VARCHAR" property="taxpayerId"/>
+        <result column="contacts_name" jdbcType="VARCHAR" property="contactsName"/>
+        <result column="contacts_email" jdbcType="VARCHAR" property="contactsEmail"/>
+        <result column="contacts_mobile" jdbcType="VARCHAR" property="contactsMobile"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+        <result column="bank_account" jdbcType="VARCHAR" property="bankAccount"/>
+        <result column="invoice_mobile" jdbcType="VARCHAR" property="invoiceMobile"/>
+        <result column="receive_person" jdbcType="VARCHAR" property="receivePerson"/>
+        <result column="receive_tel" jdbcType="VARCHAR" property="receiveTel"/>
+        <result column="freeze_flag" jdbcType="INTEGER" property="freezeFlag"/>
+        <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate"/>
+        <result column="adder_no" jdbcType="BIGINT" property="adderNo"/>
+        <result column="updater_no" jdbcType="BIGINT" property="updaterNo"/>
+        <result column="adder_name" jdbcType="VARCHAR" property="adderName"/>
+        <result column="updater_name" jdbcType="VARCHAR" property="updaterName"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectUserByUserName" resultMap="BaseResultMap" parameterType="String">
+        select
+        <include refid="Base_Column_List"/>
+        from user_login_info
+        where user_name = #{userName}
+    </select>
+
+    <update id="updateLastLoginDateByLoginId" parameterType="java.lang.Long">
+        update user_login_info
+        SET LAST_LOGIN_DATE = now()
+        where LOGIN_ID = #{loginId}
+    </update>
+</mapper>

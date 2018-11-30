@@ -68,7 +68,7 @@
         <table tableName="settlement_detail">
           <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>-->
-    <table tableName="insure_applicant_info">
+    <table tableName="USER_LOGIN_INFO">
       <property name="ignoreQualifiersAtRuntime" value="true"/>
     </table>
   </context>

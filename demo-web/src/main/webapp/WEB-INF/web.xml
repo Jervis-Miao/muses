@@ -10,6 +10,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/spring/applicationContext.xml</param-value>
+        <param-value>classpath:/spring/applicationContext-muses.xml</param-value>
     </context-param>
 
     <!--Spring ApplicationContext 载入 -->

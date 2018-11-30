@@ -4,9 +4,12 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+       default-lazy-init="false">
 
     <description>Spring配置</description>
 
@@ -24,18 +27,22 @@
         </property>
     </bean>
 
-    <!-- Druid Spring监控. 这里用方法名正则方式.
-             详见: https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE -->
-    <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"/>
-    <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+    <!-- Druid Spring监控. 这里用方法名正则方式. 详见: https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE -->
+    <bean id="druid-stat-interceptor"
+          class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+    </bean>
+    <bean id="druid-stat-pointcut"
+          class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+          scope="prototype">
         <property name="patterns">
             <list>
-                <value>com.muses.web.service.*.*Service.*</value>
+                <value>com.muses.web.service.*Service.*</value>
             </list>
         </property>
     </bean>
     <aop:config>
-        <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut"/>
+        <aop:advisor advice-ref="druid-stat-interceptor"
+                     pointcut-ref="druid-stat-pointcut"/>
     </aop:config>
 
     <!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->
@@ -48,16 +55,5 @@
 
     <!-- 定义aspectj -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-
-    <!-- shiro 集成 -->
-    <import resource="classpath:/shiro/shiro-spring.xml"/>
-    <!-- Mybatis 集成 -->
-    <import resource="classpath:mybatis/mybatis-spring.xml"/>
-    <!-- orika 集成 -->
-    <import resource="classpath:orika/orika-mapper.xml"/>
-    <!-- sm 集成 -->
-    <import resource="classpath:/sm/sm.xml"/>
-    <!-- email 集成 -->
-    <import resource="classpath:/email/email.xml"/>
 
 </beans>

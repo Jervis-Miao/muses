@@ -13,9 +13,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utils.DateFormatUtils;
-
+import com.muses.repository.dao.InsureApplicantInfoDAO;
 import com.muses.web.dto.PdfInfo;
+import com.utils.DateFormatUtils;
 
 /**
  * @author Jervis
@@ -23,10 +23,13 @@ import com.muses.web.dto.PdfInfo;
  */
 @Service
 public class IndexService {
-	private static final Log	logger	= LogFactory.getLog(IndexService.class);
+	private static final Log		logger	= LogFactory.getLog(IndexService.class);
 
 	@Autowired
-	private PdfManager			pdfManager;
+	private PdfManager				pdfManager;
+
+	@Autowired
+	private InsureApplicantInfoDAO	applicantInfoDAO;
 
 	/**
 	 * 获取PDF内容
@@ -41,5 +44,9 @@ public class IndexService {
 		velocityName = "base_new";
 
 		return pdfManager.createPdf(id, velocityName, paraMap);
+	}
+
+	public void test() {
+		applicantInfoDAO.selectByPrimaryKey(1L);
 	}
 }

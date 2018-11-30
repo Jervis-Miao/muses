@@ -76,9 +76,9 @@
     <!--  <bean id="ehCacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:security/ehcache-shiro.xml"/>
       </bean>-->
-    <bean id="insUsernamePwdCredentialsMatcher" class="cn.xyz.jt.authc.InsUsernamePwdCredentialsMatcher"/>
-    <bean id="insRealm" class="cn.xyz.jt.authc.CarsDbRealm">
-        <property name="credentialsMatcher" ref="insUsernamePwdCredentialsMatcher"/>
+    <bean id="usernamePwdCredentialsMatcher" class="com.muses.authc.UsernamePwdCredentialsMatcher"/>
+    <bean id="insRealm" class="com.muses.authc.DbRealm">
+        <property name="credentialsMatcher" ref="usernamePwdCredentialsMatcher"/>
     </bean>
 
     <!--WEB Security 管理 -->
