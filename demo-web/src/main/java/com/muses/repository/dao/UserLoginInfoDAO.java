@@ -2,7 +2,7 @@ package com.muses.repository.dao;
 
 import com.muses.common.orm.mybatis.MyBatisRepository;
 import com.muses.entity.UserLoginInfo;
-import com.repository.mapper.UserLoginInfoMapper;
+import com.muses.mapper.UserLoginInfoMapper;
 
 @MyBatisRepository
 public interface UserLoginInfoDAO extends UserLoginInfoMapper {

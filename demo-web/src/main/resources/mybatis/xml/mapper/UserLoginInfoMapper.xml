@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.repository.mapper.UserLoginInfoMapper">
+<mapper namespace="com.muses.mapper.UserLoginInfoMapper">
   <resultMap id="BaseResultMap" type="com.muses.entity.UserLoginInfo">
     <!--
       WARNING - @mbg.generated

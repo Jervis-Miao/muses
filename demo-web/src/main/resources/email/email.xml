@@ -6,27 +6,11 @@
     <description>Email配置</description>
 
     <!-- 自定义基于velocity的模板解析 -->
-    <bean id="velocityTemParse" class="com.utils.VelocityTemplateUtils"
-          init-method="initEngine">
+    <bean id="velocityTemParse" class="com.muses.utils.VelocityTemplateUtils" init-method="initEngine"/>
+    <bean id="jDomParse" class="com.muses.utils.JDomParseUtils"
+          init-method="initLoadXml">
+        <property name="mailTemplate" value="classpath:velocity/mailVelocity.xml"/>
     </bean>
-    <!--<bean id="jDomParse" class="cn.xyz.jt.utils.JDomParseUtils"
-          init-method="initLoadXml" >
-        &lt;!&ndash;<property name="smsTemplate"  value="classpath:velocity/smsVelocity.xml"/>&ndash;&gt;
-        <property name="mailTemplate"  value="classpath:velocity/mailVelocity.xml"/>
-    </bean>-->
-
-    <!-- 自定义的邮件发送器 -->
-    <!--<bean id="sessionMail" class="cn.xyz.jt.utils.MailSenderByTemplateUtils">
-      <property name="host" value="${mail.host}" />
-      <property name="username" value="${mail.username}" />
-      <property name="password" value="${mail.password}" />
-      <property name="javaMailProperties">
-        <props>
-          <prop key="mail.smtp.auth">true</prop>
-          <prop key="mail.transport.protocol">true</prop>
-        </props>
-      </property>
-    </bean>-->
 
     <!-- 邮件发送器 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -43,22 +27,22 @@
     </bean>
 
     <!-- 文本邮件服务类 -->
-    <!-- <bean id="simpleMailService" class="cn.xyz.jt.altalanta.email.SimpleMailService">
-         <property name="mailSender" ref="mailSender" />
-         <property name="textTemplate">
-             <value><![CDATA[
+    <bean id="simpleMailService" class="com.muses.send.email.SimpleMailService">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="textTemplate">
+            <value><![CDATA[
              用戶%1$s在%2$tF被修改.
                      System Administrator.
              ]]></value>
-         </property>
-     </bean>-->
+        </property>
+    </bean>
 
     <!-- MIME邮件服务类 -->
-    <!--  <bean id="mimeMailService" class="cn.xyz.jt.altalanta.email.MimeMailService">
-          <property name="mailSender" ref="mailSender" />
-          <property name="velocityEngine" ref="mailVelocityEngine" />
-          <property name="templateFileName" value="mailTemplate.vm" />
-      </bean>-->
+    <bean id="mimeMailService" class="com.muses.send.email.MimeMailService">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="velocityEngine" ref="mailVelocityEngine"/>
+        <property name="templateFileName" value="mailTemplate.vm"/>
+    </bean>
 
     <!-- VelocityEngine -->
     <bean id="mailVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">

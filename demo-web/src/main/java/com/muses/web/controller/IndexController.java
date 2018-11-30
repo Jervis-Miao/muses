@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.utils.DownloadUtils;
+import com.muses.utils.DownloadUtils;
 
 import com.muses.web.dto.PdfInfo;
 import com.muses.web.service.IndexService;

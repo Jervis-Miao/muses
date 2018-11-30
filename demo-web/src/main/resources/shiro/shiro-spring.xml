@@ -77,13 +77,13 @@
         <property name="configLocation" value="classpath:security/ehcache-shiro.xml"/>
       </bean>-->
     <bean id="usernamePwdCredentialsMatcher" class="com.muses.authc.UsernamePwdCredentialsMatcher"/>
-    <bean id="insRealm" class="com.muses.authc.DbRealm">
+    <bean id="dbRealm" class="com.muses.authc.DbRealm">
         <property name="credentialsMatcher" ref="usernamePwdCredentialsMatcher"/>
     </bean>
 
     <!--WEB Security 管理 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="insRealm"/>
+        <property name="realm" ref="dbRealm"/>
         <!--<property name="cacheManager" ref="shiroEhcacheManager"/>-->
         <!--<property name="sessionManager" ref="sessionManager"/>-->
     </bean>

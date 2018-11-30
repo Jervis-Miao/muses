@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 
 import com.muses.common.utils.SpringContextUtils;
 import com.muses.web.dto.PdfInfo;
-import com.utils.PdfUtils;
-import com.utils.VelocityTemplateUtils;
+import com.muses.utils.PdfUtils;
+import com.muses.utils.VelocityTemplateUtils;
 
 /**
  * @author Jervis

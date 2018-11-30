@@ -1,4 +1,4 @@
-package com.repository.mapper;
+package com.muses.mapper;
 
 import com.muses.common.orm.mybatis.MyBatisRepository;
 import com.muses.entity.InsureApplicantInfo;

@@ -2,7 +2,7 @@
 Copyright All rights reserved.
  */
 
-package com.utils;
+package com.muses.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

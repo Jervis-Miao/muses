@@ -5,16 +5,9 @@ Copyright All rights reserved.
 package com.study.redis;
 
 import com.study.queue.dto.QueueParam;
-import com.utils.SerializeUtilTest;
-import org.redisson.Redisson;
-import org.redisson.api.RBucket;
-import org.redisson.api.RDeque;
+import com.muses.utils.SerializeUtilTest;
 import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
-import org.redisson.config.Config;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @author Jervis

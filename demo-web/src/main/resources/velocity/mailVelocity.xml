@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<velocities>
+
+    <!--发送已缴费通知邮件-->
+    <velocity id="mail_app_bill" location="/mail_app_bill.vm">
+        <temName>已缴费通知邮件</temName>
+        <temModule>邮件管理</temModule>
+        <subject>通知：邮件发送成功</subject>
+        <senderAddress>jervis_qiang@aliyun.com</senderAddress>
+        <senderDispaly>Jervis</senderDispaly>
+    </velocity>
+
+</velocities>

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <title>Jervis</title>
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+    <tbody>
+    <tr>
+        <td valign="top">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="800">
+                <tbody>
+                <!-- main /S -->
+                <tr>
+                    <td bgcolor="#eeeeee" style="padding:66px 64px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="672" style="margin: 0 auto; background: #ffffff;" >
+                            <tr>
+                                <td bgcolor="#ffffff" style="padding: 32px; font-size: 18px; color: #333333;">
+                                    <span>$!{appId}已缴费，请尽快核保</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td bgcolor="#ffffff">
+                                    <img src="http://saas.91xinbei.com/jszzx/api/images/banner-3.png" width="672" height="120" style="display: block; border: 0;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 48px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2" style="font-size: 14px;color: #000000;text-align: left;line-height: 20px;">
+                                                $!{appId}已完成缴费，投保单位：$!{appName}，起保时间：$!date.format('yyyy-MM-dd HH:mm:ss ',$!{acceptTime})。请尽快核保！
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0 16px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                        <tr>
+                                            <td style="padding:24px 0;border-top: 1px solid #eeeeee;font-size: 12px;color: #666666;text-align: center;line-height: 20px;">
+                                                <div>电话：025-123123123</div>
+                                                <div>Jervis</div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- main /E -->
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

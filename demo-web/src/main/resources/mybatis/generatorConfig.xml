@@ -43,7 +43,7 @@
     <sqlMapGenerator targetPackage="mybatis/xml/mapper"
                      targetProject="D:\workspace\muses\demo-web\src\main\resources"/>
     <!-- sqlMapper 接口生成配置 -->
-    <javaClientGenerator targetPackage="com.repository.mapper"
+    <javaClientGenerator targetPackage="com.muses.mapper"
                          targetProject="D:\workspace\muses\demo-web\src\main\java" type="XMLMAPPER"/>
 
 

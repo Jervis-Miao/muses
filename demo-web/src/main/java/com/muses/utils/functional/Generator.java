@@ -2,7 +2,7 @@
 Copyright All rights reserved.
  */
 
-package com.utils.functional;
+package com.muses.utils.functional;
 
 import java.io.IOException;
 import java.sql.SQLException;
