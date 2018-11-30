@@ -7,7 +7,7 @@ package com.muses.api.dto.base;
 import java.io.Serializable;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 public class PageQueryDTO implements Serializable {

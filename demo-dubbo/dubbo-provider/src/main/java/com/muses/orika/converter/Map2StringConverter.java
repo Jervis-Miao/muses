@@ -19,7 +19,7 @@ import ma.glasnost.orika.converter.BidirectionalConverter;
 import ma.glasnost.orika.metadata.Type;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 public class Map2StringConverter extends BidirectionalConverter<Map<String, Object>, String> {

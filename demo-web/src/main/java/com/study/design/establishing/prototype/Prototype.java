@@ -4,6 +4,8 @@ Copyright All rights reserved.
 
 package com.study.design.establishing.prototype;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,6 +46,15 @@ public class Prototype implements Cloneable, Serializable {
 		ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
 		ObjectInputStream ois = new ObjectInputStream(bis);
 		return ois.readObject();
+	}
+
+	/**
+	 * 工具深复制
+	 * 
+	 * @return
+	 */
+	public Object utilsDeepClone() {
+		return SerializationUtils.clone(this);
 	}
 
 	public String getString() {

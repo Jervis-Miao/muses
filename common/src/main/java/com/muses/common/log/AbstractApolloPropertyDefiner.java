@@ -10,7 +10,7 @@ import com.ctrip.framework.apollo.ConfigService;
 /**
  * 获取apollo配置中心变量
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/27.
  */
 public class AbstractApolloPropertyDefiner extends PropertyDefinerBase {

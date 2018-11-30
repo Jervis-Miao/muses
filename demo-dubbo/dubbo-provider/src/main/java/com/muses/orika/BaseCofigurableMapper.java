@@ -13,7 +13,7 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.converter.ConverterFactory;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 public class BaseCofigurableMapper extends IoConfigurableMapper {

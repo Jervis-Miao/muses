@@ -9,7 +9,7 @@ import com.muses.common.utils.PropertiesContextAndPlaceholderConfigurer;
 import com.muses.common.utils.SpringContextUtils;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/27.
  */
 public class LogPathPropertyDefiner extends PropertyDefinerBase {

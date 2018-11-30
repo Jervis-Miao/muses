@@ -35,7 +35,7 @@ import com.muses.api.provider.StudentProvider;
 import com.muses.common.orm.mybatis.easylist.list.utils.ObjectUtils;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/9/13.
  */
 @RunWith(SpringJUnit4ClassRunner.class)

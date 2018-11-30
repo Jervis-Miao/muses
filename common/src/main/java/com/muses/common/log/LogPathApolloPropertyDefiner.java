@@ -7,7 +7,7 @@ package com.muses.common.log;
 /**
  * 获取配置
  * 
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/27.
  */
 public class LogPathApolloPropertyDefiner extends AbstractApolloPropertyDefiner {

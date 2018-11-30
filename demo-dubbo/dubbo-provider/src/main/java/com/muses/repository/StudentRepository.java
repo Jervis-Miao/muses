@@ -24,7 +24,7 @@ import com.muses.entity.Student;
 import com.muses.repository.dao.StudentDAO;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 @Repository

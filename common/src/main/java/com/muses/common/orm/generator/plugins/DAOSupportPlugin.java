@@ -62,7 +62,7 @@ public class DAOSupportPlugin extends PluginAdapter {
 	public void setProperties(Properties properties) {
 		super.setProperties(properties);
 		daoAnnotation = new FullyQualifiedJavaType(properties.getProperty(DAO_ANNOTATION_PROPERTY_NAME,
-				"cn.xyz.chaos.orm.mybatis.MyBatisRepository"));
+				"com.muses.common.orm.mybatis.MyBatisRepository"));
 		daoSuffix = properties.getProperty(DAO_SUFFIX_PROPERTY_NAME, "DAO");
 		namespaceUseEntity = Boolean.valueOf(properties.getProperty(NAMESPACE_USE_ENTITY_PROPERTY_NAME, "false"));
 	}

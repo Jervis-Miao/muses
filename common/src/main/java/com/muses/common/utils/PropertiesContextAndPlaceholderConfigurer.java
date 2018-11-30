@@ -18,7 +18,7 @@ import org.springframework.util.PropertyPlaceholderHelper;
 import org.springframework.util.StringValueResolver;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/22.
  */
 public class PropertiesContextAndPlaceholderConfigurer extends PlaceholderConfigurerSupport {

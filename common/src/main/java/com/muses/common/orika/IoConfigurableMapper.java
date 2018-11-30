@@ -19,7 +19,7 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import ma.glasnost.orika.impl.UtilityResolver;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 public abstract class IoConfigurableMapper extends ConfigurableMapper implements ApplicationContextAware,

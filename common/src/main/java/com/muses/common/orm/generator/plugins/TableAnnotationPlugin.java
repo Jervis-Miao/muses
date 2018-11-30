@@ -26,7 +26,7 @@ public class TableAnnotationPlugin extends PluginAdapter {
 
     public TableAnnotationPlugin() {
         super();
-        tableAnnon = new FullyQualifiedJavaType("cn.xyz.chaos.orm.annotations.Table");
+        tableAnnon = new FullyQualifiedJavaType("com.muses.common.orm.annotations.Table");
 
     }
 

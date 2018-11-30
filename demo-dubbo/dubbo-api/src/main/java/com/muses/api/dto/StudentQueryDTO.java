@@ -12,7 +12,7 @@ import com.muses.common.orm.mybatis.easylist.list.base.SearchType;
 import com.muses.common.orm.mybatis.easylist.list.base.annotation.SearchItem;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 public class StudentQueryDTO extends PageQueryDTO implements Serializable {

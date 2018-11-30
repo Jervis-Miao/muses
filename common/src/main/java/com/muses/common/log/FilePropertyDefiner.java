@@ -7,7 +7,7 @@ package com.muses.common.log;
 import ch.qos.logback.core.PropertyDefinerBase;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/27.
  */
 public class FilePropertyDefiner extends PropertyDefinerBase {

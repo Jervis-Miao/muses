@@ -19,7 +19,7 @@ import com.muses.api.dto.StudentQueryDTO;
 import com.muses.api.dto.base.PageListDTO;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)

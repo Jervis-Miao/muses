@@ -40,24 +40,6 @@
       <version>2.6.9</version>
     </dependency>
 
-    <!-- redisson -->
-    <dependency>
-      <groupId>org.redisson</groupId>
-      <artifactId>redisson</artifactId>
-    </dependency>
-
-    <!-- redisson fstCodec序列化依赖 -->
-    <dependency>
-      <groupId>de.ruedigermoeller</groupId>
-      <artifactId>fst</artifactId>
-    </dependency>
-
-    <!-- Druid -->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
-    </dependency>
-
     <!-- oracle -->
     <dependency>
       <groupId>${jdbc.driver.groupId}</groupId>

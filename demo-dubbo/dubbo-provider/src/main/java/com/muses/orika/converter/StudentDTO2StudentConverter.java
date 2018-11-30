@@ -11,7 +11,7 @@ import ma.glasnost.orika.metadata.Type;
 import org.springframework.beans.BeanUtils;
 
 /**
- * @author miaoqiang
+ * @author Jervis
  * @date 2018/11/26.
  */
 public class StudentDTO2StudentConverter extends BidirectionalConverter<StudentDTO, Student> {

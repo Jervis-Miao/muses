@@ -2,10 +2,62 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <context:component-scan base-package="example"/>
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>导入的applicationContext文件列表</description>
+    <description>Spring配置</description>
 
+    <!-- 加载properties，并替换${}占位符 -->
+    <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContextAndPlaceholderConfigurer"/>
+
+    <!-- springContext -->
+    <bean id="springContextUtils" class="com.muses.common.utils.SpringContextUtils"/>
+
+    <bean id="jacksonObjectMapper" name="jacksonObjectMapper"
+          class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+        <property name="indentOutput" value="true"/>   <!-- 美化输出 -->
+        <property name="objectMapper">
+            <bean class="com.muses.common.jackson.IOObjectMapper"></bean>
+        </property>
+    </bean>
+
+    <!-- Druid Spring监控. 这里用方法名正则方式.
+             详见: https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE -->
+    <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"/>
+    <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+        <property name="patterns">
+            <list>
+                <value>com.muses.web.service.*</value>
+            </list>
+        </property>
+    </bean>
+    <aop:config>
+        <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut"/>
+    </aop:config>
+
+    <!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->
+    <context:component-scan base-package="com.muses">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <!-- 定义aspectj -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!-- shiro 集成 -->
+    <import resource="classpath:/shiro/shiro-spring.xml"/>
+    <!-- Mybatis 集成 -->
+    <import resource="classpath:mybatis/mybatis-spring.xml"/>
+    <!-- orika 集成 -->
+    <import resource="classpath:orika/orika-mapper.xml"/>
+    <!-- sm 集成 -->
+    <import resource="classpath:/sm/sm.xml"/>
+    <!-- email 集成 -->
     <import resource="classpath:/email/email.xml"/>
+
 </beans>

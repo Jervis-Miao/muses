@@ -50,7 +50,7 @@
 
   <!-- 别名 -->
   <typeAliases>
-    <package name="com.entity"/>
+    <package name="com.muses.entity"/>
   </typeAliases>
 
 </configuration>

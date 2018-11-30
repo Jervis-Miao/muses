@@ -33,7 +33,7 @@
   <bean class="com.muses.common.orm.common.OrmContext">
     <property name="sessions">
       <map>
-        <entry key="ins" value-ref="sqlSessionFactory"/>
+        <entry key="mq" value-ref="sqlSessionFactory"/>
       </map>
     </property>
     <property name="conversionService">

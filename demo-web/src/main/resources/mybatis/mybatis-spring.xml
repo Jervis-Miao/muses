@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!--||— MyBatis和spring集成的配置 STATRT —|| -->
+    <!-- sqlSession配置 -->
+    <bean id="sqlSessionFactory" class="com.muses.common.orm.sqlmap.sqlsession.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+        <property name="typeAliasesPackage" value="com.muses.entity"/>
+        <!-- 指定MyBatis配置文件 -->
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:/mybatis/xml/**/*.xml"/>
+    </bean>
+    <!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.muses.repository.*"/>
+        <property name="annotationClass" value="com.muses.common.orm.mybatis.MyBatisRepository"/>
+    </bean>
+    <!--||__ MyBatis和spring集成的配置 END __|| -->
+
+    <bean class="com.muses.common.orm.common.OrmContext">
+        <property name="sessions">
+            <map>
+                <entry key="mq" value-ref="sqlSessionFactory"/>
+            </map>
+        </property>
+        <property name="conversionService">
+            <bean class="org.springframework.context.support.ConversionServiceFactoryBean"/>
+        </property>
+    </bean>
+    <bean class="com.muses.common.orm.sqlmap.impl.MyBatisSqlmapAspect"/>
+
+    <!-- 事务管理器配置 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!-- production环境 -->
+    <beans profile="production,preview">
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+            <property name="driverClassName" value="${jdbc.driver}"/>
+            <property name="url" value="${jdbc.url}"/>
+            <property name="username" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+            <property name="defaultAutoCommit" value="false"/>
+            <!-- 配置获取连接等待超时的时间 -->
+            <property name="maxWait" value="60000"/>
+            <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+            <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+            <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+            <property name="minEvictableIdleTimeMillis" value="300000"/>
+            <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+            <property name="poolPreparedStatements" value="true"/>
+            <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+        </bean>
+    </beans>
+
+    <!-- development test环境 -->
+    <beans profile="development,test">
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+              init-method="init" destroy-method="close">
+            <property name="driverClassName" value="${jdbc.driver}"/>
+            <property name="url" value="${jdbc.url}"/>
+            <property name="username" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+            <property name="defaultAutoCommit" value="false"/>
+            <!-- 统计过滤器 配置. 详见 https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatFilter -->
+            <property name="filters" value="stat,slf4j"/>
+            <!-- Druid 监控记录日志输出. 详见 https://github.com/alibaba/druid/wiki/%E6%80%8E%E4%B9%88%E4%BF%9D%E5%AD%98Druid%E7%9A%84%E7%9B%91%E6%8E%A7%E8%AE%B0%E5%BD%95 -->
+            <!-- <property name="timeBetweenLogStatsMillis" value="300000" /> -->
+            <property name="initialSize" value="3"/>
+        </bean>
+    </beans>
+
+</beans>
