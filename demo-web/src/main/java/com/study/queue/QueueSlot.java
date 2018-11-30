@@ -4,14 +4,15 @@ Copyright All rights reserved.
 
 package com.study.queue;
 
-import com.study.queue.dto.QueueParam;
-import com.utils.CollectionUtils;
-import com.utils.ObjectUtils;
-
 import java.lang.reflect.Constructor;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ThreadPoolExecutor;
+
+import org.apache.commons.collections.MapUtils;
+
+import com.muses.common.utils.ObjectUtils;
+import com.study.queue.dto.QueueParam;
 
 /**
  * 执行队列
@@ -58,8 +59,7 @@ public class QueueSlot<T extends QueueParam> {
 				return;
 			}
 			// 运行队列只有所有队列均无数据时才可以
-			if (running.size() < mostConcurrentlyCount && CollectionUtils.isEmpty(vipWaiting)
-					&& CollectionUtils.isEmpty(norWaiting)) {
+			if (running.size() < mostConcurrentlyCount && MapUtils.isEmpty(vipWaiting) && MapUtils.isEmpty(norWaiting)) {
 				running.put(taskKey, param);
 				Constructor constructor = task.getConstructor(QueueSlot.class, ThreadPoolExecutor.class, String.class,
 						param.getClass());
@@ -110,12 +110,12 @@ public class QueueSlot<T extends QueueParam> {
 		String nextKey = null;
 		T nextParam = null;
 		if (running.size() < mostConcurrentlyCount) {
-			if (CollectionUtils.isNotEmpty(vipWaiting)) {
+			if (MapUtils.isNotEmpty(vipWaiting)) {
 				nextKey = vipWaiting.keySet().iterator().next();
 				nextParam = vipWaiting.get(nextKey);
 				vipWaiting.remove(nextKey);
 				running.put(nextKey, nextParam);
-			} else if (CollectionUtils.isNotEmpty(norWaiting)) {
+			} else if (MapUtils.isNotEmpty(norWaiting)) {
 				nextKey = norWaiting.keySet().iterator().next();
 				nextParam = norWaiting.get(nextKey);
 				norWaiting.remove(nextKey);

@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.velocity.VelocityEngineFactoryBean;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
+import com.muses.common.utils.StringUtils;
+
 /**
  * 基于volecity的邮件模板渲染组件
  *

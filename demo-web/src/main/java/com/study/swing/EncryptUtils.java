@@ -4,12 +4,13 @@ Copyright All rights reserved.
 
 package com.study.swing;
 
-import com.utils.StringUtils;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+import com.muses.common.utils.StringUtils;
 
 /**
  * @author Jervis

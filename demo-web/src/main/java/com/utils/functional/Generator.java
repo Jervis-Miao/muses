@@ -2,14 +2,15 @@
 Copyright All rights reserved.
  */
 
-package functional;
-
-import com.utils.mybatis.GeneratorLauncher;
-import org.mybatis.generator.exception.InvalidConfigurationException;
-import org.mybatis.generator.exception.XMLParserException;
+package com.utils.functional;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import org.mybatis.generator.exception.InvalidConfigurationException;
+import org.mybatis.generator.exception.XMLParserException;
+
+import com.muses.common.orm.generator.GeneratorLauncher;
 
 /**
  * @author Jervis

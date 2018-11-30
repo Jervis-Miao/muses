@@ -6,18 +6,17 @@ package com.muses.web.service;
 
 import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utils.CollectionUtils;
-import com.utils.PdfUtils;
-import com.utils.SpringContextUtils;
-import com.utils.VelocityTemplateUtils;
-
+import com.muses.common.utils.SpringContextUtils;
 import com.muses.web.dto.PdfInfo;
+import com.utils.PdfUtils;
+import com.utils.VelocityTemplateUtils;
 
 /**
  * @author Jervis
@@ -43,7 +42,7 @@ public class PdfManager {
 	public PdfInfo createPdf(Long Id, String vmTemplectName, Map<String, Object> modelData) {
 		String fileDownPath = StringUtils.EMPTY;
 		PdfInfo pdfInfo = new PdfInfo();
-		if (StringUtils.isNotBlank(vmTemplectName) && CollectionUtils.isNotEmpty(modelData)) {
+		if (StringUtils.isNotBlank(vmTemplectName) && MapUtils.isNotEmpty(modelData)) {
 			try {
 				String root = SpringContextUtils.getApplicationContext().getResource("WEB-INF/").getURI().getPath();
 				String vmFilePath = root + VM + "/";

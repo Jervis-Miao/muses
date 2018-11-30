@@ -30,7 +30,7 @@
     <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
         <property name="patterns">
             <list>
-                <value>com.muses.web.service.*</value>
+                <value>com.muses.web.service.*.*Service.*</value>
             </list>
         </property>
     </bean>

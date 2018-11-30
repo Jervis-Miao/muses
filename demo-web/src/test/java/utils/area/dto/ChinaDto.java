@@ -4,10 +4,10 @@ Copyright All rights reserved.
 
 package utils.area.dto;
 
-import com.utils.ObjectUtils;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import com.muses.common.utils.ObjectUtils;
 
 /**
  * @author Jervis
