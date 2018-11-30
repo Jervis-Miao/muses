@@ -27,13 +27,13 @@ import com.muses.web.service.IndexService;
  */
 @Controller
 @RequestMapping("/home")
-public class IndexController {
-	private static final Log	logger	= LogFactory.getLog(IndexController.class);
+public class HomeController {
+	private static final Log	logger	= LogFactory.getLog(HomeController.class);
 
 	@Autowired
 	private IndexService		indexService;
 
-	@RequestMapping("/index")
+	@RequestMapping(value = "/index")
 	public String index() {
 		return "index";
 	}

@@ -65,7 +65,7 @@
     </mvc:annotation-driven>
 
     <mvc:interceptors>
-        <bean class="com.muses.common.mvc.spring.DevCocInterceptor"/>
+        <!--<bean class="com.muses.common.mvc.spring.DevCocInterceptor"/>-->
         <bean class="com.muses.common.validator.spring.EasyValidatorInterceptor"/>
         <bean class="com.muses.common.mvc.log.RequestExecutionTimeConsumptionInterceptor"/>
     </mvc:interceptors>
@@ -87,6 +87,8 @@
     <mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/statics/images/"/>
     <mvc:resources mapping="/download/**" location="/WEB-INF/statics/download/" order="500"/>
+    <!-- ico添加 -->
+    <mvc:resources mapping="/favicon.ico" location="/WEB-INF/"/>
 
     <!-- 文件上传 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -125,11 +127,13 @@
 
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP-->
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
-
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- 定义无Controller的path<->view直接映射 -->
+    <mvc:view-controller path="/" view-name="index" />
 
 </beans>

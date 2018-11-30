@@ -9,6 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/css/test.css"/>
 </head>
 <body>
-<p>500</p>
+<p>Spring MVC based on XML config success!</p>
 </body>
 </html>

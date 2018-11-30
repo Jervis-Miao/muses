@@ -9,7 +9,7 @@
         <property name="failureKeyAttribute" value="loginErrorMsg"/>
     </bean>
     <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
-        <property name="redirectUrl" value="/api/logout/result"/>
+        <property name="redirectUrl" value="/home/index"/>
     </bean>
     <!-- Security 过滤器链配置 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -24,14 +24,15 @@
         <property name="filterChainDefinitions">
             <value>
                 /login = anon
-                /logout = logout
                 /images/** = anon
                 /areas/** = anon
                 /attachments/** = anon
                 /monitor.html = anon
-                /user/** = authc
                 /logout/result = anon
-                /** = authc
+                /user/** = authc
+                /logout = logout
+                /** = anon
+                * = anon
             </value>
         </property>
     </bean>

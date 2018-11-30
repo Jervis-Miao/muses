@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>aoede functions library</description>
+    <display-name>aoede functions</display-name>
+    <tlib-version>1.2</tlib-version>
+    <short-name>aoede</short-name>
+    <uri>http://www.xyz.cn/aoede</uri>
+
+    <!--<function>
+        <name>staticPicUrl</name>
+        <description>静态化图片url</description>
+        <function-class>com.focustech.ins.mobile.web.tags.AoedeLibrary</function-class>
+        <function-signature>java.lang.String staticPicUrl(java.lang.String)</function-signature>
+    </function>-->
+
+</taglib>
