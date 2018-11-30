@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>保险缴费通知书模板和规则</title>
+    <style type="text/css">
+        body {
+            background: #fff;
+            font-size: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .vertical-align-bottom {
+            vertical-align: bottom;
+        }
+
+        table {
+            table-layout: fixed;
+        }
+
+        .table-container {
+            width: 595px;
+            background: #fff;
+            margin: 0 auto;
+            padding: 70px 0;
+            font-family: "Hiragino Sans GB";
+        }
+
+        .table-container__content {
+
+        }
+
+        .table-main {
+            width: 455px;
+            margin: 0 auto;
+        }
+
+        .table-main__header {
+            text-align: center;
+        }
+
+        .table-main__title {
+            margin-top: 35px;
+            font-size: 14px;
+            color: rgba(0,0,0,0.85);
+            text-align: center;
+        }
+
+        .table-main__subtitle {
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.85);
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .table-main__content {
+            padding-top: 60px;
+        }
+
+        .table-main__section {
+            text-indent: 2em;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .table-main__section:first-child {
+            text-indent: 0;
+        }
+
+        .table-main__underline {
+            text-decoration: underline;
+        }
+
+        .table-main__detail {
+            font-size: 10px;
+            padding-top: 30px;
+        }
+
+        .table-main__detail-title {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .table-main__detail-row .table-main__detail-title,.table-main__detail-content {
+            padding-top: 20px;
+        }
+
+        .table-main__detail-row:first-child .table-main__detail-title,.table-main__detail-content {
+            padding-top: 20px;
+        }
+
+        .table-main__bottom {
+            text-align: right;
+            padding-top: 60px;
+        }
+
+    </style>
+</head>
+<body>
+<table class="table-container" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+    <tbody>
+    <tr>
+        <td class="table-container__content">
+            <table class="table-main" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+                <tr class="table-main__header">
+                    <td>
+                        <img src="logo.png" width="455" height="31"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3 class="table-main__title">DEBIT  NOTE</h3>
+                        <h5 class="table-main__subtitle">保险费缴费通知书</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-main__content">
+                        <p class="table-main__section">尊敬的<span class="table-main__underline">$!{appName}</span>：</p>
+                        <p class="table-main__section">感谢您选择平台进行投保。为帮助您及时缴纳保险费，确保保险合同按时生效，我司出具本通知书。本通知书仅供您作为投保缴费的依据，不代表保险合同的成立。</p>
+                        <p class="table-main__section">根据投保单填写您将被保险人<span class="table-main__underline">$!{appName}</span>投保下列险种，投保险种及保费情况如下：</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-main__detail">
+                        <table>
+                            <tbody>
+                            <tr class="table-main__detail-row">
+                                <td class="table-main__detail-title">
+                                    <p>TYPE OF INSURANCE</p>
+                                    <p>保险险种</p>
+                                </td>
+                                <td class="table-main__detail-content vertical-align-bottom">$!{policyType}</td>
+                            </tr>
+                            <tr class="table-main__detail-row">
+                                <td class="table-main__detail-title">
+                                    <p>INSURED PERIOD</p>
+                                    <p>保险期限</p>
+                                </td>
+                                <td class="table-main__detail-content vertical-align-bottom">自$!{start}至$!{endTime}止}</td>
+                            </tr>
+                            <tr class="table-main__detail-row">
+                                <td class="table-main__detail-title">
+                                    <p>TOTAL PREMIUN</p>
+                                    <p>保费总额</p>
+                                </td>
+                                <td class="table-main__detail-content vertical-align-bottom">$!{totalAmt}（人民币）</td>
+                            </tr>
+                            <tr class="table-main__detail-row">
+                                <td class="table-main__detail-title">
+                                    <p>DATE OF PAYMENT</p>
+                                    <p>付费日期</p>
+                                </td>
+                                <td class="table-main__detail-content vertical-align-bottom">投保人需在保险起期$!{payTime}前一个工作日的中午12}:00前将保费以汇款的烦恼是划付主承保险公司统一保险费专收账户，保费到达该账户的次日零时，保险合同生效。 请您在计划起保期之前及时办理缴费手续。保险起期前未缴费（或支票退票），本通知单自动失效。</td>
+                            </tr>
+                            <tr class="table-main__detail-row">
+                                <td class="table-main__detail-title">
+                                    <p>A/C NAME 账户名称</p>
+                                </td>
+                                <td class="table-main__detail-content vertical-align-bottom">$!{accName}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-main__detail-title">
+                                    <p>RMB A/C NO. 人民币账号</p>
+                                </td>
+                                <td class="vertical-align-bottom">$!{accNo}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-main__detail-title">
+                                    <p>BANK NAME 银行名称</p>
+                                </td>
+                                <td class="vertical-align-bottom">$!{accBankName}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-main__bottom">
+                        <p>中国人民财产保险股份有限公司</p>
+                        <p>南京市分公司</p>
+                        <p>$!{createTime}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

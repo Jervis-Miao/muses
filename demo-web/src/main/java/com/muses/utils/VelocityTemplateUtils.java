@@ -119,8 +119,6 @@ public class VelocityTemplateUtils {
 	 */
 	@SuppressWarnings("deprecation")
 	public String mergeDynamicTemplet(String root, String template, String encoding, Map<String, Object> map) {
-		log.info("root:" + root + "template:" + template + "encoding:" + encoding + "pinanAcceptTime:"
-				+ map.get("pinanAcceptTime"));
 		RuntimeInstance ri = new RuntimeInstance();
 		ri.setProperty(Runtime.FILE_RESOURCE_LOADER_PATH, root);
 		Context context = new VelocityContext(map);

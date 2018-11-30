@@ -144,7 +144,7 @@ public class PdfUtils {
 			fontResolver.addFont(Thread.currentThread().getContextClassLoader().getResource("pdf/fonts/").getPath()
 					+ "/simsun.ttc", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
-			// 解决上传的html文件没有图片不显示中文问题 RDIS-5262 wuqinglong
+			// 解决上传的html文件没有图片不显示中文问题
 			if (null != content && content.indexOf("<img") > -1) {
 				// 解决图片的相对路径问题
 				renderer.getSharedContext().setBaseURL(

@@ -39,7 +39,7 @@ public class PdfManager {
 	 * @param modelData 数据结构
 	 * @return 返回pdf下载链接
 	 */
-	public PdfInfo createPdf(Long Id, String vmTemplectName, Map<String, Object> modelData) {
+	public PdfInfo createPdf(Long id, String vmTemplectName, Map<String, Object> modelData) {
 		String fileDownPath = StringUtils.EMPTY;
 		PdfInfo pdfInfo = new PdfInfo();
 		if (StringUtils.isNotBlank(vmTemplectName) && MapUtils.isNotEmpty(modelData)) {
@@ -49,7 +49,7 @@ public class PdfManager {
 				String vmTempName = vmTemplectName + "." + VM;
 				String templet = velocityTemParse.mergeDynamicTemplet(vmFilePath, vmTempName, "UTF-8", modelData);
 				byte[] tempContent = new PdfUtils().createPdfBytesWithContent(templet);
-				String name = vmTemplectName + Id;
+				String name = vmTemplectName + id;
 				pdfInfo.setContent(tempContent);
 				pdfInfo.setName(name);
 				pdfInfo.setCapacity(tempContent.length);
