@@ -23,6 +23,7 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+                /favicon.ico = anon
                 /login = anon
                 /images/** = anon
                 /areas/** = anon
@@ -32,7 +33,6 @@
                 /user/** = authc
                 /logout = logout
                 /** = anon
-                * = anon
             </value>
         </property>
     </bean>
