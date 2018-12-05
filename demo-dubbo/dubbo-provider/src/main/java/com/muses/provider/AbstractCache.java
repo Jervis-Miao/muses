@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.muses.test.provider;
+package com.muses.provider;
 
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;

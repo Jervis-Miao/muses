@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import com.muses.test.provider.StudentCache;
+import com.muses.provider.StudentCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.redisson.api.LocalCachedMapOptions;
