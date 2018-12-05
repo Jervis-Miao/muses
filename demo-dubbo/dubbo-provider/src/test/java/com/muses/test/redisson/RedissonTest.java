@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import com.muses.test.provider.StudentCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.redisson.api.LocalCachedMapOptions;
@@ -80,6 +81,13 @@ public class RedissonTest {
 				.timeToLive(1, TimeUnit.DAYS)
 				// 每个Map本地缓存里元素的最长闲置时间，默认毫秒为单位
 				.maxIdle(1, TimeUnit.SECONDS);
+	}
+
+	@Test
+	public void BucketSet() {
+		StudentCache sc = new StudentCache();
+        StudentDTO studentDTO = sc.getFromRedisByBucket(redissonClient, "property:base:option:1");
+		System.out.println(studentDTO);
 	}
 
 	@Test
