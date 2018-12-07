@@ -42,6 +42,9 @@
             <goals>
               <goal>jar</goal>
             </goals>
+            <configuration>
+              <classifier>jdk1.8</classifier>
+            </configuration>
           </execution>
         </executions>
       </plugin>
