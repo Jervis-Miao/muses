@@ -11,8 +11,21 @@
 
     <description>Spring公共配置</description>
 
-    <!-- 加载properties，并替换${}占位符 -->
-    <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContextAndPlaceholderConfigurer"/>
+    <!-- 加载properties -->
+    <bean id="properties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath*:/properties/application.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 替换${}占位符 -->
+    <context:property-placeholder ignore-resource-not-found="true" properties-ref="properties" local-override="true" />
+
+    <!-- 定义PropertiesContext -->
+    <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContext"/>
 
     <!-- springContext -->
     <bean id="springContextUtils" class="com.muses.common.utils.SpringContextUtils"/>
@@ -39,8 +52,7 @@
         </property>
     </bean>
     <aop:config>
-        <aop:advisor advice-ref="druid-stat-interceptor"
-                     pointcut-ref="druid-stat-pointcut"/>
+        <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut"/>
     </aop:config>
 
     <!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->

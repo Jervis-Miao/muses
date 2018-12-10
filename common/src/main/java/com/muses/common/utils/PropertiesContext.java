@@ -27,7 +27,6 @@ public class PropertiesContext implements InitializingBean {
 			this.property = pf.getObject();
 		} catch (Exception e) {
 			// 未配置为spring bean
-
 			String fileName = "properties/application" + ".properties";
 			String currentProfile = System.getProperty("spring.profiles.active", "development");
 			String contextFileName = "properties/application-" + currentProfile + ".properties";
