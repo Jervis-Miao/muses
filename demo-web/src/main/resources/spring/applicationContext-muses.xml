@@ -13,8 +13,6 @@
     <import resource="classpath:/spring/spring-mvc.xml"/>
     <!-- Mybatis 集成 -->
     <import resource="classpath:mybatis/mybatis-spring.xml"/>
-    <!-- sm 集成 -->
-    <!--<import resource="classpath:/sm/sm.xml"/>-->
     <!-- email 集成 -->
     <import resource="classpath:/email/email.xml"/>
 </beans>

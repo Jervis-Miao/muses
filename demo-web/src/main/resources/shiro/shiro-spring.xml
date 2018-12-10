@@ -65,18 +65,24 @@
     <bean id="sessionCacheManager" class="com.muses.common.mvc.shiro.cache.SingleValueThreadLocalCacheManager"/>
 
     <!-- 定时清理僵尸session，Shiro会启用一个后台守护线程定时执行清理操作 用户直接关闭浏览器造成的孤立会话 -->
-    <!--  <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+    <!--
+      <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
         <property name="interval" value="3600000"/>
         <property name="sessionManager" ref="sessionManager"/>
-      </bean>-->
+      </bean>
+    -->
 
     <!-- 用户授权信息Cache, 采用EhCache ,启用Spring缓存管理支持-->
-    <!--  <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    <!--
+      <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManager" ref="ehCacheManagerFactory"/>
-      </bean>-->
-    <!--  <bean id="ehCacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+      </bean>
+    -->
+    <!--
+      <bean id="ehCacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:security/ehcache-shiro.xml"/>
-      </bean>-->
+      </bean>
+    -->
     <bean id="usernamePwdCredentialsMatcher" class="com.muses.authc.UsernamePwdCredentialsMatcher"/>
     <bean id="dbRealm" class="com.muses.authc.DbRealm">
         <property name="credentialsMatcher" ref="usernamePwdCredentialsMatcher"/>
