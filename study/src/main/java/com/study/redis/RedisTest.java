@@ -4,10 +4,10 @@ Copyright All rights reserved.
 
 package com.study.redis;
 
-import com.study.queue.dto.QueueParam;
-import com.muses.utils.SerializeUtilTest;
 import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
+
+import com.study.queue.dto.QueueParam;
 
 /**
  * @author Jervis

@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package jvm;
+package com.study.jvm;
 
 import java.util.HashMap;
 import java.util.Map;

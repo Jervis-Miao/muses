@@ -2,10 +2,10 @@
 Copyright All rights reserved.
  */
 
-package com.call;
+package com.study.call;
 
-import com.call.dto.CallParamDTO;
-import com.call.dto.CallResultDTO;
+import com.study.call.dto.CallParamDTO;
+import com.study.call.dto.CallResultDTO;
 
 /**
  * 通信管家

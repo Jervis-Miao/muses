@@ -2,7 +2,7 @@
 Copyright All rights reserved.
  */
 
-package com.call.dto;
+package com.study.call.dto;
 
 /**
  * @author Jervis

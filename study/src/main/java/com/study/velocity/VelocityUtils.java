@@ -29,7 +29,7 @@ public class VelocityUtils {
 
 	public static final String	DEFAULT_ENCODING		= "UTF-8";
 	public static final String	DEFAULT_PATH			= "vm/";
-	public static final String	DEFAULT_ABSOLUTE_PATH	= "D://workspace//muses1//demo-web//src//main//resources//temp//";
+	public static final String	DEFAULT_ABSOLUTE_PATH	= "D://workspace//muses//study//src//main//resources//temp//";
 
 	/**
 	 * 静态块初始化Velocity参数

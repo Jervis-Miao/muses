@@ -2,7 +2,7 @@
 Copyright All rights reserved.
  */
 
-package com.call.processor.assemble;
+package com.study.call.processor.assemble;
 
 /**
  * 封装报文
