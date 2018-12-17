@@ -8,8 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
+import com.alibaba.fastjson.JSONObject;
 import com.muses.provider.StudentCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +32,7 @@ import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.LongCodec;
 import org.redisson.client.codec.StringCodec;
 import org.redisson.codec.FstCodec;
+import org.redisson.codec.JsonJacksonCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -47,9 +53,11 @@ public class RedissonTest {
 
 	@Autowired
 	private RedissonClient						redissonClient;
-
 	@Autowired
-	private StudentProvider						studentProvider;
+	private JsonJacksonCodec					jsonJacksonCodec;
+
+	// @Autowired
+	// private StudentProvider studentProvider;
 
 	static {
 		options
@@ -84,9 +92,50 @@ public class RedissonTest {
 	}
 
 	@Test
+	public void codecSetTest() {
+		StudentDTO student = new StudentDTO();
+		byte[] b = new byte[1024 * 20];
+		Arrays.fill(b, (byte) 0x32);
+		String s = new String(b);
+		student.setName(s);
+		student.setStudentId(123L);
+		student.setMobile("123456789001");
+		RBucket<StudentDTO> bucket = redissonClient.getBucket("student1", jsonJacksonCodec);
+		bucket.set(student);
+	}
+
+	@Test
+	public void expireTest() {
+		RBucket<StudentDTO> bucket = redissonClient.getBucket("1", jsonJacksonCodec);
+		bucket.set(new StudentDTO());
+		bucket.expire(10, TimeUnit.MINUTES);
+	}
+
+	@Test
+	public void codecGetTest() throws InterruptedException {
+		AtomicLong aLong = new AtomicLong(0L);
+		final CountDownLatch latch = new CountDownLatch(100);
+		ExecutorService executorService = Executors.newFixedThreadPool(50);
+		for (int i = 0; i < 100; i++) {
+			executorService.submit(new Runnable() {
+				@Override
+				public void run() {
+					long start = System.currentTimeMillis();
+					RBucket<StudentDTO> bucket = redissonClient.getBucket("student1", jsonJacksonCodec);
+					StudentDTO studentDTO = bucket.get();
+					System.out.println(aLong + " 耗时：" + (System.currentTimeMillis() - start));
+					aLong.set(aLong.get() + 1);
+					latch.countDown();
+				}
+			});
+		}
+		latch.await();
+	}
+
+	@Test
 	public void BucketSet() {
 		StudentCache sc = new StudentCache();
-        StudentDTO studentDTO = sc.getFromRedisByBucket(redissonClient, "property:base:option:1");
+		StudentDTO studentDTO = sc.getFromRedisByBucket(redissonClient, "property:base:option:1");
 		System.out.println(studentDTO);
 	}
 

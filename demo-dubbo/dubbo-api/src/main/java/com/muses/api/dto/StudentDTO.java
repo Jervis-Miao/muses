@@ -16,8 +16,8 @@ public class StudentDTO implements Serializable {
 	private Long				studentId;
 
 	private String				name;
-
 	private String				mobile;
+	private String				gender;
 
 	public Long getStudentId() {
 		return studentId;
@@ -41,5 +41,13 @@ public class StudentDTO implements Serializable {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }

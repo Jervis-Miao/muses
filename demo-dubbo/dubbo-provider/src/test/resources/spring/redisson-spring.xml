@@ -18,6 +18,8 @@
   <bean id="jdkCodec" class="org.redisson.codec.SerializationCodec"/>
   <!-- 单纯的针对 string 的序列化方式-->
   <bean id="stringCodec" class="org.redisson.client.codec.StringCodec" />
+  <!-- Jackson JSON 编码 默认编码 -->
+  <bean id="jsonJacksonCodec" class="org.redisson.codec.JsonJacksonCodec" />
   <!-- redisson client 定义, 和 spring bean 一样,可以直接注入 -->
   <!-- codec-ref 是配置一种默认的序列化方式, client 使用的时候可以针对场景替换为其他方式 -->
   <redisson:client id="redissonClient" codec-ref="fstCodec" >

@@ -32,7 +32,7 @@ public class StrudentProviderTest {
 	public void testSave() {
 		StudentDTO studentDTO = new StudentDTO();
 		studentDTO.setName("test");
-		studentDTO.setMobile("13111111111");
+//		studentDTO.setMobile("13111111111");
 		System.out.println(studentProvider.save(studentDTO));
 	}
 
