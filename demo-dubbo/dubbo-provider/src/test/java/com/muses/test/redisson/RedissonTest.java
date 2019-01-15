@@ -4,8 +4,11 @@
 
 package com.muses.test.redisson;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
@@ -16,16 +19,23 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.alibaba.fastjson.JSONObject;
 import com.muses.provider.StudentCache;
+import com.muses.provider.StudentProviderImpl;
+import com.muses.test.provider.StrudentProviderTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.RedissonSortedSet;
 import org.redisson.api.LocalCachedMapOptions;
+import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RBucket;
 import org.redisson.api.RKeys;
 import org.redisson.api.RLocalCachedMap;
 import org.redisson.api.RLock;
 import org.redisson.api.RMap;
 import org.redisson.api.RRateLimiter;
+import org.redisson.api.RScoredSortedSet;
 import org.redisson.api.RSet;
+import org.redisson.api.RSortedSet;
+import org.redisson.api.RTopic;
 import org.redisson.api.RateIntervalUnit;
 import org.redisson.api.RateType;
 import org.redisson.api.RedissonClient;
@@ -90,6 +100,40 @@ public class RedissonTest {
 				// 每个Map本地缓存里元素的最长闲置时间，默认毫秒为单位
 				.maxIdle(1, TimeUnit.SECONDS);
 	}
+
+	@Test
+	public void testSet() {
+		RScoredSortedSet<Object> anySet = redissonClient.getScoredSortedSet("anySet1", new JsonJacksonCodec());
+		anySet.pollFirst();
+        StudentDTO strudent1 = new StudentDTO();
+        strudent1.setName("1");
+        StudentDTO strudent2 = new StudentDTO();
+        strudent2.setMobile("1");
+        anySet.add(.1, strudent1);
+		anySet.add(.2, strudent2);
+	}
+
+	public static class MyComparator implements Comparator<Number> {
+		@Override
+		public int compare(Number d1, Number d2) {
+			return ((Long) d1.longValue()).compareTo(d2.longValue());
+		}
+	}
+
+	@Test
+	public void testBlockingDeque() {
+		try {
+			RBlockingDeque<Object> blockingDeque = redissonClient.getBlockingDeque("blockingDeque");
+			blockingDeque.put(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void testTopic(){
+        RTopic<Object> topic = redissonClient.getTopic("");
+        topic.publish(null);
+    }
 
 	@Test
 	public void codecSetTest() {
