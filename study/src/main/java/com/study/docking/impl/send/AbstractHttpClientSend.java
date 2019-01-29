@@ -46,7 +46,7 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String> {
 	}
 
 	/**
-	 * 获取请求体
+	 * 获取请求信息
 	 * 
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String> {
 	}
 
 	/**
-	 * 发送请求获取返回报文
+	 * 发送请求获取返回报文，用于系统信息传输
 	 *
 	 * @param code
 	 * @param httpReqDTO
@@ -64,7 +64,7 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String> {
 	public abstract String request(HttpReqDTO httpReqDTO);
 
 	/**
-	 * 发送请求获取返回字节流
+	 * 发送请求获取返回字节流，用于文件下载
 	 * 
 	 * @param code
 	 * @param httpReqDTO

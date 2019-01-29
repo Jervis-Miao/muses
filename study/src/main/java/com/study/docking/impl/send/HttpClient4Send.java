@@ -6,12 +6,10 @@ package com.study.docking.impl.send;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.study.docking.dto.HttpReqDTO;
 import com.study.docking.utils.HttpClient4Utils;
-import com.study.docking.utils.HttpClientUtilsFactory;
+import com.study.docking.utils.factory.HttpClientUtilsFactory;
 import com.study.docking.utils.TemFileManager;
 
 /**

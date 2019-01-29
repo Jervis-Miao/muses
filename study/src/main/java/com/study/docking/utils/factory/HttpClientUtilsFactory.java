@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.utils;
+package com.study.docking.utils.factory;
 
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.StringUtils;

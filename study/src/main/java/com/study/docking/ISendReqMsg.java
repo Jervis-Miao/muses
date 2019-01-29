@@ -13,7 +13,7 @@ package com.study.docking;
 public interface ISendReqMsg<T> {
 
 	/**
-	 * 发送请求获取返回报文
+	 * 系统信息传输
 	 * 
 	 * @param reqMsg
 	 * @return
@@ -21,7 +21,7 @@ public interface ISendReqMsg<T> {
 	public T sendReqMsg(T reqMsg);
 
 	/**
-	 * 发送请求获取返回报文字节流
+	 * 文件下载
 	 * 
 	 * @param reqMsg
 	 * @return

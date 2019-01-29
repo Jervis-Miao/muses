@@ -4,7 +4,7 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking.dto;
 
-import com.study.docking.utils.HttpClientUtilsFactory;
+import com.study.docking.utils.factory.HttpClientUtilsFactory;
 import com.study.docking.utils.IHttpClientUtils;
 
 import java.io.Serializable;
@@ -39,7 +39,7 @@ public class HttpReqDTO implements Serializable {
 
 	/**
 	 * 媒体格式
-	 * @see com.study.docking.utils.HttpClientUtilsFactory.CONTENT_TYPE
+	 * @see HttpClientUtilsFactory.CONTENT_TYPE
 	 */
 	private String				contentType;
 
