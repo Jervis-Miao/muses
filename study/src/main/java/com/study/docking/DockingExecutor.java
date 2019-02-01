@@ -35,7 +35,7 @@ public class DockingExecutor {
 	 */
 	public DockingResDTO performTask(DockingReqDTO reqDTO) {
 		String reqMsg = this.initReqMsg.getReqMsg(reqDTO);
-		String resMsg = (String) this.sendReqMsg.sendReqMsg(reqMsg);
+		String resMsg = (String) this.sendReqMsg.send(reqMsg);
 		DockingResDTO dockingResDTO = this.analysisResMsg.analysis(resMsg);
 		this.resultLog.addRsultLog(dockingResDTO);
 		return dockingResDTO;

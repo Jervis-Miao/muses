@@ -4,11 +4,11 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking.dto;
 
-import com.study.docking.utils.factory.HttpClientUtilsFactory;
-import com.study.docking.utils.IHttpClientUtils;
-
 import java.io.Serializable;
 import java.util.Map;
+
+import com.study.docking.impl.send.AbstractHttpClientSend;
+import com.study.docking.utils.AbstractHttpClientUtil;
 
 /**
  * @author miaoqiang
@@ -23,9 +23,39 @@ public class HttpReqDTO implements Serializable {
 	private String				code;
 
 	/**
-	 * 请求地址
+	 * 读数据超时时间(单位毫秒)
 	 */
-	private String				url;
+	private Integer				socketTimeOut;
+
+	/**
+	 * 连接超时时间(单位毫秒)
+	 */
+	private Integer				connTimeOut;
+
+	/**
+	 * keystore 文件路径
+	 */
+	private String				keyPath;
+
+	/**
+	 * keystore 密码
+	 */
+	private String				keyPwd;
+
+	/**
+	 * truststore 文件路径
+	 */
+	private String				trustPath;
+
+	/**
+	 * truststore 密码
+	 */
+	private String				trustPwd;
+
+	/**
+	 * https协议端口
+	 */
+	private Integer				httpsPort;
 
 	/**
 	 * 代理地址
@@ -39,14 +69,19 @@ public class HttpReqDTO implements Serializable {
 
 	/**
 	 * 媒体格式
-	 * @see HttpClientUtilsFactory.CONTENT_TYPE
+	 * @see HttpClientUtilFactory.CONTENT_TYPE
 	 */
 	private String				contentType;
 
 	/**
 	 * 编码格式
 	 */
-	private String				encode;
+	private String				charset;
+
+	/**
+	 * 请求地址
+	 */
+	private String				url;
 
 	/**
 	 * post请求标记
@@ -64,8 +99,8 @@ public class HttpReqDTO implements Serializable {
 	private Map<String, String>	params;
 
 	public HttpReqDTO() {
-		this.contentType = HttpClientUtilsFactory.CONTENT_TYPE.XML.getContentType();
-		this.encode = IHttpClientUtils.DEFAULT_ENCODE;
+		this.contentType = AbstractHttpClientSend.CONTENT_TYPE.TEXT_XML.getContentType();
+		this.charset = AbstractHttpClientUtil.DEFAULT_ENCODE;
 		this.postFlag = Boolean.FALSE;
 	}
 
@@ -77,12 +112,60 @@ public class HttpReqDTO implements Serializable {
 		this.code = code;
 	}
 
-	public String getUrl() {
-		return url;
+	public Integer getSocketTimeOut() {
+		return socketTimeOut;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setSocketTimeOut(Integer socketTimeOut) {
+		this.socketTimeOut = socketTimeOut;
+	}
+
+	public Integer getConnTimeOut() {
+		return connTimeOut;
+	}
+
+	public void setConnTimeOut(Integer connTimeOut) {
+		this.connTimeOut = connTimeOut;
+	}
+
+	public String getKeyPath() {
+		return keyPath;
+	}
+
+	public void setKeyPath(String keyPath) {
+		this.keyPath = keyPath;
+	}
+
+	public String getKeyPwd() {
+		return keyPwd;
+	}
+
+	public void setKeyPwd(String keyPwd) {
+		this.keyPwd = keyPwd;
+	}
+
+	public String getTrustPath() {
+		return trustPath;
+	}
+
+	public void setTrustPath(String trustPath) {
+		this.trustPath = trustPath;
+	}
+
+	public String getTrustPwd() {
+		return trustPwd;
+	}
+
+	public void setTrustPwd(String trustPwd) {
+		this.trustPwd = trustPwd;
+	}
+
+	public Integer getHttpsPort() {
+		return httpsPort;
+	}
+
+	public void setHttpsPort(Integer httpsPort) {
+		this.httpsPort = httpsPort;
 	}
 
 	public String getProxyAddress() {
@@ -109,12 +192,20 @@ public class HttpReqDTO implements Serializable {
 		this.contentType = contentType;
 	}
 
-	public String getEncode() {
-		return encode;
+	public String getCharset() {
+		return charset;
 	}
 
-	public void setEncode(String encode) {
-		this.encode = encode;
+	public void setCharset(String charset) {
+		this.charset = charset;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public Boolean getPostFlag() {

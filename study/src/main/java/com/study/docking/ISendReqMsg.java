@@ -18,7 +18,7 @@ public interface ISendReqMsg<T> {
 	 * @param reqMsg
 	 * @return
 	 */
-	public T sendReqMsg(T reqMsg);
+	public T send(T reqMsg);
 
 	/**
 	 * 文件下载
@@ -26,5 +26,5 @@ public interface ISendReqMsg<T> {
 	 * @param reqMsg
 	 * @return
 	 */
-	public byte[] sendReqMsgForByte(T reqMsg);
+	public byte[] sendForByte(T reqMsg);
 }
