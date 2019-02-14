@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.impl.send;
+package com.study.docking.impl.send.http;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.muses.common.utils.StringUtils;
 import com.study.docking.dto.HttpReqDTO;
+import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
 import com.study.docking.utils.HttpClientUtil4;
 import com.study.docking.utils.TemFileManager;
@@ -40,7 +41,7 @@ public class HttpClientSend4 extends AbstractHttpClientSend {
 		HttpReqDTO httpReqDTO = new HttpReqDTO();
 		httpReqDTO.setCode("test");
 		httpReqDTO.setUrl("http://ebiz.fosun-uhi.com/ebiz-entry/ebiz/download.do?action=dealBiz");
-		httpReqDTO.setContentType(AbstractHttpClientSend.CONTENT_TYPE.APPLICATION_FROM.getContentType());
+		httpReqDTO.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.APPLICATION_FROM.getContentType());
 		httpReqDTO.setPostFlag(true);
 		httpReqDTO.setCharset("utf-8");
 		Map<String, String> params = new HashMap<>();

@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.impl.send;
+package com.study.docking.impl.send.http;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,12 +10,16 @@ import java.util.Map;
 
 import com.muses.common.utils.StringUtils;
 import com.study.docking.dto.HttpReqDTO;
+import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
 import com.study.docking.utils.HttpClientUtil3;
 import com.study.docking.utils.TemFileManager;
 
 /**
+ * <pre>
  * commons-httpclient-3.1 版本HttpClient
+ * 该工具已经废弃，这里只是兼容老代码迁移使用
+ * </pre>
  *
  * @author miaoqiang
  * @date 2019/1/24.
@@ -30,6 +34,11 @@ public class HttpClientSend3 extends AbstractHttpClientSend {
 				|| StringUtils.isBlank(trustPwd)) {
 			clientUtil = new HttpClientUtil3(socketTimeOut, connTimeOut, proxyAddress, proxyPort);
 		} else {
+			/**
+			 * HttpClientSend3 不支持证书，需要使用证书请使用 HttpClientSend4
+			 * @see HttpClientSend4
+			 */
+			throw new RuntimeException("HttpClientSend3 is not supported SSL");
 		}
 		return clientUtil;
 	}
@@ -37,7 +46,7 @@ public class HttpClientSend3 extends AbstractHttpClientSend {
 	public static void main(String[] args) throws IOException {
 		HttpReqDTO httpReqDTO = new HttpReqDTO();
 		httpReqDTO.setCode("test");
-		httpReqDTO.setContentType(AbstractHttpClientSend.CONTENT_TYPE.APPLICATION_FROM.getContentType());
+		httpReqDTO.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.APPLICATION_FROM.getContentType());
 		// httpReqDTO.setUrl("https://www.xyz.cn/p/insstrem.do?xcase=downPdfContent&insItemId=403&useType=3");
 		httpReqDTO.setUrl("http://ebiz.fosun-uhi.com/ebiz-entry/ebiz/download.do?action=dealBiz");
 		// httpReqDTO.setProxyAddress("192.168.16.189");

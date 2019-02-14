@@ -99,7 +99,7 @@ public class HttpReqDTO implements Serializable {
 	private Map<String, String>	params;
 
 	public HttpReqDTO() {
-		this.contentType = AbstractHttpClientSend.CONTENT_TYPE.TEXT_XML.getContentType();
+		this.contentType = AbstractHttpClientUtil.CONTENT_TYPE.TEXT_XML.getContentType();
 		this.charset = AbstractHttpClientUtil.DEFAULT_ENCODE;
 		this.postFlag = Boolean.FALSE;
 	}

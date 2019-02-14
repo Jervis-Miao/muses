@@ -63,6 +63,44 @@ public abstract class AbstractHttpClientUtil {
 	public static final String	DEFAULT_ENCODE		= "utf-8";
 
 	/**
+	 * 媒体格式
+	 */
+	public enum CONTENT_TYPE {
+		// 纯文本
+		TEXT_PLAIN("text/plain"),
+		// 文本方式的html
+		TEXT_HTML("text/html"),
+		// 文本方式的xml
+		TEXT_XML("text/xml"),
+		// gif图片格式
+		IMAGE_GIF("image/gif"),
+		// jpg图片格式
+		IMAGE_JPEG("image/jpeg"),
+		// png图片格式
+		IMAGE_PNG("image/png"),
+		// 图片、文件等附件上传
+		MUL_FROM("multipart/form-data"),
+		// 表单提交（普通表单，非上传）
+		APPLICATION_FROM("application/x-www-form-urlencoded"),
+		// 数据以json形式编码
+		APPLICATION_JSON("application/json"),
+		// 数据以xml形式编码
+		APPLICATION_XML("application/xml"),
+		// 二进制流数据（如常见的文件下载）
+		APPLICATION_STREAM("application/octet-stream");
+
+		private String	contentType;
+
+		CONTENT_TYPE(String contentType) {
+			this.contentType = contentType;
+		}
+
+		public String getContentType() {
+			return contentType;
+		}
+	}
+
+	/**
 	 * 创建SSLContext对象用于绕过SSL验证
 	 *
 	 * @param algorithm

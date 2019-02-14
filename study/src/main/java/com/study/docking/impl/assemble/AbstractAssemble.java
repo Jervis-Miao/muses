@@ -53,7 +53,9 @@ public abstract class AbstractAssemble implements IAssembleReqMsg {
 	public String mergeDynamicTemplet(DockingReqDTO reqDTO) {
 		String result = "";
 		int temSize = 2;
+		// 报文模板嵌套封装
 		for (int tem = 0; tem < temSize; tem++) {
+			// 单个模板键值对封装
 			Map<String, Object> map = this.getMap(reqDTO);
 			if (tem + 1 == temSize) {
 				result = "temResult";

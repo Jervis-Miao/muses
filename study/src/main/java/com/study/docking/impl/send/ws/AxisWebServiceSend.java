@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.impl.send;
+package com.study.docking.impl.send.ws;
 
 /**
  * axis-1.4 版本WS

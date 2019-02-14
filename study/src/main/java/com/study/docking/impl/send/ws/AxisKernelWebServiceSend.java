@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.impl.send;
+package com.study.docking.impl.send.ws;
 
 /**
  * axis2-kernel-1.5.1 版本WS
@@ -10,5 +10,5 @@ package com.study.docking.impl.send;
  * @author miaoqiang
  * @date 2019/1/24.
  */
-public class Axis2WebServiceSend {
+public class AxisKernelWebServiceSend {
 }
