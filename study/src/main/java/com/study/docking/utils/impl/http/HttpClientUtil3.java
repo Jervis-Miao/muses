@@ -2,7 +2,7 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.utils;
+package com.study.docking.utils.impl.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +18,7 @@ import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
+import com.study.docking.utils.AbstractHttpClientUtil;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.HttpClient;
@@ -32,7 +33,6 @@ import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.httpclient.params.HttpConnectionParams;
-import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.httpclient.protocol.ControllerThreadSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.httpclient.protocol.SecureProtocolSocketFactory;

@@ -31,17 +31,37 @@
             <version>2.2</version>
         </dependency>
 
+        <!-- HttpClient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.5</version>
         </dependency>
 
+        <!-- commons-httpclient -->
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
         </dependency>
 
+        <!-- axis -->
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!-- axis2-kernel -->
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-kernel</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-adb</artifactId>
+            <version>1.5.1</version>
+        </dependency>
     </dependencies>
 </project>

@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.muses.common.utils.ObjectUtils;
 import com.study.docking.ISendReqMsg;
+import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.dto.HttpReqDTO;
 import com.study.docking.utils.AbstractHttpClientUtil;
 import com.study.docking.utils.IProtocolUrl;
@@ -28,9 +29,9 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String> {
 	protected static final Map<String, AbstractHttpClientUtil>	CLIENT_UTILS	= new ConcurrentHashMap<>();
 
 	@Override
-	public String send(String reqMsg) {
+	public String send(String reqMsg, DockingReqDTO reqDTO) {
 		String resMsg = "";
-		String url = getUrl();
+		String url = getUrl(reqMsg, reqDTO);
 		HttpReqDTO httpReqDTO = initHttpReqDTO();
 		AbstractHttpClientUtil clientUtil = this.getClientUtil("", null, null, "", null);
 		return clientUtil.doExecute(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
@@ -38,9 +39,9 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String> {
 	}
 
 	@Override
-	public byte[] sendForByte(String reqMsg) {
+	public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
 		String resMsg = "";
-		String url = getUrl();
+		String url = getUrl(reqMsg, reqDTO);
 		HttpReqDTO httpReqDTO = initHttpReqDTO();
 		AbstractHttpClientUtil clientUtil = this.getClientUtil("", null, null, "", null);
 		return clientUtil.doExecuteForByte(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
@@ -52,7 +53,7 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String> {
 	 * 
 	 * @return
 	 */
-	private static String getUrl() {
+	private static String getUrl(String reqMsg, DockingReqDTO reqDTO) {
 		IProtocolUrl url = ProtocolUrlFactory.createProtocolUrl();
 		return url.getUrl();
 	}

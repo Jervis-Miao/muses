@@ -1,4 +1,4 @@
-package com.study.docking.utils;
+package com.study.docking.utils.impl.http;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,6 +19,7 @@ import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
+import com.study.docking.utils.AbstractHttpClientUtil;
 import org.apache.commons.collections.MapUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;

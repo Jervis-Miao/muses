@@ -4,6 +4,8 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking;
 
+import com.study.docking.dto.DockingReqDTO;
+
 /**
  * 发送请求报文
  * 
@@ -16,15 +18,17 @@ public interface ISendReqMsg<T> {
 	 * 系统信息传输
 	 * 
 	 * @param reqMsg
+	 * @param reqDTO
 	 * @return
 	 */
-	public T send(T reqMsg);
+	public T send(T reqMsg, DockingReqDTO reqDTO);
 
 	/**
 	 * 文件下载
 	 * 
 	 * @param reqMsg
+	 * @param reqDTO
 	 * @return
 	 */
-	public byte[] sendForByte(T reqMsg);
+	public byte[] sendForByte(T reqMsg, DockingReqDTO reqDTO);
 }

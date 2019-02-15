@@ -12,7 +12,7 @@ import com.muses.common.utils.StringUtils;
 import com.study.docking.dto.HttpReqDTO;
 import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
-import com.study.docking.utils.HttpClientUtil3;
+import com.study.docking.utils.impl.http.HttpClientUtil3;
 import com.study.docking.utils.TemFileManager;
 
 /**
