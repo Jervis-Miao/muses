@@ -63,6 +63,11 @@
             <artifactId>axis2-adb</artifactId>
             <version>1.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-http</artifactId>
+            <version>1.5.1</version>
+        </dependency>
 
         <!--webservice cxf -->
         <dependency>

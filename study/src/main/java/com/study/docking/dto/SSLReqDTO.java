@@ -14,27 +14,27 @@ public class SSLReqDTO implements Serializable {
 	private static final long	serialVersionUID	= -5734915834294311077L;
 
 	/**
-	 * keystore 文件路径
+	 * keystore 文件路径，必填
 	 */
 	private String				keyPath;
 
 	/**
-	 * keystore 密码
+	 * keystore 密码，必填
 	 */
 	private String				keyPwd;
 
 	/**
-	 * truststore 文件路径
+	 * truststore 文件路径，必填
 	 */
 	private String				trustPath;
 
 	/**
-	 * truststore 密码
+	 * truststore 密码，必填
 	 */
 	private String				trustPwd;
 
 	/**
-	 * https协议端口
+	 * https协议端口，必填
 	 */
 	private Integer				httpsPort;
 

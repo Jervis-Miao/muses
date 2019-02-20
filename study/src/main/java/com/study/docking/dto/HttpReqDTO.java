@@ -18,12 +18,12 @@ public class HttpReqDTO extends BaseReqDTO implements Serializable {
 	private static final long	serialVersionUID	= 488055905418153120L;
 
 	/**
-	 * 接口编码
+	 * 接口编码，必填
 	 */
 	private String				code;
 
 	/**
-	 * 证书信息
+	 * 证书信息，可为空
 	 */
 	private SSLReqDTO			ssl;
 
@@ -35,4 +35,11 @@ public class HttpReqDTO extends BaseReqDTO implements Serializable {
 		this.code = code;
 	}
 
+	public SSLReqDTO getSsl() {
+		return ssl;
+	}
+
+	public void setSsl(SSLReqDTO ssl) {
+		this.ssl = ssl;
+	}
 }

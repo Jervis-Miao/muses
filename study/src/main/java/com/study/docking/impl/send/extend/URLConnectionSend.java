@@ -45,7 +45,7 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 
 	@Override
 	public String send(String reqMsg, DockingReqDTO reqDTO) {
-		HttpURLConnection conn = getConnection("", "", null, reqMsg, null, "", "", false);
+		HttpURLConnection conn = getConnection("", "", null, null, null, reqMsg, null, "", "", false);
 		openConnect(conn);
 		writeAndClose(conn, reqMsg, "");
 		String res = readForStr(conn, "");
@@ -54,15 +54,16 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 
 	@Override
 	public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
-		HttpURLConnection conn = getConnection("", "", null, reqMsg, null, "", "", false);
+		HttpURLConnection conn = getConnection("", "", null, null, null, reqMsg, null, "", "", false);
 		openConnect(conn);
 		writeAndClose(conn, reqMsg, "");
 		byte[] res = readForByte(conn);
 		return res;
 	}
 
-	private static HttpURLConnection getConnection(String url, String proxyAddress, Integer proxyPort, String mess,
-			Map<String, String> reqParams, String contentType, String charset, Boolean isPost) {
+	private static HttpURLConnection getConnection(String url, String proxyAddress, Integer proxyPort,
+			Integer socketTimeOut, Integer connTimeOut, String mess, Map<String, String> reqParams, String contentType,
+			String charset, Boolean isPost) {
 		try {
 			URL _url = new URL(url);
 			HttpURLConnection con = null;
@@ -72,10 +73,11 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 			} else {
 				con = (HttpURLConnection) _url.openConnection();
 			}
-			con.setDoOutput(true);
-			con.setDoInput(true);
-			con.setUseCaches(false);
-			con.setReadTimeout(5000);
+			con.setDoOutput(Boolean.TRUE);
+			con.setDoInput(Boolean.TRUE);
+			con.setUseCaches(Boolean.FALSE);
+			con.setReadTimeout(socketTimeOut);
+			con.setConnectTimeout(connTimeOut);
 			if (isPost) {
 				con.setRequestMethod("POST");
 			}
@@ -89,7 +91,7 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 			con.setRequestProperty("contentType", charset);
 			return con;
 		} catch (IOException e) {
-			logger.error("大都会投保建立请求连接错误,错误信息：" + e);
+			logger.error("建立请求连接错误,错误信息：" + e);
 			throw new RuntimeException(e.getMessage(), e.getCause());
 		}
 	}
@@ -214,7 +216,7 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 
 	public static void test2() {
 		HttpURLConnection connection = getConnection("http://dzdz.ciitc.com.cn/s/icQh1TikE", "192.168.16.187", 8080,
-				"", null, AbstractHttpClientUtil.CONTENT_TYPE.TEXT_HTML.getContentType(), "utf-8", false);
+				5000, 5000, "", null, AbstractHttpClientUtil.CONTENT_TYPE.TEXT_HTML.getContentType(), "utf-8", false);
 		openConnect(connection);
 		writeAndClose(connection, "", "utf-8");
 		String res = readForStr(connection, "utf-8");
