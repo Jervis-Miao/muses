@@ -19,7 +19,11 @@ import org.apache.axis.components.net.DefaultCommonsHTTPClientProperties;
 import com.study.docking.impl.send.AbstractWebServiceSend;
 
 /**
+ * <pre>
  * axis-1.4 版本WS
+ * 该工具不推荐使用，这里只是兼容老代码迁移使用
+ * @see com.study.docking.impl.send.http.HttpClientSend4
+ * </pre>
  *
  * @author miaoqiang
  * @date 2019/1/24.

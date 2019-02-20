@@ -44,12 +44,12 @@ public class DockingExecutorFactory {
 		};
 		ISendReqMsg sendReqMsg = new ISendReqMsg<String>() {
 			@Override
-			public String send(String reqMsg) {
+			public String send(String reqMsg, DockingReqDTO reqDTO) {
 				return "";
 			}
 
 			@Override
-			public byte[] sendForByte(String reqMsg) {
+			public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
 				return null;
 			}
 		};

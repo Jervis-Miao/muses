@@ -16,7 +16,11 @@ import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.impl.send.AbstractWebServiceSend;
 
 /**
+ * <pre>
  * axis2-kernel-1.5.1 版本WS
+ * 该工具不推荐使用，这里只是兼容老代码迁移使用
+ * @see com.study.docking.impl.send.http.HttpClientSend4
+ * </pre>
  *
  * @author miaoqiang
  * @date 2019/1/24.

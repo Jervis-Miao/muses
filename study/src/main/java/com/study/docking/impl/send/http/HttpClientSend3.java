@@ -18,7 +18,8 @@ import com.study.docking.utils.TemFileManager;
 /**
  * <pre>
  * commons-httpclient-3.1 版本HttpClient
- * 该工具已经废弃，这里只是兼容老代码迁移使用
+ * 该工具不推荐使用，这里只是兼容老代码迁移使用
+ * @see com.study.docking.impl.send.http.HttpClientSend4
  * </pre>
  *
  * @author miaoqiang
@@ -69,9 +70,8 @@ public class HttpClientSend3 extends AbstractHttpClientSend {
 		httpReqDTO.setParams(params);
 		HttpClientSend3 client3Send = new HttpClientSend3();
 		AbstractHttpClientUtil clientUtil = client3Send.createHttpClientUtil(httpReqDTO.getSocketTimeOut(),
-				httpReqDTO.getConnTimeOut(), httpReqDTO.getProxyAddress(), httpReqDTO.getProxyPort(),
-				httpReqDTO.getKeyPath(), httpReqDTO.getTrustPath(), httpReqDTO.getKeyPwd(), httpReqDTO.getTrustPwd(),
-				httpReqDTO.getHttpsPort());
+				httpReqDTO.getConnTimeOut(), httpReqDTO.getProxyAddress(), httpReqDTO.getProxyPort(), null, null, null,
+				null, null);
 		byte[] test = clientUtil.doExecuteForByte(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
 				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
 		TemFileManager.createTemFile("test.pdf", test);

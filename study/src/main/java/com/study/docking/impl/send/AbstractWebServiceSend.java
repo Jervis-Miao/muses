@@ -28,10 +28,10 @@ public abstract class AbstractWebServiceSend implements ISendReqMsg<Object> {
 	@Override
 	public byte[] sendForByte(Object reqMsg, DockingReqDTO reqDTO) {
 		/**
-		 * tWebServiceSend 不支持附件下载，需要下载请使用http协议
+		 * WebServiceSend 不支持附件下载，需要下载请使用http协议
 		 * @see com.study.docking.impl.send.AbstractHttpClientSend
 		 */
-		throw new RuntimeException("HttpClientSend3 is not supported SSL");
+		throw new RuntimeException("WebServiceSend is not supported sendForByte");
 	}
 
 	/**
