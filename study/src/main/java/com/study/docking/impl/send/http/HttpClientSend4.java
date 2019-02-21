@@ -10,8 +10,10 @@ import org.dom4j.DocumentException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.StringUtils;
 import com.study.docking.dto.HttpReqDTO;
+import com.study.docking.dto.SSLReqDTO;
 import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
 import com.study.docking.utils.TemFileManager;
@@ -26,15 +28,20 @@ import com.study.docking.utils.impl.http.HttpClientUtil4;
 public class HttpClientSend4 extends AbstractHttpClientSend {
 
 	@Override
-	public AbstractHttpClientUtil createHttpClientUtil(Integer socketTimeOut, Integer connTimeOut, String proxyAddress,
-			Integer proxyPort, String keyPath, String trustPath, String keyPwd, String trustPwd, Integer httpsPort) {
+	public AbstractHttpClientUtil createClient(HttpReqDTO httpReq) {
 		AbstractHttpClientUtil clientUtil = null;
-		if (StringUtils.isBlank(keyPath) || StringUtils.isBlank(trustPath) || StringUtils.isBlank(keyPwd)
-				|| StringUtils.isBlank(trustPwd)) {
+		Integer socketTimeOut = httpReq.getSocketTimeOut();
+		Integer connTimeOut = httpReq.getConnTimeOut();
+		String proxyAddress = httpReq.getProxyAddress();
+		Integer proxyPort = httpReq.getProxyPort();
+		SSLReqDTO ssl = httpReq.getSsl();
+		if (ObjectUtils.isNull(ssl) || StringUtils.isBlank(ssl.getKeyPath()) || StringUtils.isBlank(ssl.getTrustPath())
+				|| StringUtils.isBlank(ssl.getKeyPwd()) || StringUtils.isBlank(ssl.getTrustPwd())
+				|| ObjectUtils.isNull(ssl.getHttpsPort())) {
 			clientUtil = new HttpClientUtil4(socketTimeOut, connTimeOut, proxyAddress, proxyPort);
 		} else {
-			clientUtil = new HttpClientUtil4(socketTimeOut, connTimeOut, proxyAddress, proxyPort, keyPath, trustPath,
-					keyPwd, trustPwd, httpsPort);
+			clientUtil = new HttpClientUtil4(socketTimeOut, connTimeOut, proxyAddress, proxyPort, ssl.getKeyPath(),
+					ssl.getTrustPath(), ssl.getKeyPwd(), ssl.getTrustPwd(), ssl.getHttpsPort());
 		}
 		return clientUtil;
 	}
@@ -61,9 +68,7 @@ public class HttpClientSend4 extends AbstractHttpClientSend {
 		// + "KaFeH2cj2pXvqrzp9lBXQjSQ4TEhJ+iZ2p9pcCvdt5f9hPUCd9e0NL6SapPrDuPbsg==");
 		// httpReqDTO.setParams(params);
 		HttpClientSend4 client4Send = new HttpClientSend4();
-		AbstractHttpClientUtil clientUtil = client4Send.createHttpClientUtil(httpReqDTO.getSocketTimeOut(),
-				httpReqDTO.getConnTimeOut(), httpReqDTO.getProxyAddress(), httpReqDTO.getProxyPort(), null, null, null,
-				null, null);
+		AbstractHttpClientUtil clientUtil = client4Send.createClient(httpReqDTO);
 		String test = clientUtil.doExecute(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
 				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
 		Document document = Jsoup.parse(test);

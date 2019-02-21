@@ -5,6 +5,7 @@ Copyright 2018 All rights reserved.
 package com.study.docking;
 
 import com.muses.common.utils.ObjectUtils;
+import com.study.docking.dto.BaseReqDTO;
 import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.dto.DockingResDTO;
 
@@ -50,6 +51,11 @@ public class DockingExecutorFactory {
 
 			@Override
 			public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
+				return null;
+			}
+
+			@Override
+			public BaseReqDTO assembleReqDTO(String reqMsg, DockingReqDTO reqDTO) {
 				return null;
 			}
 		};

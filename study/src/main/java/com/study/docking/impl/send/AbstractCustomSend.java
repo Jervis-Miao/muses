@@ -4,7 +4,9 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking.impl.send;
 
+import com.study.docking.IProtocol;
 import com.study.docking.ISendReqMsg;
+import com.study.docking.dto.BaseReqDTO;
 import com.study.docking.dto.DockingReqDTO;
 
 /**
@@ -13,7 +15,7 @@ import com.study.docking.dto.DockingReqDTO;
  * @author miaoqiang
  * @date 2019/2/12.
  */
-public abstract class AbstractCustomSend<T> implements ISendReqMsg<T> {
+public abstract class AbstractCustomSend<P, R extends BaseReqDTO> implements ISendReqMsg<String>, IProtocol<P, R> {
 	/**
 	 * 系统信息传输
 	 *
@@ -22,7 +24,7 @@ public abstract class AbstractCustomSend<T> implements ISendReqMsg<T> {
 	 * @return
 	 */
 	@Override
-	public abstract T send(T reqMsg, DockingReqDTO reqDTO);
+	public abstract String send(String reqMsg, DockingReqDTO reqDTO);
 
 	/**
 	 * 文件下载
@@ -32,5 +34,27 @@ public abstract class AbstractCustomSend<T> implements ISendReqMsg<T> {
 	 * @return
 	 */
 	@Override
-	public abstract byte[] sendForByte(T reqMsg, DockingReqDTO reqDTO);
+	public abstract byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO);
+
+	/**
+	 * 封装协议发送请求参数
+	 *
+	 * @param reqMsg
+	 * @param reqDTO
+	 * @return
+	 */
+	@Override
+	public BaseReqDTO assembleReqDTO(String reqMsg, DockingReqDTO reqDTO) {
+		BaseReqDTO baseReqDTO = new BaseReqDTO();
+		return baseReqDTO;
+	}
+
+	/**
+	 * 创建连接客户端
+	 *
+	 * @param baseReq
+	 * @return
+	 */
+	@Override
+	public abstract P createClient(R baseReq);
 }

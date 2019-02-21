@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.StringUtils;
 import com.study.docking.dto.HttpReqDTO;
+import com.study.docking.dto.SSLReqDTO;
 import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
-import com.study.docking.utils.impl.http.HttpClientUtil3;
 import com.study.docking.utils.TemFileManager;
+import com.study.docking.utils.impl.http.HttpClientUtil3;
 
 /**
  * <pre>
@@ -28,11 +30,16 @@ import com.study.docking.utils.TemFileManager;
 public class HttpClientSend3 extends AbstractHttpClientSend {
 
 	@Override
-	public AbstractHttpClientUtil createHttpClientUtil(Integer socketTimeOut, Integer connTimeOut, String proxyAddress,
-			Integer proxyPort, String keyPath, String trustPath, String keyPwd, String trustPwd, Integer httpsPort) {
+	public AbstractHttpClientUtil createClient(HttpReqDTO httpReq) {
 		AbstractHttpClientUtil clientUtil = null;
-		if (StringUtils.isBlank(keyPath) || StringUtils.isBlank(trustPath) || StringUtils.isBlank(keyPwd)
-				|| StringUtils.isBlank(trustPwd)) {
+		SSLReqDTO ssl = httpReq.getSsl();
+		if (ObjectUtils.isNull(ssl) || StringUtils.isBlank(ssl.getKeyPath()) || StringUtils.isBlank(ssl.getTrustPath())
+				|| StringUtils.isBlank(ssl.getKeyPwd()) || StringUtils.isBlank(ssl.getTrustPwd())
+				|| ObjectUtils.isNull(ssl.getHttpsPort())) {
+			Integer socketTimeOut = httpReq.getSocketTimeOut();
+			Integer connTimeOut = httpReq.getConnTimeOut();
+			String proxyAddress = httpReq.getProxyAddress();
+			Integer proxyPort = httpReq.getProxyPort();
 			clientUtil = new HttpClientUtil3(socketTimeOut, connTimeOut, proxyAddress, proxyPort);
 		} else {
 			/**
@@ -69,9 +76,7 @@ public class HttpClientSend3 extends AbstractHttpClientSend {
 				+ "KaFeH2cj2pXvqrzp9lBXQjSQ4TEhJ+iZ2p9pcCvdt5f9hPUCd9e0NL6SapPrDuPbsg==");
 		httpReqDTO.setParams(params);
 		HttpClientSend3 client3Send = new HttpClientSend3();
-		AbstractHttpClientUtil clientUtil = client3Send.createHttpClientUtil(httpReqDTO.getSocketTimeOut(),
-				httpReqDTO.getConnTimeOut(), httpReqDTO.getProxyAddress(), httpReqDTO.getProxyPort(), null, null, null,
-				null, null);
+		AbstractHttpClientUtil clientUtil = client3Send.createClient(httpReqDTO);
 		byte[] test = clientUtil.doExecuteForByte(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
 				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
 		TemFileManager.createTemFile("test.pdf", test);

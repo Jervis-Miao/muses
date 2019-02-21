@@ -7,6 +7,8 @@ package com.study.docking.dto;
 import java.io.Serializable;
 import java.util.Map;
 
+import com.study.docking.utils.AbstractHttpClientUtil;
+
 /**
  * @author miaoqiang
  * @date 2019/2/19.
@@ -46,7 +48,7 @@ public class BaseReqDTO implements Serializable {
 
 	/**
 	 * 媒体格式，可为空
-	 * @see HttpClientUtilFactory.CONTENT_TYPE
+	 * @see AbstractHttpClientUtil.CONTENT_TYPE
 	 */
 	private String				contentType;
 

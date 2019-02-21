@@ -6,6 +6,8 @@ package com.study.docking.impl.send.ws;
 
 import javax.xml.namespace.QName;
 
+import com.study.docking.dto.BaseReqDTO;
+import com.study.docking.dto.WsReqDTO;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.addressing.EndpointReference;
 import org.apache.axis2.client.Options;
@@ -28,13 +30,13 @@ import com.study.docking.impl.send.AbstractWebServiceSend;
  * @author miaoqiang
  * @date 2019/1/24.
  */
-public class AxisKernelWebServiceSend extends AbstractWebServiceSend {
+public class AxisKernelWebServiceSend extends AbstractWebServiceSend<RPCServiceClient> {
 
 	@Override
 	public Object send(Object reqMsg, DockingReqDTO reqDTO) {
 		Object result = null;
 		try {
-			RPCServiceClient serviceClient = initServiceClient("", null, null, "", null);
+			RPCServiceClient serviceClient = createClient(new WsReqDTO());
 			Object[] objects = serviceClient.invokeBlocking(new QName("", ""), super.getParams(reqMsg, reqDTO),
 					super.getResClazz(reqDTO));
 			result = objects[0];
@@ -45,23 +47,19 @@ public class AxisKernelWebServiceSend extends AbstractWebServiceSend {
 	}
 
 	/**
-	 * 获取webservice客户端
-	 * 
-	 * @param url
-	 * @param socketTimeOut
-	 * @param connTimeOut
-	 * @param proxyAddress
-	 * @param proxyPort
+	 * 创建连接客户端
+	 *
+	 * @param reqDTO
 	 * @return
 	 */
-	private static RPCServiceClient initServiceClient(String url, Integer socketTimeOut, Integer connTimeOut,
-			String proxyAddress, Integer proxyPort) {
+	@Override
+	public RPCServiceClient createClient(WsReqDTO baseReq) {
 		RPCServiceClient serviceClient = null;
 		try {
 			// 使用RPC方式调用WebService
 			serviceClient = new RPCServiceClient();
 			// 指定调用WebService的URL
-			EndpointReference targetEPR = new EndpointReference(url);
+			EndpointReference targetEPR = new EndpointReference(baseReq.getUrl());
 			Options options = serviceClient.getOptions();
 			// 确定目标服务地址
 			options.setTo(targetEPR);
@@ -71,14 +69,14 @@ public class AxisKernelWebServiceSend extends AbstractWebServiceSend {
 			options.setManageSession(Boolean.TRUE);
 			options.setProperty(HTTPConstants.REUSE_HTTP_CLIENT, Boolean.TRUE);
 			// 设置响应超时
-			options.setProperty(HTTPConstants.SO_TIMEOUT, socketTimeOut);
+			options.setProperty(HTTPConstants.SO_TIMEOUT, baseReq.getSocketTimeOut());
 			// 设置连接超时
-			options.setProperty(HTTPConstants.CONNECTION_TIMEOUT, connTimeOut);
+			options.setProperty(HTTPConstants.CONNECTION_TIMEOUT, baseReq.getConnTimeOut());
 			// 设置代理
-			if (StringUtils.isNotBlank(proxyAddress) && ObjectUtils.isNotNull(proxyPort)) {
+			if (StringUtils.isNotBlank(baseReq.getProxyAddress()) && ObjectUtils.isNotNull(baseReq.getProxyPort())) {
 				HttpTransportProperties.ProxyProperties proxyProperties = new HttpTransportProperties.ProxyProperties();
-				proxyProperties.setProxyName(proxyAddress);
-				proxyProperties.setProxyPort(proxyPort);
+				proxyProperties.setProxyName(baseReq.getProxyAddress());
+				proxyProperties.setProxyPort(baseReq.getProxyPort());
 				options.setProperty(HTTPConstants.PROXY, proxyProperties);
 			}
 		} catch (AxisFault axisFault) {

@@ -4,6 +4,7 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking;
 
+import com.study.docking.dto.BaseReqDTO;
 import com.study.docking.dto.DockingReqDTO;
 
 /**
@@ -31,4 +32,13 @@ public interface ISendReqMsg<T> {
 	 * @return
 	 */
 	public byte[] sendForByte(T reqMsg, DockingReqDTO reqDTO);
+
+	/**
+	 * 封装协议发送请求参数
+	 * 
+	 * @param reqMsg
+	 * @param reqDTO
+	 * @return
+	 */
+	public BaseReqDTO assembleReqDTO(T reqMsg, DockingReqDTO reqDTO);
 }

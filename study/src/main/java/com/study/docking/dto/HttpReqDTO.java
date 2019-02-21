@@ -27,6 +27,12 @@ public class HttpReqDTO extends BaseReqDTO implements Serializable {
 	 */
 	private SSLReqDTO			ssl;
 
+	public HttpReqDTO() {
+		super.setPostFlag(Boolean.FALSE);
+		super.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.TEXT_XML.getContentType());
+		super.setCharset(AbstractHttpClientUtil.DEFAULT_ENCODE);
+	}
+
 	public String getCode() {
 		return code;
 	}

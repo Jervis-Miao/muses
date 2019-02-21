@@ -4,17 +4,6 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking.impl.send.extend;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.validator.utils.StringUtils;
-import com.study.docking.dto.DockingReqDTO;
-import com.study.docking.impl.send.AbstractCustomSend;
-import com.study.docking.utils.AbstractHttpClientUtil;
-import com.study.docking.utils.TemFileManager;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.http.HttpStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -28,7 +17,18 @@ import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Map;
+
+import org.apache.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.muses.common.utils.ObjectUtils;
+import com.muses.common.validator.utils.StringUtils;
+import com.study.docking.dto.BaseReqDTO;
+import com.study.docking.dto.DockingReqDTO;
+import com.study.docking.impl.send.AbstractCustomSend;
+import com.study.docking.utils.AbstractHttpClientUtil;
+import com.study.docking.utils.TemFileManager;
 
 /**
  * <pre>
@@ -40,12 +40,12 @@ import java.util.Map;
  * @author miaoqiang
  * @date 2019/1/24.
  */
-public class URLConnectionSend extends AbstractCustomSend<String> {
+public class URLConnectionSend extends AbstractCustomSend<HttpURLConnection, BaseReqDTO> {
 	private static final Logger	logger	= LoggerFactory.getLogger(URLConnectionSend.class);
 
 	@Override
 	public String send(String reqMsg, DockingReqDTO reqDTO) {
-		HttpURLConnection conn = getConnection("", "", null, null, null, reqMsg, null, "", "", false);
+		HttpURLConnection conn = this.createClient(new BaseReqDTO());
 		openConnect(conn);
 		writeAndClose(conn, reqMsg, "");
 		String res = readForStr(conn, "");
@@ -54,21 +54,27 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 
 	@Override
 	public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
-		HttpURLConnection conn = getConnection("", "", null, null, null, reqMsg, null, "", "", false);
+		HttpURLConnection conn = this.createClient(new BaseReqDTO());
 		openConnect(conn);
 		writeAndClose(conn, reqMsg, "");
 		byte[] res = readForByte(conn);
 		return res;
 	}
 
-	private static HttpURLConnection getConnection(String url, String proxyAddress, Integer proxyPort,
-			Integer socketTimeOut, Integer connTimeOut, String mess, Map<String, String> reqParams, String contentType,
-			String charset, Boolean isPost) {
+	/**
+	 * 创建连接客户端
+	 *
+	 * @param reqDTO
+	 * @return
+	 */
+	@Override
+	public HttpURLConnection createClient(BaseReqDTO baseReq) {
 		try {
-			URL _url = new URL(url);
+			URL _url = new URL(baseReq.getUrl());
 			HttpURLConnection con = null;
-			if (StringUtils.isNotBlank(proxyAddress) && ObjectUtils.isNotNull(proxyPort)) {
-				Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyAddress, proxyPort));
+			if (StringUtils.isNotBlank(baseReq.getProxyAddress()) && ObjectUtils.isNotNull(baseReq.getProxyPort())) {
+				Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(baseReq.getProxyAddress(),
+						baseReq.getProxyPort()));
 				con = (HttpURLConnection) _url.openConnection(proxy);
 			} else {
 				con = (HttpURLConnection) _url.openConnection();
@@ -76,19 +82,19 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 			con.setDoOutput(Boolean.TRUE);
 			con.setDoInput(Boolean.TRUE);
 			con.setUseCaches(Boolean.FALSE);
-			con.setReadTimeout(socketTimeOut);
-			con.setConnectTimeout(connTimeOut);
-			if (isPost) {
+			con.setReadTimeout(baseReq.getSocketTimeOut());
+			con.setConnectTimeout(baseReq.getConnTimeOut());
+			if (baseReq.getPostFlag()) {
 				con.setRequestMethod("POST");
 			}
-			if (StringUtils.isNotBlank(contentType)) {
-				con.setRequestProperty("Content-Type", contentType + ";charset=" + charset);
+			if (StringUtils.isNotBlank(baseReq.getContentType())) {
+				con.setRequestProperty("Content-Type", baseReq.getContentType() + ";charset=" + baseReq.getCharset());
 			}
 			con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-			con.setRequestProperty("Content-Length", String.valueOf(mess.length()));
+			con.setRequestProperty("Content-Length", String.valueOf(baseReq.getMsg().length()));
 			con.setRequestProperty("Cache-Control", "no-cache");
-			con.setRequestProperty("Accept-Charset", charset);
-			con.setRequestProperty("contentType", charset);
+			con.setRequestProperty("Accept-Charset", baseReq.getCharset());
+			con.setRequestProperty("contentType", baseReq.getCharset());
 			return con;
 		} catch (IOException e) {
 			logger.error("建立请求连接错误,错误信息：" + e);
@@ -215,8 +221,16 @@ public class URLConnectionSend extends AbstractCustomSend<String> {
 	}
 
 	public static void test2() {
-		HttpURLConnection connection = getConnection("http://dzdz.ciitc.com.cn/s/icQh1TikE", "192.168.16.187", 8080,
-				5000, 5000, "", null, AbstractHttpClientUtil.CONTENT_TYPE.TEXT_HTML.getContentType(), "utf-8", false);
+		BaseReqDTO baseReqDTO = new BaseReqDTO();
+		baseReqDTO.setUrl("http://dzdz.ciitc.com.cn/s/icQh1TikE");
+		baseReqDTO.setProxyAddress("192.168.16.187");
+		baseReqDTO.setProxyPort(8080);
+		baseReqDTO.setSocketTimeOut(5000);
+		baseReqDTO.setConnTimeOut(5000);
+		baseReqDTO.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.TEXT_HTML.getContentType());
+		baseReqDTO.setCharset("utf-8");
+		URLConnectionSend urlConnectionSend = new URLConnectionSend();
+		HttpURLConnection connection = urlConnectionSend.createClient(baseReqDTO);
 		openConnect(connection);
 		writeAndClose(connection, "", "utf-8");
 		String res = readForStr(connection, "utf-8");
