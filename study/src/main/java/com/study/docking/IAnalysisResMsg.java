@@ -12,14 +12,13 @@ import com.study.docking.dto.DockingResDTO;
  * @author miaoqiang
  * @date 2019/1/16.
  */
-public interface IAnalysisResMsg {
+public interface IAnalysisResMsg<T> {
 
 	/**
 	 * 解析返回报文
 	 * 
-	 * @param ResMsg
-	 * @param <T>
+	 * @param resMsg
 	 * @return
 	 */
-	public <T> DockingResDTO analysis(T ResMsg);
+	public DockingResDTO analysis(T resMsg);
 }
