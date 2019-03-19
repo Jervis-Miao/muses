@@ -4,16 +4,22 @@ Copyright 2018 All rights reserved.
 
 package com.study.redis.redisson;
 
-import com.muses.api.dto.StudentDTO;
+import org.reactivestreams.Publisher;
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
+import org.redisson.api.RBucketReactive;
 import org.redisson.api.RedissonClient;
+import org.redisson.api.RedissonReactiveClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.codec.SerializationCodec;
 import org.redisson.config.Config;
 import org.redisson.config.ReadMode;
 import org.redisson.config.SingleServerConfig;
 import org.redisson.config.SubscriptionMode;
+
+import com.muses.api.dto.StudentDTO;
+
+import reactor.core.publisher.Mono;
 
 /**
  * redisson客户端，单例
@@ -28,6 +34,8 @@ public class RedissonUtils {
 
 	private RedissonClient				redissonClient;
 
+	private RedissonReactiveClient		redissonReactiveClient;
+
 	static {
 		config = new Config();
 		useSentinelServers();
@@ -38,6 +46,7 @@ public class RedissonUtils {
 		super();
 		// 创建客户端(发现创建RedissonClient非常耗时，基本在2秒-4秒左右)
 		this.redissonClient = Redisson.create(config);
+		this.redissonReactiveClient = Redisson.createReactive(config);
 	}
 
 	public static RedissonUtils getInstance() {
@@ -104,17 +113,36 @@ public class RedissonUtils {
 		return this.redissonClient;
 	}
 
+	public RedissonReactiveClient getRedissonReactiveClient() {
+		return redissonReactiveClient;
+	}
+
 	/**
 	 * 关闭连接，慎用
 	 */
 	public void shutdown() {
 		this.redissonClient.shutdown();
+		this.redissonReactiveClient.shutdown();
 	}
 
 	public static void main(String[] args) {
+		StudentDTO studentDTO = new StudentDTO(1L, "jervis");
+		System.out.println(studentDTO);
+
 		RedissonClient redissonClient = RedissonUtils.getInstance().getRedissonClient();
-		RBucket<StudentDTO> test = redissonClient.getBucket("test", new JsonJacksonCodec());
-		test.set(new StudentDTO(1L, "jervis"));
+		RBucket<StudentDTO> bucket = redissonClient.getBucket("redissonClient", new JsonJacksonCodec());
+		bucket.set(studentDTO);
+
+		RedissonReactiveClient redissonReactiveClient = RedissonUtils.getInstance().getRedissonReactiveClient();
+		RBucketReactive<StudentDTO> bucketR = redissonReactiveClient.getBucket("redissonReactiveClient",
+				new JsonJacksonCodec());
+		Mono<Void> set = bucketR.set(studentDTO);
+		Mono.from(set).block();
+		Publisher<StudentDTO> get = bucketR.get();
+		StudentDTO studentDTO1 = Mono.from(get).block();
+		System.out.println(studentDTO1);
+		System.out.println(studentDTO1.equals(studentDTO));
+
 		RedissonUtils.getInstance().shutdown();
 	}
 }
