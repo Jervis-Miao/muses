@@ -59,9 +59,9 @@ public class DockingExecutorFactory {
 				return null;
 			}
 		};
-		IAnalysisResMsg analysisResMsg = new IAnalysisResMsg() {
+		IAnalysisResMsg analysisResMsg = new IAnalysisResMsg<String>() {
 			@Override
-			public <T> DockingResDTO analysis(T ResMsg) {
+			public DockingResDTO analysis(String ResMsg) {
 				return new DockingResDTO();
 			}
 		};

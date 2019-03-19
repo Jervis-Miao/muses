@@ -4,9 +4,16 @@ Copyright 2018 All rights reserved.
 
 package com.study.redis.redisson;
 
+import com.muses.api.dto.StudentDTO;
 import org.redisson.Redisson;
+import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
+import org.redisson.codec.JsonJacksonCodec;
+import org.redisson.codec.SerializationCodec;
 import org.redisson.config.Config;
+import org.redisson.config.ReadMode;
+import org.redisson.config.SingleServerConfig;
+import org.redisson.config.SubscriptionMode;
 
 /**
  * redisson客户端，单例
@@ -23,16 +30,74 @@ public class RedissonUtils {
 
 	static {
 		config = new Config();
+		useSentinelServers();
 		redissonUtils = new RedissonUtils();
 	}
 
 	private RedissonUtils() {
 		super();
+		// 创建客户端(发现创建RedissonClient非常耗时，基本在2秒-4秒左右)
 		this.redissonClient = Redisson.create(config);
 	}
 
 	public static RedissonUtils getInstance() {
 		return redissonUtils;
+	}
+
+	/**
+	 * 集群模式
+	 */
+	private static void useSentinelServers() {
+		// 默认JDK序列化方式
+		config.setCodec(new SerializationCodec());
+		// 集群配置
+		config.useSentinelServers()
+				.setMasterName("low_reliability")
+				.setReadMode(ReadMode.MASTER)
+				.setSubscriptionMode(SubscriptionMode.MASTER)
+				.setSlaveConnectionMinimumIdleSize(0)
+				.setSlaveConnectionPoolSize(0)
+				.setMasterConnectionMinimumIdleSize(10)
+				.setMasterConnectionPoolSize(64)
+				.setIdleConnectionTimeout(10 * 1000)
+				.setConnectTimeout(10 * 1000)
+				.setTimeout(3 * 1000)
+				.setRetryAttempts(3)
+				.setRetryInterval(500)
+				.setFailedSlaveReconnectionInterval(3 * 1000)
+				.setFailedSlaveCheckInterval(60 * 1000)
+				.setDatabase(15)
+				.setClientName("muses-test")
+				.addSentinelAddress(
+						new String[] { "redis://192.168.56.89:26379", "redis://192.168.56.90:26379",
+								"redis://192.168.58.101:26379" });
+	}
+
+	/**
+	 * 单点模式
+	 */
+	private static void useSingleServer() {
+		// 默认JDK序列化方式
+		config.setCodec(new SerializationCodec());
+		// 指定使用单节点部署方式
+		SingleServerConfig singleServerConfig = config.useSingleServer();
+		// redis地址
+		singleServerConfig.setAddress("redis://192.168.50.33:6379");
+		// 设置密码
+		singleServerConfig.setPassword("");
+		// 设置对于master节点的连接池中连接数最大为500
+		singleServerConfig.setConnectionPoolSize(500);
+		// 如果当前连接池里的连接数量超过了最小空闲连接数，而同时有连接空闲时间超过了该数值，那么这些连接将会自动被关闭，并从连接池里去掉。时间单位是毫秒。
+		singleServerConfig.setIdleConnectionTimeout(10 * 1000);
+		// 同任何节点建立连接时的等待超时。时间单位是毫秒。
+		singleServerConfig.setConnectTimeout(30 * 1000);
+		// 等待节点回复命令的时间。该时间从命令发送成功时开始计时。
+		singleServerConfig.setTimeout(3 * 1000);
+		singleServerConfig.setPingTimeout(30 * 1000);
+		// 当与某个节点的连接断开时，等待与其重新建立连接的时间间隔。时间单位是毫秒。
+		singleServerConfig.setReconnectionTimeout(3 * 1000);
+		// redis库
+		singleServerConfig.setDatabase(4);
 	}
 
 	public RedissonClient getRedissonClient() {
@@ -44,5 +109,12 @@ public class RedissonUtils {
 	 */
 	public void shutdown() {
 		this.redissonClient.shutdown();
+	}
+
+	public static void main(String[] args) {
+		RedissonClient redissonClient = RedissonUtils.getInstance().getRedissonClient();
+		RBucket<StudentDTO> test = redissonClient.getBucket("test", new JsonJacksonCodec());
+		test.set(new StudentDTO(1L, "jervis"));
+		RedissonUtils.getInstance().shutdown();
 	}
 }

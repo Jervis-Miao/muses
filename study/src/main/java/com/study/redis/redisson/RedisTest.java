@@ -15,8 +15,7 @@ import com.study.queue.dto.QueueParam;
  */
 public class RedisTest {
 	public static void main(String[] args) {
-		RedisConnect connect = new RedisConnect();
-		RedissonClient redisson = connect.getRedisson();
+		RedissonClient redisson = RedissonUtils.getInstance().getRedissonClient();
 		// 首先获取redis中的key-value对象，key不存在没关系
 		// RBucket<String> keyObject = redisson.getBucket("key1");
 		// RList<String> rList = redisson.getList("list");
@@ -39,7 +38,7 @@ public class RedisTest {
 		QueueParam test = dtos.get(0);
 		System.out.println("---" + test);
 		// 最后关闭RedissonClient
-		connect.shutdown();
+		RedissonUtils.getInstance().shutdown();
 
 	}
 }
