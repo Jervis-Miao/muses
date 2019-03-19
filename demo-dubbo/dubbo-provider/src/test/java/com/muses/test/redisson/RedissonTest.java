@@ -4,26 +4,26 @@
 
 package com.muses.test.redisson;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.alibaba.fastjson.JSONObject;
-import com.muses.provider.StudentCache;
-import com.muses.provider.StudentProviderImpl;
-import com.muses.test.provider.StrudentProviderTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.RedissonSortedSet;
 import org.redisson.api.LocalCachedMapOptions;
 import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RBucket;
@@ -34,22 +34,24 @@ import org.redisson.api.RMap;
 import org.redisson.api.RRateLimiter;
 import org.redisson.api.RScoredSortedSet;
 import org.redisson.api.RSet;
-import org.redisson.api.RSortedSet;
 import org.redisson.api.RTopic;
 import org.redisson.api.RateIntervalUnit;
 import org.redisson.api.RateType;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.Codec;
 import org.redisson.client.codec.LongCodec;
 import org.redisson.client.codec.StringCodec;
 import org.redisson.codec.FstCodec;
 import org.redisson.codec.JsonJacksonCodec;
+import org.redisson.codec.SerializationCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 import com.muses.api.dto.StudentDTO;
-import com.muses.api.provider.StudentProvider;
 import com.muses.common.orm.mybatis.easylist.list.utils.ObjectUtils;
+import com.muses.provider.StudentCache;
 
 /**
  * @author Jervis
@@ -65,6 +67,12 @@ public class RedissonTest {
 	private RedissonClient						redissonClient;
 	@Autowired
 	private JsonJacksonCodec					jsonJacksonCodec;
+	@Autowired
+	private SerializationCodec					jdkCodec;
+	@Autowired
+	private StringCodec							stringCodec;
+
+	private static final ThreadPoolExecutor		codecNatureTestPool;
 
 	// @Autowired
 	// private StudentProvider studentProvider;
@@ -101,15 +109,109 @@ public class RedissonTest {
 				.maxIdle(1, TimeUnit.SECONDS);
 	}
 
+	static {
+		codecNatureTestPool = new ThreadPoolExecutor(50, 100, 10L, TimeUnit.MINUTES, new LinkedBlockingQueue<>(),
+				new NamedThreadFactory("CodecNatureTestPool"));
+		codecNatureTestPool.allowCoreThreadTimeOut(Boolean.TRUE);
+	}
+
+	@Test
+	public void codecNatureTest() {
+		// jdkCodec
+		// jsonJacksonCodec
+		int size = 100;
+		// setTest(jdkCodec, size);
+		getTest(jdkCodec);
+	}
+
+	private void getTest(Codec codec) {
+		List<Future<StudentDTO>> getFutures = new ArrayList<>();
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < 200; i++) {
+			getFutures.add(codecNatureTestPool.submit(new GetFromRedisTask(String.valueOf(i), codec)));
+		}
+		for (Future<StudentDTO> f : getFutures) {
+			try {
+				f.get();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("all spended: " + (System.currentTimeMillis() - start));
+	}
+
+	private void setTest(Codec codec, int size) {
+		byte[] b = new byte[1024 * size - 699];
+		Arrays.fill(b, (byte) 0x32);
+		String name = new String(b);
+		List<Future<Long>> setFutures = new ArrayList<>();
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < 200; i++) {
+			setFutures
+					.add(codecNatureTestPool.submit(new SetToRedisTask(new StudentDTO(Long.valueOf(i), name), codec)));
+		}
+		for (Future<Long> f : setFutures) {
+			try {
+				f.get();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("all spended: " + (System.currentTimeMillis() - start));
+	}
+
+	private class SetToRedisTask implements Callable<Long> {
+		private StudentDTO	student;
+		private Codec		codec;
+
+		SetToRedisTask(StudentDTO student, Codec codec) {
+			this.student = student;
+			this.codec = codec;
+		}
+
+		@Override
+		public Long call() throws Exception {
+			long start = System.currentTimeMillis();
+			RBucket<StudentDTO> bucket = redissonClient.getBucket("" + this.student.getStudentId(), this.codec);
+			bucket.set(this.student);
+			System.out.println("set: " + this.student.getStudentId() + ", has spended: "
+					+ (System.currentTimeMillis() - start));
+			return this.student.getStudentId();
+		}
+	}
+
+	private class GetFromRedisTask implements Callable<StudentDTO> {
+		private String	studentId;
+		private Codec	codec;
+
+		GetFromRedisTask(String studentId, Codec codec) {
+			this.studentId = studentId;
+			this.codec = codec;
+		}
+
+		@Override
+		public StudentDTO call() throws Exception {
+			long start = System.currentTimeMillis();
+			RBucket<StudentDTO> bucket = redissonClient.getBucket(studentId, this.codec);
+			StudentDTO student = bucket.get();
+			System.out.println("get: " + studentId + ", has spended: " + (System.currentTimeMillis() - start));
+			return student;
+		}
+	}
+
 	@Test
 	public void testSet() {
 		RScoredSortedSet<Object> anySet = redissonClient.getScoredSortedSet("anySet1", new JsonJacksonCodec());
 		anySet.pollFirst();
-        StudentDTO strudent1 = new StudentDTO();
-        strudent1.setName("1");
-        StudentDTO strudent2 = new StudentDTO();
-        strudent2.setMobile("1");
-        anySet.add(.1, strudent1);
+		StudentDTO strudent1 = new StudentDTO();
+		strudent1.setName("1");
+		StudentDTO strudent2 = new StudentDTO();
+		strudent2.setMobile("1");
+		anySet.add(.1, strudent1);
 		anySet.add(.2, strudent2);
 	}
 
@@ -118,6 +220,13 @@ public class RedissonTest {
 		public int compare(Number d1, Number d2) {
 			return ((Long) d1.longValue()).compareTo(d2.longValue());
 		}
+	}
+
+	@Test
+	public void test() {
+		String a = "miaoqiang";
+		RBucket<String> bucket = redissonClient.getBucket(a, stringCodec);
+		System.out.println(bucket.get());
 	}
 
 	@Test
@@ -130,10 +239,10 @@ public class RedissonTest {
 		}
 	}
 
-	public void testTopic(){
-        RTopic<Object> topic = redissonClient.getTopic("");
-        topic.publish(null);
-    }
+	public void testTopic() {
+		RTopic<Object> topic = redissonClient.getTopic("");
+		topic.publish(null);
+	}
 
 	@Test
 	public void codecSetTest() {

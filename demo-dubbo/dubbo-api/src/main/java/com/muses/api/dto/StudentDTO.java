@@ -14,10 +14,19 @@ public class StudentDTO implements Serializable {
 	private static final long	serialVersionUID	= 6349229984734537719L;
 
 	private Long				studentId;
-
 	private String				name;
 	private String				mobile;
 	private String				gender;
+
+	public StudentDTO() {
+		super();
+	}
+
+	public StudentDTO(Long studentId, String name) {
+		super();
+		this.studentId = studentId;
+		this.name = name;
+	}
 
 	public Long getStudentId() {
 		return studentId;
