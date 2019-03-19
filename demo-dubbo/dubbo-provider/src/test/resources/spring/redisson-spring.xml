@@ -38,7 +38,7 @@
       retry-interval="500"
       failed-slave-reconnection-interval="3000"
       failed-slave-check-interval="60000"
-      database="7"
+      database="15"
       client-name="dubbo-provider-test"
     >
       <redisson:sentinel-address value="redis://192.168.56.89:26379" />

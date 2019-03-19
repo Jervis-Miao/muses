@@ -2,7 +2,7 @@
 Copyright All rights reserved.
  */
 
-package com.study.redis;
+package com.study.redis.redisson;
 
 import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
