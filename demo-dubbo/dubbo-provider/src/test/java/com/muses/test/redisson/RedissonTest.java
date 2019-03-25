@@ -240,7 +240,7 @@ public class RedissonTest {
 	}
 
 	public void testTopic() {
-		RTopic<Object> topic = redissonClient.getTopic("");
+		RTopic topic = redissonClient.getTopic("");
 		topic.publish(null);
 	}
 

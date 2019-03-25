@@ -16,13 +16,6 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!-- 自动扫描且只扫描@Controller -->
-    <context:component-scan base-package="com.muses" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
-        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    </context:component-scan>
-
     <!-- Druid Spring监控. 类型匹配方式 -->
     <bean id="druid-type-proxyCreator" class="com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator">
         <!-- 所有BaseController的派生类被拦截监控  -->
@@ -67,7 +60,7 @@
     <mvc:interceptors>
         <!--<bean class="com.muses.common.mvc.spring.DevCocInterceptor"/>-->
         <bean class="com.muses.common.validator.spring.EasyValidatorInterceptor"/>
-        <bean class="com.muses.common.mvc.log.RequestExecutionTimeConsumptionInterceptor"/>
+        <!--<bean class="com.muses.common.mvc.log.RequestExecutionTimeConsumptionInterceptor"/>-->
     </mvc:interceptors>
 
     <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
@@ -122,9 +115,6 @@
     <!-- 配置注解驱动 可以将request参数与绑定到controller参数上 -->
     <mvc:annotation-driven/>
 
-    <!-- 自动扫描装配 -->
-    <context:component-scan base-package="com.muses"/>
-
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP-->
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -134,6 +124,6 @@
     </bean>
 
     <!-- 定义无Controller的path<->view直接映射 -->
-    <mvc:view-controller path="/" view-name="index" />
+    <mvc:view-controller path="/" view-name="index"/>
 
 </beans>

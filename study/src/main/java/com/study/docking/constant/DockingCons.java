@@ -26,19 +26,19 @@ public interface DockingCons {
 	 */
 	public enum INTERFACE_TYPE {
 		/**
-		 * 00-线下;01-试算;02-投保;03-注销;04-承保;05-批单;06-查询;07-保单;08-发票;09-退保;10-对账
+		 * 01-试算;02-投保;03-注销;04-承保;05-查询;06-保单;07-退保;08-发票;09-批单;10-对账;11-续保
 		 */
-		OFFLINE("00"),
 		TRIAL("01"),
 		INSURE("02"),
 		CANCEL("03"),
 		ACCEPT("04"),
-		ENDORSEMENT("05"),
-		QUERY("06"),
-		POLICY("07"),
+		QUERY("05"),
+		POLICY("06"),
+		SURRENDER("07"),
 		INVOICE("08"),
-		SURRENDER("09"),
-		CHECKING("10");
+		ENDORSEMENT("09"),
+		ACCOUNT("10"),
+		RENEWAL("11");
 
 		public String	type;
 

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<validators>
+  <validator name="mail" extends="regex" regex="\\w+@\\w+\\.\\w+" />
+  <validator name="digit" extends="regex" regex="\\d+"/>
+</validators>

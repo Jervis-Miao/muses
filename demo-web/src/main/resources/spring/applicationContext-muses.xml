@@ -9,10 +9,10 @@
     <import resource="classpath:orika/orika-mapper.xml"/>
     <!-- shiro 集成 -->
     <import resource="classpath:/shiro/shiro-spring.xml"/>
-    <!-- spring-mvc 集成 -->
-    <import resource="classpath:/spring/spring-mvc.xml"/>
     <!-- Mybatis 集成 -->
     <import resource="classpath:mybatis/mybatis-spring.xml"/>
     <!-- email 集成 -->
     <import resource="classpath:/email/email.xml"/>
+    <!-- redisson配置 -->
+    <import resource="classpath:/redis/redisson-spring.xml"/>
 </beans>

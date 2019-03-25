@@ -7,6 +7,7 @@ package com.study.docking.impl.assemble;
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.SpringContextUtils;
 import com.study.docking.IAssembleReqMsg;
+import com.study.docking.config.MsgConf;
 import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.utils.IPackKeyValPairs;
 
@@ -22,12 +23,13 @@ public abstract class AbstractAssemble implements IAssembleReqMsg {
 	/**
 	 * 获取请求报文
 	 * 
+	 * @param msgConf
 	 * @param reqDTO
 	 * @param <T>
 	 * @return
 	 */
 	@Override
-	public abstract <T> T getReqMsg(DockingReqDTO reqDTO);
+	public abstract <T> T getReqMsg(MsgConf msgConf, DockingReqDTO reqDTO);
 
 	/**
 	 * 获取封装报文键值对
