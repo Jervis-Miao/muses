@@ -5,7 +5,6 @@ Copyright 2018 All rights reserved.
 package com.docking.config;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 报文模板
@@ -27,9 +26,9 @@ public class TemplateConf implements Serializable {
 	private String				path;
 
 	/**
-	 * 封装模板的键值对信息
+	 * 文件ID
 	 */
-	private List<KVPair>		kvPairs;
+	private Long				fileId;
 
 	public Integer getWeight() {
 		return weight;
@@ -47,11 +46,11 @@ public class TemplateConf implements Serializable {
 		this.path = path;
 	}
 
-	public List<KVPair> getKvPairs() {
-		return kvPairs;
+	public Long getFileId() {
+		return fileId;
 	}
 
-	public void setKvPairs(List<KVPair> kvPairs) {
-		this.kvPairs = kvPairs;
+	public void setFileId(Long fileId) {
+		this.fileId = fileId;
 	}
 }

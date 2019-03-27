@@ -4,8 +4,6 @@ Copyright 2018 All rights reserved.
 
 package com.docking.config;
 
-import com.docking.IAssembleReqBody;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * @author miaoqiang
  * @date 2019/3/25.
  */
-public class MsgConf extends DataConf implements Serializable {
+public class StrDataConf extends DataConf implements Serializable {
 
 	private static final long	serialVersionUID	= -5632456660349206326L;
 

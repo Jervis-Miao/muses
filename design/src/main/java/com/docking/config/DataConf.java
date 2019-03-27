@@ -4,9 +4,10 @@ Copyright 2018 All rights reserved.
 
 package com.docking.config;
 
-import com.docking.IAssembleReqBody;
-
 import java.io.Serializable;
+import java.util.List;
+
+import com.docking.IAssembleReqBody;
 
 /**
  * @author miaoqiang
@@ -21,11 +22,21 @@ public class DataConf implements Serializable {
 	 */
 	private Integer				assembleBeanType;
 
+	private List<KVPairConf>	pairs;
+
 	public Integer getAssembleBeanType() {
 		return assembleBeanType;
 	}
 
 	public void setAssembleBeanType(Integer assembleBeanType) {
 		this.assembleBeanType = assembleBeanType;
+	}
+
+	public List<KVPairConf> getPairs() {
+		return pairs;
+	}
+
+	public void setPairs(List<KVPairConf> pairs) {
+		this.pairs = pairs;
 	}
 }

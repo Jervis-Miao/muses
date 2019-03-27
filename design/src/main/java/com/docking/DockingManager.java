@@ -4,15 +4,16 @@ Copyright 2018 All rights reserved.
 
 package com.docking;
 
-import com.muses.common.utils.SpringContextUtils;
 import com.docking.config.AnalysisConf;
 import com.docking.config.ConfManager;
-import com.docking.config.Config;
 import com.docking.config.DataConf;
+import com.docking.config.FollowConfig;
 import com.docking.config.SendConf;
+import com.docking.config.TaskConfig;
 import com.docking.constant.ConfigCons;
 import com.docking.dto.DockingReqDTO;
 import com.docking.dto.DockingResDTO;
+import com.muses.common.utils.SpringContextUtils;
 
 /**
  * 对接执行管理
@@ -23,14 +24,28 @@ import com.docking.dto.DockingResDTO;
 public class DockingManager {
 
 	/**
+	 * 处理调度
+	 * 
+	 * @param reqDTO
+	 * @return
+	 */
+	public static DockingResDTO handleFollow(DockingReqDTO reqDTO) {
+		FollowConfig config = new FollowConfig();
+		DockingResDTO res = null;
+		for (String code : config.getTaskCode()) {
+			res = handleTask(code, reqDTO);
+		}
+		return res;
+	}
+
+	/**
 	 * 处理请求
 	 * 
 	 * @param reqDTO
 	 * @return
 	 */
-	public static DockingResDTO handleTask(DockingReqDTO reqDTO) {
-		String code = reqDTO.getCode();
-		Config config = ConfManager.get(code);
+	public static DockingResDTO handleTask(String code, DockingReqDTO reqDTO) {
+		TaskConfig config = ConfManager.get(code);
 		Object reqMsg = getReqMsg(config.getDataConf(), reqDTO);
 		Object resMsg = sendReqMsg(config.getCode(), config.getSendConf(), reqMsg, reqDTO);
 		DockingResDTO dockingResDTO = analysisResMsg(config.getAnalysisConf(), resMsg);

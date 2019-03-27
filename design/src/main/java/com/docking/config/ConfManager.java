@@ -22,7 +22,7 @@ import org.apache.commons.lang.SerializationUtils;
  */
 public class ConfManager {
 
-	private static final Map<String, Config>	CONFIGS	= new ConcurrentHashMap<>();
+	private static final Map<String, TaskConfig>	CONFIGS	= new ConcurrentHashMap<>();
 
 	private ConfManager() {
 		super();
@@ -42,8 +42,8 @@ public class ConfManager {
 	 * @param code
 	 * @return
 	 */
-	private static Config create(String code) {
-		return new Config();
+	private static TaskConfig create(String code) {
+		return new TaskConfig();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class ConfManager {
 	 * @param config
 	 * @return
 	 */
-	private static Config create(Config config) {
+	private static TaskConfig create(TaskConfig config) {
 		return config;
 	}
 
@@ -71,7 +71,7 @@ public class ConfManager {
 	 * @param code
 	 */
 	public static void update(String code) {
-		Config config = CONFIGS.get(code);
+		TaskConfig config = CONFIGS.get(code);
 		if (config.getUpFlag().compareAndSet(Boolean.FALSE, Boolean.TRUE)) {
 			try {
 				CONFIGS.put(code, create(config));
@@ -88,12 +88,12 @@ public class ConfManager {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	public static Config get(String code) {
-		Config config = CONFIGS.get(code);
+	public static TaskConfig get(String code) {
+		TaskConfig config = CONFIGS.get(code);
 		while (config.getUpFlag().get()) {
 			// 等待配置更新
 		}
-		return (Config) SerializationUtils.clone((Serializable) config);
+		return (TaskConfig) SerializationUtils.clone((Serializable) config);
 	}
 
 }

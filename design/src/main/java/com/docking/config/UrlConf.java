@@ -30,7 +30,7 @@ public class UrlConf implements Serializable {
 	/**
 	 * 动态参数
 	 */
-	private List<KVPair>		params;
+	private List<KVPairConf>		params;
 
 	public Integer getType() {
 		return type;
@@ -48,11 +48,11 @@ public class UrlConf implements Serializable {
 		this.info = info;
 	}
 
-	public List<KVPair> getParams() {
+	public List<KVPairConf> getParams() {
 		return params;
 	}
 
-	public void setParams(List<KVPair> params) {
+	public void setParams(List<KVPairConf> params) {
 		this.params = params;
 	}
 }

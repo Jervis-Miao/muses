@@ -18,6 +18,8 @@ public class SSLConf implements Serializable {
 	 */
 	private String				keyPath;
 
+	private Long				keyFileId;
+
 	/**
 	 * keystore 密码，必填
 	 */
@@ -27,6 +29,8 @@ public class SSLConf implements Serializable {
 	 * truststore 文件路径，必填
 	 */
 	private String				trustPath;
+
+	private Long				trustFileId;
 
 	/**
 	 * truststore 密码，必填
@@ -38,43 +42,59 @@ public class SSLConf implements Serializable {
 	 */
 	private Integer				httpsPort;
 
-    public String getKeyPath() {
-        return keyPath;
-    }
+	public String getKeyPath() {
+		return keyPath;
+	}
 
-    public void setKeyPath(String keyPath) {
-        this.keyPath = keyPath;
-    }
+	public void setKeyPath(String keyPath) {
+		this.keyPath = keyPath;
+	}
 
-    public String getKeyPwd() {
-        return keyPwd;
-    }
+	public Long getKeyFileId() {
+		return keyFileId;
+	}
 
-    public void setKeyPwd(String keyPwd) {
-        this.keyPwd = keyPwd;
-    }
+	public void setKeyFileId(Long keyFileId) {
+		this.keyFileId = keyFileId;
+	}
 
-    public String getTrustPath() {
-        return trustPath;
-    }
+	public String getKeyPwd() {
+		return keyPwd;
+	}
 
-    public void setTrustPath(String trustPath) {
-        this.trustPath = trustPath;
-    }
+	public void setKeyPwd(String keyPwd) {
+		this.keyPwd = keyPwd;
+	}
 
-    public String getTrustPwd() {
-        return trustPwd;
-    }
+	public String getTrustPath() {
+		return trustPath;
+	}
 
-    public void setTrustPwd(String trustPwd) {
-        this.trustPwd = trustPwd;
-    }
+	public void setTrustPath(String trustPath) {
+		this.trustPath = trustPath;
+	}
 
-    public Integer getHttpsPort() {
-        return httpsPort;
-    }
+	public Long getTrustFileId() {
+		return trustFileId;
+	}
 
-    public void setHttpsPort(Integer httpsPort) {
-        this.httpsPort = httpsPort;
-    }
+	public void setTrustFileId(Long trustFileId) {
+		this.trustFileId = trustFileId;
+	}
+
+	public String getTrustPwd() {
+		return trustPwd;
+	}
+
+	public void setTrustPwd(String trustPwd) {
+		this.trustPwd = trustPwd;
+	}
+
+	public Integer getHttpsPort() {
+		return httpsPort;
+	}
+
+	public void setHttpsPort(Integer httpsPort) {
+		this.httpsPort = httpsPort;
+	}
 }

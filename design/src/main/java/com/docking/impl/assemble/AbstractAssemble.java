@@ -64,13 +64,13 @@ public abstract class AbstractAssemble implements IAssembleReqBody {
 			if (tem + 1 == temSize) {
 				result = "temResult";
 			} else {
-				this.getExtendParams(reqDTO).put("" + tem, "temResult");
+				getExtendParams(reqDTO).put("" + tem, "temResult");
 			}
 		}
 		return result;
 	}
 
-	protected Map<String, Object> getExtendParams(DockingReqDTO reqDTO) {
+	private static Map<String, Object> getExtendParams(DockingReqDTO reqDTO) {
 		Map<String, Object> extendParams = reqDTO.getExtendParams();
 		if (ObjectUtils.isNull(extendParams)) {
 			extendParams = new HashMap<>();

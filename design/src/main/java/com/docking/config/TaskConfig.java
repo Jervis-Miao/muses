@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author miaoqiang
  * @date 2019/3/22.
  */
-public class Config implements Serializable {
+public class TaskConfig implements Serializable {
 	private static final long	serialVersionUID	= 2714629598130133377L;
 
 	/**
@@ -41,7 +41,7 @@ public class Config implements Serializable {
 	 */
 	private AnalysisConf		analysisConf;
 
-	public Config() {
+	public TaskConfig() {
 		super();
 		this.upFlag = new AtomicBoolean(Boolean.FALSE);
 	}
