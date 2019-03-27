@@ -17,7 +17,7 @@ import com.muses.common.utils.ObjectUtils;
  * @author miaoqiang
  * @date 2019/3/18.
  */
-public class XmlAnalysis extends AbstractAnalysis<String, Element> {
+public class XmlAnalysis extends AbstractStrAnalysis<String, Element> {
 
 	@Override
 	protected Element getTempWithRes(String xml) {

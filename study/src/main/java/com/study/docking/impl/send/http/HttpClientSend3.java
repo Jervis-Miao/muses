@@ -10,8 +10,8 @@ import java.util.Map;
 
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.StringUtils;
-import com.study.docking.dto.HttpReqDTO;
-import com.study.docking.dto.SSLReqDTO;
+import com.study.docking.config.HttpSendConf;
+import com.study.docking.config.SSLConf;
 import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
 import com.study.docking.utils.TemFileManager;
@@ -30,16 +30,16 @@ import com.study.docking.utils.impl.http.HttpClientUtil3;
 public class HttpClientSend3 extends AbstractHttpClientSend {
 
 	@Override
-	public AbstractHttpClientUtil createClient(HttpReqDTO httpReq) {
+	public AbstractHttpClientUtil createClient(HttpSendConf sendConf) {
 		AbstractHttpClientUtil clientUtil = null;
-		SSLReqDTO ssl = httpReq.getSsl();
+		SSLConf ssl = sendConf.getSsl();
 		if (ObjectUtils.isNull(ssl) || StringUtils.isBlank(ssl.getKeyPath()) || StringUtils.isBlank(ssl.getTrustPath())
 				|| StringUtils.isBlank(ssl.getKeyPwd()) || StringUtils.isBlank(ssl.getTrustPwd())
 				|| ObjectUtils.isNull(ssl.getHttpsPort())) {
-			Integer socketTimeOut = httpReq.getSocketTimeOut();
-			Integer connTimeOut = httpReq.getConnTimeOut();
-			String proxyAddress = httpReq.getProxyAddress();
-			Integer proxyPort = httpReq.getProxyPort();
+			Integer socketTimeOut = sendConf.getSocketTimeOut();
+			Integer connTimeOut = sendConf.getConnTimeOut();
+			String proxyAddress = sendConf.getProxyAddress();
+			Integer proxyPort = sendConf.getProxyPort();
 			clientUtil = new HttpClientUtil3(socketTimeOut, connTimeOut, proxyAddress, proxyPort);
 		} else {
 			/**
@@ -52,11 +52,9 @@ public class HttpClientSend3 extends AbstractHttpClientSend {
 	}
 
 	public static void main(String[] args) throws IOException {
-		HttpReqDTO httpReqDTO = new HttpReqDTO();
-		httpReqDTO.setCode("test");
+		HttpSendConf httpReqDTO = new HttpSendConf();
 		httpReqDTO.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.APPLICATION_FROM.getContentType());
 		// httpReqDTO.setUrl("https://www.xyz.cn/p/insstrem.do?xcase=downPdfContent&insItemId=403&useType=3");
-		httpReqDTO.setUrl("http://ebiz.fosun-uhi.com/ebiz-entry/ebiz/download.do?action=dealBiz");
 		// httpReqDTO.setProxyAddress("192.168.16.189");
 		// httpReqDTO.setProxyPort(8080);
 		// httpReqDTO.setUrl("http://www.xyz.cn/p/packprod.do?xcase=showPolicySampleImg&packIdEn=p25gh3mvj22wa");
@@ -74,10 +72,10 @@ public class HttpClientSend3 extends AbstractHttpClientSend {
 				+ "Z6G4lZABABZ++Ijt/nI2on1+7+xzOipigPh6shxJ1fBTZrjo8Y1xODO23zQT0QgxVs5cc1tM5akQ\n"
 				+ "FrnZSbApoTmDKdnqc/u9Ib5OATAlStl/QDgJ95cS7z2txGQlPUuE4KuBx/9C0dWjtqgMyvT8y4P1\n"
 				+ "KaFeH2cj2pXvqrzp9lBXQjSQ4TEhJ+iZ2p9pcCvdt5f9hPUCd9e0NL6SapPrDuPbsg==");
-		httpReqDTO.setParams(params);
 		HttpClientSend3 client3Send = new HttpClientSend3();
 		AbstractHttpClientUtil clientUtil = client3Send.createClient(httpReqDTO);
-		byte[] test = clientUtil.doExecuteForByte(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
+		byte[] test = clientUtil.doExecuteForByte(
+				"http://ebiz.fosun-uhi.com/ebiz-entry/ebiz/download.do?action=dealBiz", "", params,
 				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
 		TemFileManager.createTemFile("test.pdf", test);
 	}

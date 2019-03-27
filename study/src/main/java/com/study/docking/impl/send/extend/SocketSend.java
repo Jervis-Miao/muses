@@ -17,9 +17,10 @@ import java.net.UnknownHostException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.study.docking.config.SoSendConf;
 import com.study.docking.dto.DockingReqDTO;
-import com.study.docking.dto.SoReqDTO;
 import com.study.docking.impl.send.AbstractCustomSend;
+import com.study.docking.utils.factory.ProtocolUrlFactory;
 
 /**
  * <pre>
@@ -31,7 +32,7 @@ import com.study.docking.impl.send.AbstractCustomSend;
  * @author miaoqiang
  * @date 2019/1/24.
  */
-public class SocketSend extends AbstractCustomSend<Socket, SoReqDTO> {
+public class SocketSend extends AbstractCustomSend<SoSendConf, Socket> {
 	private static final Logger	logger	= LoggerFactory.getLogger(SocketSend.class);
 
 	/**
@@ -42,18 +43,18 @@ public class SocketSend extends AbstractCustomSend<Socket, SoReqDTO> {
 	 * @return
 	 */
 	@Override
-	public String send(String reqMsg, DockingReqDTO reqDTO) {
+	public String send(String code, SoSendConf sendConf, String reqData, DockingReqDTO reqDTO) {
 		String result = null;
 		Socket socket = null;
 		byte[] buf = new byte[1024];
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		try {
-			socket = this.createClient(new SoReqDTO());
+			socket = this.createClient(new SoSendConf());
 			// 获取一个输出流，向服务端发送信息
 			OutputStream outputStream = socket.getOutputStream();
 			PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream, "GBK")),
 					true);
-			printWriter.print(reqMsg);
+			printWriter.print(reqData);
 			printWriter.flush();
 			// 获取一个输入流，接收服务端的信息
 			InputStream inputStream = socket.getInputStream();
@@ -90,7 +91,7 @@ public class SocketSend extends AbstractCustomSend<Socket, SoReqDTO> {
 	}
 
 	@Override
-	public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
+	public byte[] sendForByte(String code, SoSendConf sendConf, String reqData, DockingReqDTO reqDTO) {
 		/**
 		 * SocketSend 不支持附件下载，需要下载请使用http协议
 		 * @see com.study.docking.impl.send.AbstractHttpClientSend
@@ -105,10 +106,10 @@ public class SocketSend extends AbstractCustomSend<Socket, SoReqDTO> {
 	 * @return
 	 */
 	@Override
-	public Socket createClient(SoReqDTO soReq) {
+	public Socket createClient(SoSendConf soReq) {
 		Socket socket = null;
 		try {
-			socket = new Socket(soReq.getUrl(), soReq.getUrlPort());
+			socket = new Socket(this.getUrl(), soReq.getUrlPort());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -2,24 +2,23 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.dto;
+package com.study.docking.config;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import com.study.docking.utils.AbstractHttpClientUtil;
 
 /**
  * @author miaoqiang
- * @date 2019/2/19.
+ * @date 2019/3/26.
  */
-public class BaseReqDTO implements Serializable {
-	private static final long	serialVersionUID	= 8763011339703407597L;
+public class SendConf implements Serializable {
+	private static final long	serialVersionUID	= -4518596972876119795L;
 
 	/**
 	 * 请求地址，必填
 	 */
-	private String				url;
+	private UrlConf				urlConf;
 
 	/**
 	 * 读数据超时时间(单位毫秒)，必填
@@ -57,15 +56,29 @@ public class BaseReqDTO implements Serializable {
 	 */
 	private String				charset;
 
-	/**
-	 * 请求报文，与params属性互斥，二者只需传一项
-	 */
-	private String				msg;
+	public UrlConf getUrlConf() {
+		return urlConf;
+	}
 
-	/**
-	 * post请求参数，与msg属性互斥，二者只需传一项
-	 */
-	private Map<String, String>	params;
+	public void setUrlConf(UrlConf urlConf) {
+		this.urlConf = urlConf;
+	}
+
+	public Integer getSocketTimeOut() {
+		return socketTimeOut;
+	}
+
+	public void setSocketTimeOut(Integer socketTimeOut) {
+		this.socketTimeOut = socketTimeOut;
+	}
+
+	public Integer getConnTimeOut() {
+		return connTimeOut;
+	}
+
+	public void setConnTimeOut(Integer connTimeOut) {
+		this.connTimeOut = connTimeOut;
+	}
 
 	public String getProxyAddress() {
 		return proxyAddress;
@@ -105,45 +118,5 @@ public class BaseReqDTO implements Serializable {
 
 	public void setCharset(String charset) {
 		this.charset = charset;
-	}
-
-	public Integer getSocketTimeOut() {
-		return socketTimeOut;
-	}
-
-	public void setSocketTimeOut(Integer socketTimeOut) {
-		this.socketTimeOut = socketTimeOut;
-	}
-
-	public Integer getConnTimeOut() {
-		return connTimeOut;
-	}
-
-	public void setConnTimeOut(Integer connTimeOut) {
-		this.connTimeOut = connTimeOut;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-
-	public Map<String, String> getParams() {
-		return params;
-	}
-
-	public void setParams(Map<String, String> params) {
-		this.params = params;
 	}
 }

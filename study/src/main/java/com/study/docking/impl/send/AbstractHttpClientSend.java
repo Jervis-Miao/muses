@@ -10,10 +10,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.muses.common.utils.ObjectUtils;
 import com.study.docking.IProtocol;
 import com.study.docking.ISendReqMsg;
+import com.study.docking.config.HttpSendConf;
 import com.study.docking.dto.DockingReqDTO;
-import com.study.docking.dto.HttpReqDTO;
 import com.study.docking.utils.AbstractHttpClientUtil;
-import com.study.docking.utils.IProtocolUrl;
 import com.study.docking.utils.factory.ProtocolUrlFactory;
 
 /**
@@ -22,8 +21,8 @@ import com.study.docking.utils.factory.ProtocolUrlFactory;
  * @author miaoqiang
  * @date 2019/1/24.
  */
-public abstract class AbstractHttpClientSend implements ISendReqMsg<String>,
-		IProtocol<AbstractHttpClientUtil, HttpReqDTO> {
+public abstract class AbstractHttpClientSend extends AbstractProtocol<HttpSendConf, AbstractHttpClientUtil> implements
+		ISendReqMsg<HttpSendConf, String> {
 
 	/**
 	 * 连接工具
@@ -31,53 +30,32 @@ public abstract class AbstractHttpClientSend implements ISendReqMsg<String>,
 	protected static final Map<String, AbstractHttpClientUtil>	CLIENT_UTILS	= new ConcurrentHashMap<>();
 
 	@Override
-	public String send(String reqMsg, DockingReqDTO reqDTO) {
+	public String send(String code, HttpSendConf sendConf, String reqData, DockingReqDTO reqDTO) {
 		String resMsg = "";
-		HttpReqDTO httpReqDTO = this.assembleReqDTO(reqMsg, reqDTO);
-		AbstractHttpClientUtil clientUtil = this.getClientUtil(httpReqDTO);
-		return clientUtil.doExecute(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
-				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
+		AbstractHttpClientUtil clientUtil = this.getClientUtil(code, sendConf);
+		return clientUtil.doExecute(this.getUrl(), reqData, null, sendConf.getContentType(), sendConf.getCharset(),
+				sendConf.getPostFlag());
 	}
 
 	@Override
-	public byte[] sendForByte(String reqMsg, DockingReqDTO dockingReq) {
+	public byte[] sendForByte(String code, HttpSendConf sendConf, String reqData, DockingReqDTO dockingReq) {
 		String resMsg = "";
-		HttpReqDTO httpReqDTO = this.assembleReqDTO(reqMsg, dockingReq);
-		AbstractHttpClientUtil clientUtil = this.getClientUtil(httpReqDTO);
-		return clientUtil.doExecuteForByte(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
-				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
-	}
-
-	/**
-	 * 封装协议发送请求参数
-	 *
-	 * @param reqMsg
-	 * @param reqDTO
-	 * @return
-	 */
-	@Override
-	public HttpReqDTO assembleReqDTO(String reqMsg, DockingReqDTO dockingReq) {
-		HttpReqDTO httpReqDTO = new HttpReqDTO();
-		IProtocolUrl url = ProtocolUrlFactory.createProtocolUrl();
-		httpReqDTO.setUrl(url.getUrl());
-		return httpReqDTO;
+		AbstractHttpClientUtil clientUtil = this.getClientUtil(code, sendConf);
+		return clientUtil.doExecuteForByte(this.getUrl(), reqData, null, sendConf.getContentType(),
+				sendConf.getCharset(), sendConf.getPostFlag());
 	}
 
 	/**
 	 * 获取请求工具
 	 * 
 	 * @param code
-	 * @param socketTimeOut
-	 * @param connTimeOutget
-	 * @param proxyAddress
-	 * @param proxyPort
+	 * @param sendConf
 	 * @return
 	 */
-	private AbstractHttpClientUtil getClientUtil(HttpReqDTO httpReqDTO) {
-		String code = httpReqDTO.getCode();
+	private AbstractHttpClientUtil getClientUtil(String code, HttpSendConf sendConf) {
 		AbstractHttpClientUtil clientUtil = CLIENT_UTILS.get(code);
 		if (ObjectUtils.isNull(clientUtil)) {
-			clientUtil = this.createClient(httpReqDTO);
+			clientUtil = this.createClient(sendConf);
 			CLIENT_UTILS.put(code, clientUtil);
 		}
 		return clientUtil;

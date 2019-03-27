@@ -2,16 +2,16 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.dto;
+package com.study.docking.config;
 
 import java.io.Serializable;
 
 /**
  * @author miaoqiang
- * @date 2019/2/12.
+ * @date 2019/3/26.
  */
-public class WsReqDTO extends BaseReqDTO implements Serializable {
-	private static final long	serialVersionUID	= 7505954373585097608L;
+public class WsSendConf extends SendConf implements Serializable {
+	private static final long	serialVersionUID	= 2120708718020332094L;
 
 	/**
 	 * 命名空间

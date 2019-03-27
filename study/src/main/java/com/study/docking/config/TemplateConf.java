@@ -13,13 +13,22 @@ import java.util.List;
  * @author miaoqiang
  * @date 2019/3/25.
  */
-public class MsgTemplate implements Serializable {
+public class TemplateConf implements Serializable {
 	private static final long	serialVersionUID	= 2120423557848499517L;
 
+	/**
+	 * 模板权重，嵌套报文模板需要按照权重进行加载
+	 */
 	private Integer				weight;
 
+	/**
+	 * 模板文件路径
+	 */
 	private String				path;
 
+	/**
+	 * 封装模板的键值对信息
+	 */
 	private List<KVPair>		kvPairs;
 
 	public Integer getWeight() {

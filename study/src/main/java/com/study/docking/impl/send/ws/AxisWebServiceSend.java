@@ -13,8 +13,8 @@ import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.apache.axis.components.net.DefaultCommonsHTTPClientProperties;
 
+import com.study.docking.config.WsSendConf;
 import com.study.docking.dto.DockingReqDTO;
-import com.study.docking.dto.WsReqDTO;
 import com.study.docking.impl.send.AbstractWebServiceSend;
 
 /**
@@ -30,11 +30,11 @@ import com.study.docking.impl.send.AbstractWebServiceSend;
 public class AxisWebServiceSend extends AbstractWebServiceSend<Call> {
 
 	@Override
-	public Object send(Object reqMsg, DockingReqDTO reqDTO) {
+	public Object send(String code, WsSendConf sendConf, Object reqData, DockingReqDTO reqDTO) {
 		Object result = null;
 		try {
-			Call call = createClient(new WsReqDTO());
-			result = call.invoke(super.getParams(reqMsg, reqDTO));
+			Call call = createClient(sendConf);
+			result = call.invoke(super.getParams(reqData, reqDTO));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -48,12 +48,12 @@ public class AxisWebServiceSend extends AbstractWebServiceSend<Call> {
 	 * @return
 	 */
 	@Override
-	public Call createClient(WsReqDTO wsReq) {
+	public Call createClient(WsSendConf wsReq) {
 		Call call = null;
 		try {
 			Service service = new Service();
 			call = (Call) service.createCall(new QName(wsReq.getNameSpace(), wsReq.getInterFace()));
-			call.setTargetEndpointAddress(wsReq.getUrl());
+			call.setTargetEndpointAddress(this.getUrl());
 			// call.setOperationName(new QName(nameSpace, interFace));
 			call.setUseSOAPAction(Boolean.TRUE);
 			call.setSOAPActionURI("");

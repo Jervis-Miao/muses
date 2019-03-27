@@ -4,7 +4,7 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking;
 
-import com.study.docking.dto.BaseReqDTO;
+import com.study.docking.config.SendConf;
 
 /**
  * 协议
@@ -12,13 +12,13 @@ import com.study.docking.dto.BaseReqDTO;
  * @author miaoqiang
  * @date 2019/2/21.
  */
-public interface IProtocol<P, R extends BaseReqDTO> {
+public interface IProtocol<P, C extends SendConf> {
 
 	/**
 	 * 创建连接客户端
 	 * 
-	 * @param baseReq
+	 * @param sendConf
 	 * @return
 	 */
-	public P createClient(R baseReq);
+	public P createClient(C sendConf);
 }

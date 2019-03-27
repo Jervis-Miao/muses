@@ -4,32 +4,35 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking.impl.assemble;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.SpringContextUtils;
-import com.study.docking.IAssembleReqMsg;
+import com.study.docking.IAssembleReqBody;
+import com.study.docking.config.DataConf;
 import com.study.docking.config.MsgConf;
 import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.utils.IPackKeyValPairs;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author miaoqiang
  * @date 2019/1/16.
  */
-public abstract class AbstractAssemble implements IAssembleReqMsg {
+public abstract class AbstractAssemble implements IAssembleReqBody {
 
 	/**
 	 * 获取请求报文
-	 * 
+	 *
 	 * @param msgConf
 	 * @param reqDTO
-	 * @param <T>
 	 * @return
 	 */
 	@Override
-	public abstract <T> T getReqMsg(MsgConf msgConf, DockingReqDTO reqDTO);
+	public Object getReqBody(DataConf dataConf, DockingReqDTO reqDTO) {
+		throw new RuntimeException(this.getClass().getName()
+				+ " extend AbstractAssemble, do not realize the method 'getReqMsg'");
+	}
 
 	/**
 	 * 获取封装报文键值对

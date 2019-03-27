@@ -12,8 +12,8 @@ import org.jsoup.nodes.Document;
 
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.StringUtils;
-import com.study.docking.dto.HttpReqDTO;
-import com.study.docking.dto.SSLReqDTO;
+import com.study.docking.config.HttpSendConf;
+import com.study.docking.config.SSLConf;
 import com.study.docking.impl.send.AbstractHttpClientSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
 import com.study.docking.utils.TemFileManager;
@@ -28,13 +28,13 @@ import com.study.docking.utils.impl.http.HttpClientUtil4;
 public class HttpClientSend4 extends AbstractHttpClientSend {
 
 	@Override
-	public AbstractHttpClientUtil createClient(HttpReqDTO httpReq) {
+	public AbstractHttpClientUtil createClient(HttpSendConf sendConf) {
 		AbstractHttpClientUtil clientUtil = null;
-		Integer socketTimeOut = httpReq.getSocketTimeOut();
-		Integer connTimeOut = httpReq.getConnTimeOut();
-		String proxyAddress = httpReq.getProxyAddress();
-		Integer proxyPort = httpReq.getProxyPort();
-		SSLReqDTO ssl = httpReq.getSsl();
+		Integer socketTimeOut = sendConf.getSocketTimeOut();
+		Integer connTimeOut = sendConf.getConnTimeOut();
+		String proxyAddress = sendConf.getProxyAddress();
+		Integer proxyPort = sendConf.getProxyPort();
+		SSLConf ssl = sendConf.getSsl();
 		if (ObjectUtils.isNull(ssl) || StringUtils.isBlank(ssl.getKeyPath()) || StringUtils.isBlank(ssl.getTrustPath())
 				|| StringUtils.isBlank(ssl.getKeyPwd()) || StringUtils.isBlank(ssl.getTrustPwd())
 				|| ObjectUtils.isNull(ssl.getHttpsPort())) {
@@ -47,12 +47,10 @@ public class HttpClientSend4 extends AbstractHttpClientSend {
 	}
 
 	public static void main(String[] args) throws IOException, DocumentException {
-		HttpReqDTO httpReqDTO = new HttpReqDTO();
-		httpReqDTO.setCode("test");
+		HttpSendConf httpReqDTO = new HttpSendConf();
 		httpReqDTO.setProxyAddress("192.168.16.189");
 		httpReqDTO.setProxyPort(8080);
 		// httpReqDTO.setUrl("http://ebiz.fosun-uhi.com/ebiz-entry/ebiz/download.do?action=dealBiz");
-		httpReqDTO.setUrl("http://dzdz.ciitc.com.cn/s/ieLGJ5qmO");
 		httpReqDTO.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.TEXT_HTML.getContentType());
 		// httpReqDTO.setPostFlag(true);
 		// httpReqDTO.setCharset("utf-8");
@@ -69,15 +67,14 @@ public class HttpClientSend4 extends AbstractHttpClientSend {
 		// httpReqDTO.setParams(params);
 		HttpClientSend4 client4Send = new HttpClientSend4();
 		AbstractHttpClientUtil clientUtil = client4Send.createClient(httpReqDTO);
-		String test = clientUtil.doExecute(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
+		String test = clientUtil.doExecute("http://dzdz.ciitc.com.cn/s/ieLGJ5qmO", "", null,
 				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
 		Document document = Jsoup.parse(test);
 		String url = "http://dzdz.ciitc.com.cn"
 				+ document.getElementById("download-action").child(0).getElementsByAttribute("href").attr("href");
-		httpReqDTO.setUrl(url);
 		httpReqDTO.setContentType(AbstractHttpClientUtil.CONTENT_TYPE.APPLICATION_STREAM.getContentType());
-		byte[] bytes = clientUtil.doExecuteForByte(httpReqDTO.getUrl(), httpReqDTO.getMsg(), httpReqDTO.getParams(),
-				httpReqDTO.getContentType(), httpReqDTO.getCharset(), httpReqDTO.getPostFlag());
+		byte[] bytes = clientUtil.doExecuteForByte(url, "", null, httpReqDTO.getContentType(), httpReqDTO.getCharset(),
+				httpReqDTO.getPostFlag());
 		TemFileManager.createTemFile("test.pdf", bytes);
 	}
 }

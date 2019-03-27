@@ -27,9 +27,19 @@ public class Config implements Serializable {
 	private String				code;
 
 	/**
-	 * 封装报文配置
+	 * 发送数据配置
 	 */
-	private MsgConf				msgConf;
+	private DataConf			dataConf;
+
+	/**
+	 * 发送数据配置
+	 */
+	private SendConf			sendConf;
+
+	/**
+	 * 解析返回数据配置
+	 */
+	private AnalysisConf		analysisConf;
 
 	public Config() {
 		super();
@@ -52,11 +62,27 @@ public class Config implements Serializable {
 		this.code = code;
 	}
 
-	public MsgConf getMsgConf() {
-		return msgConf;
+	public DataConf getDataConf() {
+		return dataConf;
 	}
 
-	public void setMsgConf(MsgConf msgConf) {
-		this.msgConf = msgConf;
+	public void setDataConf(DataConf dataConf) {
+		this.dataConf = dataConf;
+	}
+
+	public SendConf getSendConf() {
+		return sendConf;
+	}
+
+	public void setSendConf(SendConf sendConf) {
+		this.sendConf = sendConf;
+	}
+
+	public AnalysisConf getAnalysisConf() {
+		return analysisConf;
+	}
+
+	public void setAnalysisConf(AnalysisConf analysisConf) {
+		this.analysisConf = analysisConf;
 	}
 }

@@ -6,8 +6,6 @@ package com.study.docking.impl.send.ws;
 
 import javax.xml.namespace.QName;
 
-import com.study.docking.dto.BaseReqDTO;
-import com.study.docking.dto.WsReqDTO;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.addressing.EndpointReference;
 import org.apache.axis2.client.Options;
@@ -17,6 +15,7 @@ import org.apache.axis2.transport.http.HttpTransportProperties;
 
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.utils.StringUtils;
+import com.study.docking.config.WsSendConf;
 import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.impl.send.AbstractWebServiceSend;
 
@@ -24,8 +23,8 @@ import com.study.docking.impl.send.AbstractWebServiceSend;
  * <pre>
  * axis2-kernel-1.5.1 版本WS
  * 该工具不推荐使用，这里只是兼容老代码迁移使用
- * @see com.study.docking.impl.send.http.HttpClientSend4
  * </pre>
+ * @see com.study.docking.impl.send.http.HttpClientSend4
  *
  * @author miaoqiang
  * @date 2019/1/24.
@@ -33,11 +32,11 @@ import com.study.docking.impl.send.AbstractWebServiceSend;
 public class AxisKernelWebServiceSend extends AbstractWebServiceSend<RPCServiceClient> {
 
 	@Override
-	public Object send(Object reqMsg, DockingReqDTO reqDTO) {
+	public Object send(String code, WsSendConf sendConf, Object reqData, DockingReqDTO reqDTO) {
 		Object result = null;
 		try {
-			RPCServiceClient serviceClient = createClient(new WsReqDTO());
-			Object[] objects = serviceClient.invokeBlocking(new QName("", ""), super.getParams(reqMsg, reqDTO),
+			RPCServiceClient serviceClient = createClient(sendConf);
+			Object[] objects = serviceClient.invokeBlocking(new QName("", ""), super.getParams(reqData, reqDTO),
 					super.getResClazz(reqDTO));
 			result = objects[0];
 		} catch (AxisFault axisFault) {
@@ -53,13 +52,13 @@ public class AxisKernelWebServiceSend extends AbstractWebServiceSend<RPCServiceC
 	 * @return
 	 */
 	@Override
-	public RPCServiceClient createClient(WsReqDTO baseReq) {
+	public RPCServiceClient createClient(WsSendConf wsSendConf) {
 		RPCServiceClient serviceClient = null;
 		try {
 			// 使用RPC方式调用WebService
 			serviceClient = new RPCServiceClient();
 			// 指定调用WebService的URL
-			EndpointReference targetEPR = new EndpointReference(baseReq.getUrl());
+			EndpointReference targetEPR = new EndpointReference(this.getUrl());
 			Options options = serviceClient.getOptions();
 			// 确定目标服务地址
 			options.setTo(targetEPR);
@@ -69,14 +68,15 @@ public class AxisKernelWebServiceSend extends AbstractWebServiceSend<RPCServiceC
 			options.setManageSession(Boolean.TRUE);
 			options.setProperty(HTTPConstants.REUSE_HTTP_CLIENT, Boolean.TRUE);
 			// 设置响应超时
-			options.setProperty(HTTPConstants.SO_TIMEOUT, baseReq.getSocketTimeOut());
+			options.setProperty(HTTPConstants.SO_TIMEOUT, wsSendConf.getSocketTimeOut());
 			// 设置连接超时
-			options.setProperty(HTTPConstants.CONNECTION_TIMEOUT, baseReq.getConnTimeOut());
+			options.setProperty(HTTPConstants.CONNECTION_TIMEOUT, wsSendConf.getConnTimeOut());
 			// 设置代理
-			if (StringUtils.isNotBlank(baseReq.getProxyAddress()) && ObjectUtils.isNotNull(baseReq.getProxyPort())) {
+			if (StringUtils.isNotBlank(wsSendConf.getProxyAddress())
+					&& ObjectUtils.isNotNull(wsSendConf.getProxyPort())) {
 				HttpTransportProperties.ProxyProperties proxyProperties = new HttpTransportProperties.ProxyProperties();
-				proxyProperties.setProxyName(baseReq.getProxyAddress());
-				proxyProperties.setProxyPort(baseReq.getProxyPort());
+				proxyProperties.setProxyName(wsSendConf.getProxyAddress());
+				proxyProperties.setProxyPort(wsSendConf.getProxyPort());
 				options.setProperty(HTTPConstants.PROXY, proxyProperties);
 			}
 		} catch (AxisFault axisFault) {

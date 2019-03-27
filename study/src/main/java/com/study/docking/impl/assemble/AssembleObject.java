@@ -6,6 +6,7 @@ package com.study.docking.impl.assemble;
 
 import java.io.IOException;
 
+import com.study.docking.config.DataConf;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
@@ -21,7 +22,7 @@ import com.study.docking.utils.ByteArrayClassLoader;
 public class AssembleObject extends AbstractAssemble {
 
 	@Override
-	public Object getReqMsg(MsgConf msgConf, DockingReqDTO reqDTO) {
+	public Object getReqBody(DataConf dataConf, DockingReqDTO reqDTO) {
 		Object result = null;
 		String oJson = super.mergeDynamicTemplet(reqDTO);
 		String className = "";

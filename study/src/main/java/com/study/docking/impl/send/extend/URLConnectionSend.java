@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.muses.common.utils.ObjectUtils;
 import com.muses.common.validator.utils.StringUtils;
-import com.study.docking.dto.BaseReqDTO;
+import com.study.docking.config.URLSendConf;
 import com.study.docking.dto.DockingReqDTO;
 import com.study.docking.impl.send.AbstractCustomSend;
 import com.study.docking.utils.AbstractHttpClientUtil;
@@ -40,23 +40,24 @@ import com.study.docking.utils.TemFileManager;
  * @author miaoqiang
  * @date 2019/1/24.
  */
-public class URLConnectionSend extends AbstractCustomSend<HttpURLConnection, BaseReqDTO> {
+public class URLConnectionSend extends AbstractCustomSend<URLSendConf, HttpURLConnection> {
 	private static final Logger	logger	= LoggerFactory.getLogger(URLConnectionSend.class);
 
 	@Override
-	public String send(String reqMsg, DockingReqDTO reqDTO) {
-		HttpURLConnection conn = this.createClient(new BaseReqDTO());
+	public String send(String code, URLSendConf sendConf, String reqData, DockingReqDTO reqDTO) {
+		HttpURLConnection conn = this.createClient(sendConf);
+		sendConf.setLength(String.valueOf(reqData.length()));
 		openConnect(conn);
-		writeAndClose(conn, reqMsg, "");
+		writeAndClose(conn, reqData, "");
 		String res = readForStr(conn, "");
 		return res;
 	}
 
 	@Override
-	public byte[] sendForByte(String reqMsg, DockingReqDTO reqDTO) {
-		HttpURLConnection conn = this.createClient(new BaseReqDTO());
+	public byte[] sendForByte(String code, URLSendConf sendConf, String reqData, DockingReqDTO reqDTO) {
+		HttpURLConnection conn = this.createClient(sendConf);
 		openConnect(conn);
-		writeAndClose(conn, reqMsg, "");
+		writeAndClose(conn, reqData, "");
 		byte[] res = readForByte(conn);
 		return res;
 	}
@@ -68,9 +69,9 @@ public class URLConnectionSend extends AbstractCustomSend<HttpURLConnection, Bas
 	 * @return
 	 */
 	@Override
-	public HttpURLConnection createClient(BaseReqDTO baseReq) {
+	public HttpURLConnection createClient(URLSendConf baseReq) {
 		try {
-			URL _url = new URL(baseReq.getUrl());
+			URL _url = new URL(this.getUrl());
 			HttpURLConnection con = null;
 			if (StringUtils.isNotBlank(baseReq.getProxyAddress()) && ObjectUtils.isNotNull(baseReq.getProxyPort())) {
 				Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(baseReq.getProxyAddress(),
@@ -91,7 +92,7 @@ public class URLConnectionSend extends AbstractCustomSend<HttpURLConnection, Bas
 				con.setRequestProperty("Content-Type", baseReq.getContentType() + ";charset=" + baseReq.getCharset());
 			}
 			con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-			con.setRequestProperty("Content-Length", String.valueOf(baseReq.getMsg().length()));
+			con.setRequestProperty("Content-Length", baseReq.getLength());
 			con.setRequestProperty("Cache-Control", "no-cache");
 			con.setRequestProperty("Accept-Charset", baseReq.getCharset());
 			con.setRequestProperty("contentType", baseReq.getCharset());
@@ -221,8 +222,8 @@ public class URLConnectionSend extends AbstractCustomSend<HttpURLConnection, Bas
 	}
 
 	public static void test2() {
-		BaseReqDTO baseReqDTO = new BaseReqDTO();
-		baseReqDTO.setUrl("http://dzdz.ciitc.com.cn/s/icQh1TikE");
+		URLSendConf baseReqDTO = new URLSendConf();
+		// baseReqDTO.setUrl("http://dzdz.ciitc.com.cn/s/icQh1TikE");
 		baseReqDTO.setProxyAddress("192.168.16.187");
 		baseReqDTO.setProxyPort(8080);
 		baseReqDTO.setSocketTimeOut(5000);

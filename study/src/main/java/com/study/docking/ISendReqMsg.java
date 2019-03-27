@@ -4,7 +4,7 @@ Copyright 2018 All rights reserved.
 
 package com.study.docking;
 
-import com.study.docking.dto.BaseReqDTO;
+import com.study.docking.config.SendConf;
 import com.study.docking.dto.DockingReqDTO;
 
 /**
@@ -13,32 +13,28 @@ import com.study.docking.dto.DockingReqDTO;
  * @author miaoqiang
  * @date 2019/1/16.
  */
-public interface ISendReqMsg<T> {
+public interface ISendReqMsg<C extends SendConf, D> {
 
 	/**
 	 * 系统信息传输
-	 * 
-	 * @param reqMsg
+	 *
+	 * @param code
+	 * @param sendConf
+	 * @param reqData
 	 * @param reqDTO
 	 * @return
 	 */
-	public T send(T reqMsg, DockingReqDTO reqDTO);
+	public D send(String code, C sendConf, D reqData, DockingReqDTO reqDTO);
 
 	/**
 	 * 文件下载
-	 * 
-	 * @param reqMsg
+	 *
+	 * @param code
+	 * @param sendConf
+	 * @param reqData
 	 * @param reqDTO
 	 * @return
 	 */
-	public byte[] sendForByte(T reqMsg, DockingReqDTO reqDTO);
+	public byte[] sendForByte(String code, C sendConf, D reqData, DockingReqDTO reqDTO);
 
-	/**
-	 * 封装协议发送请求参数
-	 * 
-	 * @param reqMsg
-	 * @param reqDTO
-	 * @return
-	 */
-	public BaseReqDTO assembleReqDTO(T reqMsg, DockingReqDTO reqDTO);
 }

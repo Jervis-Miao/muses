@@ -11,7 +11,7 @@ import com.muses.common.utils.ObjectUtils;
  * @author miaoqiang
  * @date 2019/2/14.
  */
-public abstract class JsonAnalysis extends AbstractAnalysis<String, JSONObject> {
+public abstract class JsonAnalysis extends AbstractStrAnalysis<String, JSONObject> {
 
 	@Override
 	protected JSONObject getTempWithRes(String json) {

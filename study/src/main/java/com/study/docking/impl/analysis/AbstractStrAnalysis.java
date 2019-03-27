@@ -18,7 +18,7 @@ import com.study.docking.dto.DockingResDTO;
  * @author miaoqiang
  * @date 2019/3/18.
  */
-public abstract class AbstractAnalysis<T, E> implements IAnalysisResMsg<T> {
+public abstract class AbstractStrAnalysis<T, E> implements IAnalysisResMsg<T> {
 
 	private E	temp;
 
@@ -48,10 +48,11 @@ public abstract class AbstractAnalysis<T, E> implements IAnalysisResMsg<T> {
 					errKeys.stream().forEach(k -> errSb.append(this.getField(resMsg, k)).append(";"));
 					dockingResDTO.setErrMessage(errSb.toString());
 				}
+
+				this.releaseTemp();
 			}
 		}
 
-		this.releaseTemp();
 		return dockingResDTO;
 	}
 

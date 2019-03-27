@@ -2,16 +2,16 @@
 Copyright 2018 All rights reserved.
  */
 
-package com.study.docking.dto;
+package com.study.docking.config;
 
 import java.io.Serializable;
 
 /**
  * @author miaoqiang
- * @date 2019/2/21.
+ * @date 2019/3/26.
  */
-public class SoReqDTO extends BaseReqDTO implements Serializable {
-	private static final long	serialVersionUID	= -3867447808113415375L;
+public class SoSendConf extends SendConf implements Serializable {
+	private static final long	serialVersionUID	= 7868674099194037943L;
 
 	private Integer				urlPort;
 

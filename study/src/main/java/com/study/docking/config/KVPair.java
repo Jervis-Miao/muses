@@ -13,33 +13,55 @@ import java.io.Serializable;
 public class KVPair implements Serializable {
 	private static final long	serialVersionUID	= -4617095634429045103L;
 
-	private String				key;
+	/**
+	 * 键值对定义value键值
+	 */
+	private String				defValueKey;
 
-	private String				encodeClassName;
+	/**
+	 * 键值对获取value键值
+	 */
+	private String				obtainValKey;
 
-	private String				encodeKey;
+	/**
+	 * 加密算法类
+	 */
+	private String				enClassName;
 
-	public String getKey() {
-		return key;
+	/**
+	 * 加密算法私钥
+	 */
+	private String				enPriKey;
+
+	public String getDefValueKey() {
+		return defValueKey;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setDefValueKey(String defValueKey) {
+		this.defValueKey = defValueKey;
 	}
 
-	public String getEncodeClassName() {
-		return encodeClassName;
+	public String getObtainValKey() {
+		return obtainValKey;
 	}
 
-	public void setEncodeClassName(String encodeClassName) {
-		this.encodeClassName = encodeClassName;
+	public void setObtainValKey(String obtainValKey) {
+		this.obtainValKey = obtainValKey;
 	}
 
-	public String getEncodeKey() {
-		return encodeKey;
+	public String getEnClassName() {
+		return enClassName;
 	}
 
-	public void setEncodeKey(String encodeKey) {
-		this.encodeKey = encodeKey;
+	public void setEnClassName(String enClassName) {
+		this.enClassName = enClassName;
+	}
+
+	public String getEnPriKey() {
+		return enPriKey;
+	}
+
+	public void setEnPriKey(String enPriKey) {
+		this.enPriKey = enPriKey;
 	}
 }
