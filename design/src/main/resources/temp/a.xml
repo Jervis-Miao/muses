@@ -1,0 +1,6 @@
+<arm>
+    <hands>
+        <left>$a1</left>
+        <right>$a2</right>
+    </hands>
+</arm>

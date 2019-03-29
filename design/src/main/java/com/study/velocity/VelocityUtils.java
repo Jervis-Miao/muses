@@ -8,15 +8,18 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.FileUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +32,7 @@ public class VelocityUtils {
 
 	public static final String	DEFAULT_ENCODING		= "UTF-8";
 	public static final String	DEFAULT_PATH			= "vm/";
-	public static final String	DEFAULT_ABSOLUTE_PATH	= "D://workspace//muses//study//src//main//resources//temp//";
+	public static final String	DEFAULT_ABSOLUTE_PATH	= "D://workspace//muses//design//src//main//resources//temp//";
 
 	/**
 	 * 静态块初始化Velocity参数
@@ -97,6 +100,25 @@ public class VelocityUtils {
 	}
 
 	public static void main(String[] args) {
+		test1();
+	}
+
+	public static void test1() {
+		String a = "a.xml";
+		Map<String, Object> inmap = new HashMap<>();
+		inmap.put("a", a);
+		inmap.put("a1", "a1Hand");
+		inmap.put("a2", "a2Hand");
+		inmap.put("en", Base64.getEncoder());
+		inmap.put("jo", new JSONObject());
+		inmap.put("class", TestDto.class);
+		inmap.put("objStr", "{\"name\":\"test\"}");
+		inmap.put("obj", new TestDto("test"));
+		String str = VelocityUtils.parseVMTemplate(DEFAULT_ABSOLUTE_PATH, "b.xml", DEFAULT_ENCODING, inmap);
+		System.out.println(str);
+	}
+
+	public static void test2() {
 		File tempFile = null;
 		try {
 			String content = "{\n" + "    \"info\":{\n" + "        \"name\" : \"$!name\"\n" + "    }\n" + "}";

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>study</artifactId>
+    <artifactId>design</artifactId>
 
     <dependencies>
         <!-- 内部项目依赖 -->

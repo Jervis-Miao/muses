@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+    <header>
+        <name>b</name>
+    </header>
+    <body>
+        ##引入外部xml，并定义变量
+        #set($str = "#parse($a)")
+        $str
+        <en>
+            ##引用外部加密算法
+            $en.encodeToString($str.getBytes())
+        </en>
+    </body>
+    <test>
+        ##类
+        $class.getName()
+        ##对象转换
+        $jo.toJSONString($obj)
+        $jo.parseObject($objStr,$class)
+    </test>
+</package>

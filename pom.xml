@@ -12,7 +12,7 @@
         <module>demo-web</module>
         <module>demo-dubbo</module>
         <module>common</module>
-        <module>study</module>
+        <module>design</module>
     </modules>
 
     <issueManagement>
