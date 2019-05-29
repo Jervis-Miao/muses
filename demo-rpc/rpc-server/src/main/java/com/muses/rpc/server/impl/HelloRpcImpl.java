@@ -4,7 +4,7 @@
 
 package com.muses.rpc.server.impl;
 
-import com.muses.rpc.server.HelloRPC;
+import com.muses.rpc.api.provider.HelloRPC;
 
 /**
  * @author miaoqiang

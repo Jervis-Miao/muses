@@ -2,7 +2,7 @@
  * Copyright 2019 All rights reserved.
  */
 
-package com.muses.rpc.server.sub;
+package com.muses.rpc.api.sub;
 
 import java.io.Serializable;
 

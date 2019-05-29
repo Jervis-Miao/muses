@@ -14,7 +14,6 @@
         <module>common</module>
         <module>design</module>
         <module>demo-rpc</module>
-        <module>demo-rpc</module>
     </modules>
 
     <issueManagement>

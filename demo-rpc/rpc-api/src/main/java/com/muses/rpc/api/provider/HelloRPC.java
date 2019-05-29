@@ -2,7 +2,7 @@
  * Copyright 2019 All rights reserved.
  */
 
-package com.muses.rpc.server;
+package com.muses.rpc.api.provider;
 
 /**
  * @author miaoqiang
