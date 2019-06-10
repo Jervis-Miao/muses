@@ -239,10 +239,14 @@ public class RedissonTest {
 		}
 	}
 
+	@Test
 	public void testTopic() {
-		RTopic topic = redissonClient.getTopic("");
-		topic.publish(null);
-	}
+//		RTopic topic = redissonClient.getTopic("1231231");
+//		topic.publish(12);
+        RBucket<Object> test = redissonClient.getBucket("test", new JsonJacksonCodec());
+        test.set("t",1,TimeUnit.MINUTES);
+    }
+
 
 	@Test
 	public void codecSetTest() {

@@ -31,6 +31,18 @@
             <version>2.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.xyz</groupId>
+            <artifactId>chaos-web</artifactId>
+            <version>1.2.3-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+
         <!-- HttpClient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
