@@ -1,5 +1,5 @@
 /*
-Copyright All rights reserved.
+ * Copyright All rights reserved.
  */
 
 package com.muses.web.controller;
@@ -21,6 +21,9 @@ import com.muses.utils.DownloadUtils;
 import com.muses.web.dto.PdfInfo;
 import com.muses.web.service.IndexService;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  * @author Jervis
  * @date 2018/6/24.
@@ -28,28 +31,48 @@ import com.muses.web.service.IndexService;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-	private static final Log	logger	= LogFactory.getLog(HomeController.class);
+    private static final Log logger = LogFactory.getLog(HomeController.class);
 
-	@Autowired
-	private IndexService		indexService;
+    @Autowired
+    private IndexService indexService;
 
-	@RequestMapping(value = "/index")
-	public String index() {
-		return "index";
-	}
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
 
-	/**
-	 * 下载附件
-	 *
-	 * @param appId
-	 * @return
-	 */
-	@RequestMapping(value = "/download/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public void ajaxDownloadApp(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) {
-		PdfInfo appPdf = indexService.getAppPdf(id);
-		String name = "投保单模板_" + id + ".pdf";
-		byte[] content = appPdf.getContent();
-		DownloadUtils.down(name, content, request, response);
-	}
+    @RequestMapping(value = "/index1")
+    public String index1() {
+        return "forward:/home/json";
+    }
+
+    @RequestMapping(value = "/json")
+    public void json(HttpServletResponse repsonse) {
+        PrintWriter writer = null;
+        try {
+            writer = repsonse.getWriter();
+            writer.write("test!!!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != writer) {
+                writer.close();
+            }
+        }
+    }
+
+    /**
+     * 下载附件
+     *
+     * @param appId
+     * @return
+     */
+    @RequestMapping(value = "/download/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public void ajaxDownloadApp(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) {
+        PdfInfo appPdf = indexService.getAppPdf(id);
+        String name = "投保单模板_" + id + ".pdf";
+        byte[] content = appPdf.getContent();
+        DownloadUtils.down(name, content, request, response);
+    }
 }
