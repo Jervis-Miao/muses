@@ -8,8 +8,8 @@
   <context id="ins-prod-sku">
 
     <!-- 自定义使用方式支持，包括DAO，扩展XML，注解等 -->
-    <plugin type="com.muses.common.orm.generator.plugins.CustomizeDaoSupportPlugin">
-      <property name="mapperAnnotation" value="com.muses.common.orm.mybatis.MyBatisRepository"/>
+    <plugin type="cn.muses.common.orm.generator.plugins.CustomizeDaoSupportPlugin">
+      <property name="mapperAnnotation" value="cn.muses.common.orm.mybatis.MyBatisRepository"/>
       <property name="daoSuffix" value="DAO"/>
       <property name="targetProject" value="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/java"/>
       <property name="targetPackage" value="com.muses.repository.dao"/>
@@ -20,7 +20,7 @@
     <!-- 自动生成sql添加rowBounds支持 -->
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
 
-    <plugin type="com.muses.common.orm.generator.plugins.AdjustAllExamplePlugin">
+    <plugin type="cn.muses.common.orm.generator.plugins.AdjustAllExamplePlugin">
       <property name="searchString" value="Example"/>
       <property name="replaceString" value="Criteria"/>
       <property name="targetProject" value="D:/workspace/muses/demo-dubbo/dubbo-provider/src/main/java"/>
@@ -32,7 +32,7 @@
                     connectionURL="jdbc:oracle:thin:@192.168.51.92:1521:ins" userId="ins" password="instest"/>
 
     <!-- 数据库类型解析为JavaType -->
-    <javaTypeResolver type="com.muses.common.orm.generator.internal.types.NoShortJavaTypeResolver">
+    <javaTypeResolver type="cn.muses.common.orm.generator.internal.types.NoShortJavaTypeResolver">
       <property name="forceBigDecimals" value="false"/>
     </javaTypeResolver>
 

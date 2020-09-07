@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import com.muses.common.utils.StringUtils;
+import cn.muses.common.utils.StringUtils;
 
 /**
  * @author Jervis

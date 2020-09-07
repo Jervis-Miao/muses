@@ -9,6 +9,6 @@
 
   <import resource="classpath:/spring/spring-config.xml"/>
 
-  <dubbo:reference id="studentProvider" interface="com.muses.api.provider.StudentProvider"/>
+  <dubbo:reference id="studentProvider" interface="cn.muses.api.provider.StudentProvider"/>
 
 </beans>

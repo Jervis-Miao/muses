@@ -16,7 +16,7 @@
         class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
     <property name="indentOutput" value="true"/>   <!-- 美化输出 -->
     <property name="objectMapper">
-      <bean class="com.muses.common.jackson.IOObjectMapper"></bean>
+      <bean class="cn.muses.common.jackson.IOObjectMapper"></bean>
     </property>
   </bean>
 

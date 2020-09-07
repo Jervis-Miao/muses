@@ -104,7 +104,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.muses.DubboMain</mainClass>
+              <mainClass>cn.muses.DubboMain</mainClass>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
               <!-- <useUniqueVersions>false</useUniqueVersions> -->

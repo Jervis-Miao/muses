@@ -16,10 +16,9 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
-import com.muses.common.orm.mybatis.easylist.list.utils.ObjectUtils;
+import cn.muses.common.orm.mybatis.easylist.list.utils.ObjectUtils;
 import com.study.redis.redisson.cache.constant.RedisCacheConstant;
 import com.study.redis.redisson.cache.dto.CacheParam;
 
@@ -70,7 +69,7 @@ public abstract class AbstractCache<K extends CacheParam, V> {
 
 	/**
 	 * 获取设置缓存锁键
-	 * 
+	 *
 	 * @param cacheParam
 	 * @return
 	 */
@@ -80,7 +79,7 @@ public abstract class AbstractCache<K extends CacheParam, V> {
 
 	/**
 	 * 获取自定义设置缓存锁键
-	 * 
+	 *
 	 * @param cacheParam
 	 * @param value
 	 * @return
@@ -215,7 +214,7 @@ public abstract class AbstractCache<K extends CacheParam, V> {
 
 	/**
 	 * 设置缓存信息RBucket形式，并返回信息
-	 * 
+	 *
 	 * @param cacheParam
 	 * @return
 	 */
@@ -235,7 +234,7 @@ public abstract class AbstractCache<K extends CacheParam, V> {
 
 	/**
 	 * 设置缓存信息，RBucket
-	 * 
+	 *
 	 * @param cacheParam
 	 * @param value
 	 */
@@ -245,7 +244,7 @@ public abstract class AbstractCache<K extends CacheParam, V> {
 
 	/**
 	 * 设置缓存信息，RBucket
-	 * 
+	 *
 	 * @param cacheParam
 	 * @param value
 	 */
@@ -358,7 +357,7 @@ public abstract class AbstractCache<K extends CacheParam, V> {
 
 	/**
 	 * 获取返回对象键
-	 * 
+	 *
 	 * @param value
 	 * @return
 	 */

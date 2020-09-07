@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.ObjectUtils;
 import com.docking.IAnalysisResBody;
 import com.docking.config.AnalysisConf;
 import com.docking.dto.DockingResDTO;
@@ -74,7 +74,7 @@ public abstract class AbstractStrAnalysis<T, E> implements IAnalysisResBody<T> {
 
 	/**
 	 * 返回信息业务校验
-	 * 
+	 *
 	 * @param resMsg
 	 * @param checkMap
 	 * @return

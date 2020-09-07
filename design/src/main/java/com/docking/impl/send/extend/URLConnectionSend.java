@@ -22,8 +22,8 @@ import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.validator.utils.StringUtils;
+import cn.muses.common.utils.ObjectUtils;
+import cn.muses.common.validator.utils.StringUtils;
 import com.docking.config.URLSendConf;
 import com.docking.dto.DockingReqDTO;
 import com.docking.impl.send.AbstractCustomSend;
@@ -36,7 +36,7 @@ import com.docking.utils.TemFileManager;
  * 该工具不推荐使用，这里只是兼容老代码迁移使用
  * @see com.docking.impl.send.http.HttpClientSend4
  * </pre>
- * 
+ *
  * @author miaoqiang
  * @date 2019/1/24.
  */

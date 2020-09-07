@@ -13,7 +13,7 @@ import com.docking.config.TaskConfig;
 import com.docking.constant.ConfigCons;
 import com.docking.dto.DockingReqDTO;
 import com.docking.dto.DockingResDTO;
-import com.muses.common.utils.SpringContextUtils;
+import cn.muses.common.utils.SpringContextUtils;
 
 /**
  * 对接执行管理
@@ -25,7 +25,7 @@ public class DockingManager {
 
 	/**
 	 * 处理调度
-	 * 
+	 *
 	 * @param reqDTO
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public class DockingManager {
 
 	/**
 	 * 处理请求
-	 * 
+	 *
 	 * @param reqDTO
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class DockingManager {
 
 	/**
 	 * 封装发送数据
-	 * 
+	 *
 	 * @param msgConf
 	 * @param reqDTO
 	 * @return
@@ -67,7 +67,7 @@ public class DockingManager {
 
 	/**
 	 * 发送数据
-	 * 
+	 *
 	 * @param sendConf
 	 * @param reqMsg
 	 * @param reqDTO
@@ -84,7 +84,7 @@ public class DockingManager {
 
 	/**
 	 * 解析返回信息
-	 * 
+	 *
 	 * @param analysisConf
 	 * @param resMsg
 	 * @return

@@ -5,7 +5,7 @@ Copyright 2018 All rights reserved.
 package com.docking.impl.analysis;
 
 import com.alibaba.fastjson.JSONObject;
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.ObjectUtils;
 
 /**
  * @author miaoqiang

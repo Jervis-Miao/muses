@@ -3,7 +3,7 @@
 
   <contextName>muses-dubbo-provider</contextName>
 
-  <define name="propFile" class="com.muses.common.log.FilePropertyDefiner"/>
+  <define name="propFile" class="cn.muses.common.log.FilePropertyDefiner"/>
   <property resource="${propFile}"/>
 
   <appender name="ALIBABA-APPENDER" class="ch.qos.logback.core.FileAppender">

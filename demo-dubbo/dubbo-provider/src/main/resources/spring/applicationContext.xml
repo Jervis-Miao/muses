@@ -13,10 +13,10 @@
   <description>Spring配置</description>
 
   <!-- springContext -->
-  <bean id="springContextUtils" class="com.muses.common.utils.SpringContextUtils"/>
+  <bean id="springContextUtils" class="cn.muses.common.utils.SpringContextUtils"/>
 
   <!-- jmxInitializer -->
-  <bean id="jmxInitializer" class="com.muses.JmxInitializer">
+  <bean id="jmxInitializer" class="cn.muses.JmxInitializer">
     <property name="jmxPort" value="${jmx.port}"/>
     <property name="jmxLocal" value="${jmx.local}"/>
     <property name="jmxAuthenticate" value="${jmx.authenticate}"/>
@@ -28,7 +28,7 @@
         class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
     <property name="indentOutput" value="true"/>   <!-- 美化输出 -->
     <property name="objectMapper">
-      <bean class="com.muses.common.jackson.IOObjectMapper"></bean>
+      <bean class="cn.muses.common.jackson.IOObjectMapper"></bean>
     </property>
   </bean>
 

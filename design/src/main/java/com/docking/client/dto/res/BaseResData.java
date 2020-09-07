@@ -5,7 +5,7 @@
 package com.docking.client.dto.res;
 
 
-import com.muses.common.utils.StringUtils;
+import cn.muses.common.utils.StringUtils;
 
 /**
  * @author miaoqiang

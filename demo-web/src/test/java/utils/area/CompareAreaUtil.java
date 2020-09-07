@@ -11,8 +11,8 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 
-import com.muses.common.utils.CollectionUtils;
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.CollectionUtils;
+import cn.muses.common.utils.ObjectUtils;
 
 import utils.area.dto.AreaDto;
 import utils.area.dto.ChinaDto;
@@ -57,7 +57,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 写入信息
-	 * 
+	 *
 	 * @param fileFlag
 	 * @param areas
 	 * @throws Exception
@@ -76,7 +76,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 遍历比较对象
-	 * 
+	 *
 	 * @param filePath
 	 * @param flags
 	 * @param comAreas
@@ -90,7 +90,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 写入文件
-	 * 
+	 *
 	 * @param filePath
 	 * @param flag
 	 * @param areas
@@ -115,7 +115,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 解析地区
-	 * 
+	 *
 	 * @param data
 	 * @return
 	 */
@@ -146,7 +146,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 地区比较
-	 * 
+	 *
 	 * @param oldChina
 	 * @param newChina
 	 */
@@ -177,7 +177,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 地区调整运算
-	 * 
+	 *
 	 * @param oa
 	 * @param na
 	 * @param map
@@ -249,7 +249,7 @@ public class CompareAreaUtil {
 
 	/**
 	 * 将有变化的地区放入池中
-	 * 
+	 *
 	 * @param map
 	 * @param key
 	 * @param area

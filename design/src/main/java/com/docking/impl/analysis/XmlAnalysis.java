@@ -11,7 +11,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.ObjectUtils;
 
 /**
  * @author miaoqiang

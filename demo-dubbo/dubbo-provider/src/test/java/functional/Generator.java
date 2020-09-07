@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 
-import com.muses.common.orm.generator.GeneratorLauncher;
+import cn.muses.common.orm.generator.GeneratorLauncher;
 
 /**
  * @author Jervis

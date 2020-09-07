@@ -13,8 +13,8 @@ import org.apache.axis2.rpc.client.RPCServiceClient;
 import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.axis2.transport.http.HttpTransportProperties;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.utils.StringUtils;
+import cn.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.StringUtils;
 import com.docking.config.WsSendConf;
 import com.docking.dto.DockingReqDTO;
 import com.docking.impl.send.AbstractWebServiceSend;

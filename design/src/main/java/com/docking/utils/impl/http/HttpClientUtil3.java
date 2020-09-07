@@ -42,8 +42,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StreamUtils;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.utils.StringUtils;
+import cn.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.StringUtils;
 
 /**
  * @author miaoqiang
@@ -104,7 +104,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param host
 		 * @param port
 		 * @param clientHost
@@ -122,7 +122,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param host
 		 * @param port
 		 * @param localAddress
@@ -151,7 +151,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param host
 		 * @param port
 		 * @return
@@ -165,7 +165,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param socket
 		 * @param host
 		 * @param port
@@ -183,7 +183,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param connManager
 	 */
 	private static void initConnManager(MultiThreadedHttpConnectionManager connManager) {
@@ -197,7 +197,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 
 	/**
 	 * 创建协议参数
-	 * 
+	 *
 	 * @param socketTimeOut
 	 * @param connTimeOut
 	 * @return
@@ -221,7 +221,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 
 	/**
 	 * 发送请求，获取返回信息
-	 * 
+	 *
 	 * @param URI
 	 * @param reqStr
 	 * @param reqParams
@@ -245,7 +245,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 
 	/**
 	 * 发送请求，下载文件
-	 * 
+	 *
 	 * @param URI
 	 * @param reqStr
 	 * @param reqParams
@@ -369,7 +369,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 
 	/**
 	 * 获取GET/POST响应内容指定编码格式
-	 * 
+	 *
 	 * @param requestMethod
 	 * @param charset
 	 * @return
@@ -395,7 +395,7 @@ public class HttpClientUtil3 extends AbstractHttpClientUtil {
 
 	/**
 	 * 获取GET/POST响应内容流-》字节
-	 * 
+	 *
 	 * @param requestMethod
 	 * @return
 	 * @throws IOException

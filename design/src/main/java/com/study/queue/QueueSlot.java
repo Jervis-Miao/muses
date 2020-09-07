@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import org.apache.commons.collections.MapUtils;
 
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.ObjectUtils;
 import com.study.queue.dto.QueueParam;
 
 /**
@@ -47,7 +47,7 @@ public class QueueSlot<T extends QueueParam> {
 
 	/**
 	 * 提交任务
-	 * 
+	 *
 	 * @param poolExecutor
 	 * @param task
 	 * @param param
@@ -79,7 +79,7 @@ public class QueueSlot<T extends QueueParam> {
 
 	/**
 	 * 确认任务
-	 * 
+	 *
 	 * @param executor
 	 * @param task
 	 * @param taskKey
@@ -103,7 +103,7 @@ public class QueueSlot<T extends QueueParam> {
 
 	/**
 	 * 获取下一个任务
-	 * 
+	 *
 	 * @return
 	 */
 	private T getNextTask() {

@@ -6,7 +6,7 @@
 
     <!--||— MyBatis和spring集成的配置 STATRT —|| -->
     <!-- sqlSession配置 -->
-    <bean id="sqlSessionFactory" class="com.muses.common.orm.sqlmap.sqlsession.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="cn.muses.common.orm.sqlmap.sqlsession.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
         <property name="typeAliasesPackage" value="com.muses.entity"/>
@@ -17,11 +17,11 @@
     <!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.muses.repository.*"/>
-        <property name="annotationClass" value="com.muses.common.orm.mybatis.MyBatisRepository"/>
+        <property name="annotationClass" value="cn.muses.common.orm.mybatis.MyBatisRepository"/>
     </bean>
     <!--||__ MyBatis和spring集成的配置 END __|| -->
 
-    <bean class="com.muses.common.orm.common.OrmContext">
+    <bean class="cn.muses.common.orm.common.OrmContext">
         <property name="sessions">
             <map>
                 <entry key="mq" value-ref="sqlSessionFactory"/>
@@ -31,7 +31,7 @@
             <bean class="org.springframework.context.support.ConversionServiceFactoryBean"/>
         </property>
     </bean>
-    <bean class="com.muses.common.orm.sqlmap.impl.MyBatisSqlmapAspect"/>
+    <bean class="cn.muses.common.orm.sqlmap.impl.MyBatisSqlmapAspect"/>
 
     <!-- 事务管理器配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

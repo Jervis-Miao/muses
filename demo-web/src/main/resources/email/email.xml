@@ -6,8 +6,8 @@
     <description>Email配置</description>
 
     <!-- 自定义基于velocity的模板解析 -->
-    <bean id="velocityTemParse" class="com.muses.utils.VelocityTemplateUtils" init-method="initEngine"/>
-    <bean id="jDomParse" class="com.muses.utils.JDomParseUtils"
+    <bean id="velocityTemParse" class="cn.muses.utils.VelocityTemplateUtils" init-method="initEngine"/>
+    <bean id="jDomParse" class="cn.muses.utils.JDomParseUtils"
           init-method="initLoadXml">
         <property name="mailTemplate" value="classpath:velocity/mailVelocity.xml"/>
     </bean>
@@ -27,7 +27,7 @@
     </bean>
 
     <!-- 文本邮件服务类 -->
-    <bean id="simpleMailService" class="com.muses.send.email.SimpleMailService">
+    <bean id="simpleMailService" class="cn.muses.send.email.SimpleMailService">
         <property name="mailSender" ref="mailSender"/>
         <property name="textTemplate">
             <value><![CDATA[
@@ -38,7 +38,7 @@
     </bean>
 
     <!-- MIME邮件服务类 -->
-    <bean id="mimeMailService" class="com.muses.send.email.MimeMailService">
+    <bean id="mimeMailService" class="cn.muses.send.email.MimeMailService">
         <property name="mailSender" ref="mailSender"/>
         <property name="velocityEngine" ref="mailVelocityEngine"/>
         <property name="templateFileName" value="mailTemplate.vm"/>

@@ -12,7 +12,7 @@
   <context:property-placeholder ignore-resource-not-found="true" properties-ref="properties" local-override="true"/>
 
   <!-- 定义PropertiesContext -->
-  <bean id="propertiesContext" class="com.muses.common.utils.PropertiesContext"/>
+  <bean id="propertiesContext" class="cn.muses.common.utils.PropertiesContext"/>
 
   <beans profile="development">
     <!-- 加载properties -->

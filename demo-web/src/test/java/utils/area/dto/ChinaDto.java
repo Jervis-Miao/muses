@@ -7,7 +7,7 @@ package utils.area.dto;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.ObjectUtils;
 
 /**
  * @author Jervis

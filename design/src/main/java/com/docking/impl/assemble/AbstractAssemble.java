@@ -7,8 +7,8 @@ package com.docking.impl.assemble;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.utils.SpringContextUtils;
+import cn.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.SpringContextUtils;
 import com.docking.IAssembleReqBody;
 import com.docking.config.DataConf;
 import com.docking.dto.DockingReqDTO;
@@ -35,7 +35,7 @@ public abstract class AbstractAssemble implements IAssembleReqBody {
 
 	/**
 	 * 获取封装报文键值对
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, Object> getMap(DockingReqDTO reqDTO) {
@@ -50,7 +50,7 @@ public abstract class AbstractAssemble implements IAssembleReqBody {
 
 	/**
 	 * 组装报文
-	 * 
+	 *
 	 * @param map
 	 * @return
 	 */

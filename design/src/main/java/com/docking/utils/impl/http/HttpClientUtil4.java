@@ -50,8 +50,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.utils.StringUtils;
+import cn.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.StringUtils;
 
 /**
  * httpclient4.5.5版本工具类
@@ -88,7 +88,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 创建连接，跳过SSL证书
-	 * 
+	 *
 	 * @param socketTimeOut
 	 * @param connTimeOut
 	 * @param proxyAddress
@@ -103,7 +103,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 创建连接，带SSL证书
-	 * 
+	 *
 	 * @param socketTimeOut
 	 * @param connTimeOut
 	 * @param proxyAddress
@@ -166,7 +166,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 初始化ClientConnManager，设定并发数，不设定给出默认值
-	 * 
+	 *
 	 * @param connManager
 	 */
 	private static void initClientConnManager(ThreadSafeClientConnManager connManager) {
@@ -194,7 +194,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 创建请求配置信息
-	 * 
+	 *
 	 * @param soTimeOut 读数据超时时间
 	 * @param connTimeOut 连接超时时间
 	 * @param proxyAddress 代理地址
@@ -253,7 +253,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 发送请求，下载文件
-	 * 
+	 *
 	 * @param URI
 	 * @param reqStr
 	 * @param reqParams
@@ -281,7 +281,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 创建请求对象
-	 * 
+	 *
 	 * @param URI
 	 * @param contentType
 	 * @param charset
@@ -347,7 +347,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 获取GET/POST响应内容指定编码格式
-	 * 
+	 *
 	 * @param requestMethod
 	 * @param charset
 	 * @return
@@ -378,7 +378,7 @@ public class HttpClientUtil4 extends AbstractHttpClientUtil {
 
 	/**
 	 * 获取GET/POST响应内容流-》字节
-	 * 
+	 *
 	 * @param requestMethod
 	 * @return
 	 * @throws IOException

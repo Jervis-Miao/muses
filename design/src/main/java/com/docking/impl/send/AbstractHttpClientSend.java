@@ -7,7 +7,7 @@ package com.docking.impl.send;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.ObjectUtils;
 import com.docking.ISendReqBody;
 import com.docking.config.HttpSendConf;
 import com.docking.dto.DockingReqDTO;
@@ -45,7 +45,7 @@ public abstract class AbstractHttpClientSend extends AbstractProtocol<HttpSendCo
 
 	/**
 	 * 获取请求工具
-	 * 
+	 *
 	 * @param code
 	 * @param sendConf
 	 * @return

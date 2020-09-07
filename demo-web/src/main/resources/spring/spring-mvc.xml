@@ -12,7 +12,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.muses.authc.AuthorityAnnotationInterceptor"></bean>
+            <bean class="cn.muses.authc.AuthorityAnnotationInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -24,7 +24,7 @@
     <!-- Druid Spring监控. 类型匹配方式 -->
     <bean id="druid-type-proxyCreator" class="com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator">
         <!-- 所有BaseController的派生类被拦截监控  -->
-        <property name="targetBeanType" value="com.muses.common.mvc.web.api.BaseController"/>
+        <property name="targetBeanType" value="cn.muses.common.mvc.web.api.BaseController"/>
         <property name="interceptorNames">
             <list>
                 <value>druid-stat-interceptor</value>
@@ -33,14 +33,14 @@
     </bean>
 
     <!-- 自定义Validator -->
-    <bean id="validator" class="com.muses.common.validator.spring.EasyValidator"/>
+    <bean id="validator" class="cn.muses.common.validator.spring.EasyValidator"/>
 
     <!-- 数据类型转换. Spring3 之前使用PropertyEditor, 3之后提供了Converter接口 -->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <bean class="com.muses.common.mvc.converter.StringTrimmerConverter"></bean>
-                <bean class="com.muses.common.mvc.converter.StringDateConverter">
+                <bean class="cn.muses.common.mvc.converter.StringTrimmerConverter"></bean>
+                <bean class="cn.muses.common.mvc.converter.StringDateConverter">
                     <property name="datePattern" value="yyyy-MM-dd HH:mm:ss"/>
                 </bean>
             </set>
@@ -58,14 +58,14 @@
             <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
         </mvc:message-converters>
         <mvc:argument-resolvers>
-            <bean class="com.muses.common.mvc.window.support.WindowAsyncArgumentResolver"/>
+            <bean class="cn.muses.common.mvc.window.support.WindowAsyncArgumentResolver"/>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
     <mvc:interceptors>
-        <!--<bean class="com.muses.common.mvc.spring.DevCocInterceptor"/>-->
-        <bean class="com.muses.common.validator.spring.EasyValidatorInterceptor"/>
-        <!--<bean class="com.muses.common.mvc.log.RequestExecutionTimeConsumptionInterceptor"/>-->
+        <!--<bean class="DevCocInterceptor"/>-->
+        <bean class="cn.muses.common.validator.spring.EasyValidatorInterceptor"/>
+        <!--<bean class="RequestExecutionTimeConsumptionInterceptor"/>-->
     </mvc:interceptors>
 
     <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->

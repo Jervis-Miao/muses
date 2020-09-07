@@ -56,8 +56,8 @@
   <!-- 分页插件 -->
   <plugins>
     <plugin
-      interceptor="com.muses.common.orm.mybatis.easylist.paginator.OffsetLimitInterceptor">
-      <property name="dialectClass" value="com.muses.common.orm.mybatis.easylist.paginator.dialect.OracleDialect"/>
+      interceptor="cn.muses.common.orm.mybatis.easylist.paginator.OffsetLimitInterceptor">
+      <property name="dialectClass" value="cn.muses.common.orm.mybatis.easylist.paginator.dialect.OracleDialect"/>
     </plugin>
   </plugins>
 

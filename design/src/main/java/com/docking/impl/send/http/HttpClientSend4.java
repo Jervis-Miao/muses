@@ -10,8 +10,8 @@ import org.dom4j.DocumentException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import com.muses.common.utils.ObjectUtils;
-import com.muses.common.utils.StringUtils;
+import cn.muses.common.utils.ObjectUtils;
+import cn.muses.common.utils.StringUtils;
 import com.docking.config.HttpSendConf;
 import com.docking.config.SSLConf;
 import com.docking.impl.send.AbstractHttpClientSend;

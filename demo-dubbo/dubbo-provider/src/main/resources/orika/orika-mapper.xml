@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-  <bean id="baseCofigurableMapper" class="com.muses.orika.BaseCofigurableMapper"/>
+  <bean id="baseCofigurableMapper" class="cn.muses.orika.BaseCofigurableMapper"/>
 
 </beans>

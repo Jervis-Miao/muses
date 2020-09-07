@@ -5,7 +5,7 @@
        default-lazy-init="true">
 
     <description>Shiro安全配置</description>
-    <bean id="musesFormAuthenticationFilter" class="com.muses.authc.MusesFormAuthenticationFilter">
+    <bean id="musesFormAuthenticationFilter" class="cn.muses.authc.MusesFormAuthenticationFilter">
         <property name="failureKeyAttribute" value="loginErrorMsg"/>
     </bean>
     <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
@@ -53,7 +53,7 @@
     </bean>
 
     <!-- 全局Session内部属性配置，应用中可以通过new SessionInternalAttrConfig ，后apply -->
-    <bean id="attrConfig" class="com.muses.common.mvc.shiro.session.SessionInternalAttrConfig">
+    <bean id="attrConfig" class="cn.muses.common.mvc.shiro.session.SessionInternalAttrConfig">
         <property name="excludePatterns">
             <list>
                 <value>^_s_.*</value>
@@ -62,7 +62,7 @@
     </bean>
 
     <!--Session用的request级别缓存 -->
-    <bean id="sessionCacheManager" class="com.muses.common.mvc.shiro.cache.SingleValueThreadLocalCacheManager"/>
+    <bean id="sessionCacheManager" class="cn.muses.common.mvc.shiro.cache.SingleValueThreadLocalCacheManager"/>
 
     <!-- 定时清理僵尸session，Shiro会启用一个后台守护线程定时执行清理操作 用户直接关闭浏览器造成的孤立会话 -->
     <!--
@@ -83,8 +83,8 @@
         <property name="configLocation" value="classpath:security/ehcache-shiro.xml"/>
       </bean>
     -->
-    <bean id="usernamePwdCredentialsMatcher" class="com.muses.authc.UsernamePwdCredentialsMatcher"/>
-    <bean id="dbRealm" class="com.muses.authc.DbRealm">
+    <bean id="usernamePwdCredentialsMatcher" class="cn.muses.authc.UsernamePwdCredentialsMatcher"/>
+    <bean id="dbRealm" class="cn.muses.authc.DbRealm">
         <property name="credentialsMatcher" ref="usernamePwdCredentialsMatcher"/>
     </bean>
 
