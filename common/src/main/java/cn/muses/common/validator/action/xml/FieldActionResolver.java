@@ -3,15 +3,14 @@ package cn.muses.common.validator.action.xml;
 import java.util.Arrays;
 import java.util.List;
 
+import cn.muses.common.validator.config.XmlElement;
+import cn.muses.common.validator.config.XmlValidatorResolver;
 import cn.muses.common.validator.data.Action;
 import cn.muses.common.validator.data.Entity;
 import cn.muses.common.validator.data.Field;
 import cn.muses.common.validator.data.FieldAction;
 import cn.muses.common.validator.data.Valid;
 import cn.muses.common.validator.utils.StringUtils;
-import cn.muses.common.validator.config.XmlElement;
-import cn.muses.common.validator.config.XmlValidatorResolver;
-import com.muses.common.validator.data.*;
 
 public class FieldActionResolver implements ActionResolver<FieldAction> {
 
