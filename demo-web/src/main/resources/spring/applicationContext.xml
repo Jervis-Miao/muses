@@ -28,7 +28,7 @@
     <bean id="propertiesContext" class="cn.muses.common.utils.PropertiesContext"/>
 
     <!-- springContext -->
-    <bean id="springContextUtils" class="cn.muses.common.utils.SpringContextUtils"/>
+    <bean id="springContextUtils" class="cn.muses.utils.spring.SpringContextUtils"/>
 
     <bean id="jacksonObjectMapper" name="jacksonObjectMapper"
           class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">

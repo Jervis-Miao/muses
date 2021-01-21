@@ -13,7 +13,7 @@
   <description>Spring配置</description>
 
   <!-- springContext -->
-  <bean id="springContextUtils" class="cn.muses.common.utils.SpringContextUtils"/>
+  <bean id="springContextUtils" class="cn.muses.utils.spring.SpringContextUtils"/>
 
   <!-- jmxInitializer -->
   <bean id="jmxInitializer" class="cn.muses.JmxInitializer">
